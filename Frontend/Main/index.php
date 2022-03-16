@@ -15,7 +15,7 @@
     <link href="../../../Praca_dyplomowa/Frontend/Main/index.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
@@ -148,7 +148,7 @@
     </div>
 
 
-    <div class="container mt-5" id="popularneProdukty">
+    <div class="container mt-5" id="popularneProdukty" style="margin-bottom: 200px">
         <div style="border: 4px solid red">
             Reklama naszego sklepu, samosłodzenie
         </div>

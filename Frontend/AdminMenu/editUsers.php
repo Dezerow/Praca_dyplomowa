@@ -29,6 +29,12 @@
                     Wyświetl listę administratorów
                 </button>
             </div>
+            <?php
+            if (isset($_SESSION['adminUserEdit'])) {
+                echo $_SESSION['adminUserEdit'];
+                unset($_SESSION['adminUserEdit']);
+            }
+            ?>
         </div>
 
 
@@ -57,10 +63,10 @@
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>            
-            <form method='POST' action='../../../Praca_dyplomowa/Backend/Server/backAdminEditAdmins.php'>                          
+            <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editAdmin.php'>                          
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
-            <td>" . $row['username'] . "</td>
-            <td>" . $row['email'] . "</td>         
+            <td><input type='hidden' name='name' value=" . $row['username'] . ">" . $row['username'] . "</td>
+            <td><input type='hidden' name='email' value=" . $row['email'] . ">" . $row['email'] . "</td>
             <td>" . $row['register_date'] . "</td> 
             <td><input class='btn btn-warning' type='submit' value='Edytuj dane administratora' ></td>
             </form>
@@ -100,10 +106,10 @@
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>  
-            <form method='POST' action='../../../Praca_dyplomowa/Backend/Server/backAdminEditUsers.php'>                                    
+            <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editUser.php'>                                    
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
-            <td>" . $row['username'] . "</td>
-            <td>" . $row['email'] . "</td> 
+            <td><input type='hidden' name='name' value=" . $row['username'] . ">" . $row['username'] . "</td>
+            <td><input type='hidden' name='email' value=" . $row['email'] . ">" . $row['email'] . "</td>
             <td>" . $row['register_date'] . "</td>          
             <td><input class='btn btn-warning' type='submit' value='Edytuj dane użytkownika'></td>
             </form>

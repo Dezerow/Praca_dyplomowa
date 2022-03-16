@@ -19,7 +19,7 @@ if (isset(($_SESSION['logged']))) {
   <link href="../../../Praca_dyplomowa/Frontend/Login/login.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
   <header class="sticky-top">
     <?php include "../Components/Navbar/navbar.php" ?>

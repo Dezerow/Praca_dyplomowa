@@ -1,7 +1,7 @@
 <link href="../../../../Praca_dyplomowa/Frontend/Components/Footer/footer.css?v=1.0" rel="stylesheet" type="text/css" />
 
 
-<footer class="footer fixed-bottom">
+<footer class="mt-auto">
     <div class="card bg-dark text-light" id="footerContainer">
         <div class="row bg-dark text-light" id="footerRow">
             <div class="col-md-5 col-6 footerColumns">

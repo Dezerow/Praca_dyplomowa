@@ -18,7 +18,7 @@ if (isset(($_SESSION['logged']))) {
     <link href="../../../Praca_dyplomowa/Frontend/Register/register.css?v=1.0" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
