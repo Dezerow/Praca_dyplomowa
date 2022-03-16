@@ -1,0 +1,38 @@
+#footerRow {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #f2f4f5;
+}
+
+#footerContainer {
+  margin-top: 20px;
+  background-color: #f2f4f5;
+}
+
+.footerColumns {
+  height: 150px;
+}
+
+.footerColumns a {
+  color: white;
+  text-decoration: none;
+}
+
+#footerLeftSide {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#footerRightSide {
+  margin-top: 10px;
+  margin-right: 10px;
+  text-align: right;
+}
+
+.footer {
+  margin-top: 100px;
+}
+
+.wielkoscLiter {
+  font-size: 17px;
+}

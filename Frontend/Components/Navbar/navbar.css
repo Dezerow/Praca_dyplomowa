@@ -1,0 +1,12 @@
+@media only screen and (min-width: 600px) {
+  #wyszukiwarka {
+    margin-left: 30%;
+  }
+  #inputSzukaj {
+    width: 250px;
+  }
+}
+
+.nav-item {
+  margin-right: 20px;
+}
