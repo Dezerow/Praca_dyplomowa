@@ -61,7 +61,7 @@
 
 
                     <div>
-                        <form method="POST" action="../../../Praca/Backend/Server/backAdminEdit.php">
+                        <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEdit.php">
 
                             <div class="mt-2">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeEmaila" aria-expanded="false" aria-controls="collapseExample">
@@ -100,21 +100,21 @@
 
                 <div class="text-start mt-3 ms-3">
                     <div class="">
-                        <a href="../../../Praca/Frontend/AdminMenu/editUsers.php">
+                        <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/editUsers.php">
                             <button class="btn btn-primary">
                                 Edytuj dane użytkowników
                             </button>
                         </a>
                     </div>
                     <div class="mt-3">
-                        <a href="../../../Praca/Frontend/AdminMenu/editProducts.php">
+                        <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/editProducts.php">
                             <button class="btn btn-primary">
                                 Edytuj oferty produktów
                             </button>
                         </a>
                     </div>
                     <div class="mt-3">
-                        <a href="../../../Praca/Frontend/AdminMenu/editArticles.php">
+                        <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/editArticles.php">
                             <button class="btn btn-primary">
                                 Edytuj artkuły
                             </button>

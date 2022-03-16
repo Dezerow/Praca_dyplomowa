@@ -1,4 +1,4 @@
-<link href="../../../../Praca/Frontend/Components/Footer/footer.css?v=1.0" rel="stylesheet" type="text/css" />
+<link href="../../../../Praca_dyplomowa/Frontend/Components/Footer/footer.css?v=1.0" rel="stylesheet" type="text/css" />
 
 
 <footer class="footer fixed-bottom">

@@ -15,7 +15,7 @@ if (isset(($_SESSION['logged']))) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" media="" />
-    <link href="../../../Praca/Frontend/Register/register.css?v=1.0" rel="stylesheet" type="text/css" />
+    <link href="../../../Praca_dyplomowa/Frontend/Register/register.css?v=1.0" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -27,7 +27,7 @@ if (isset(($_SESSION['logged']))) {
     <div class="container-fluid mt-5" id="whenLittleMove">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
-                <form method="POST" action="../../../Praca/Backend/Server/backRegistration.php" class="form-container">
+                <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backRegistration.php" class="form-container">
                     <label id="registerTitle">
                         <h4 style=" text-align: center;">Panel Rejestracji</h4>
                     </label>

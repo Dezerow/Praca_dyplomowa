@@ -34,7 +34,7 @@
 
         <div class="collapse" id="pokazAdministratorów">
             <?php
-            require __DIR__ . "../../../../Praca/Backend/DB_Connection/dbConnect.php";
+            require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
             $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
@@ -57,7 +57,7 @@
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>            
-            <form method='POST' action='../../../Praca/Backend/Server/backAdminEditAdmins.php'>                          
+            <form method='POST' action='../../../Praca_dyplomowa/Backend/Server/backAdminEditAdmins.php'>                          
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td>" . $row['username'] . "</td>
             <td>" . $row['email'] . "</td>         
@@ -77,7 +77,7 @@
 
         <div class="collapse" id="pokazUzytkownikow">
             <?php
-            require __DIR__ . "../../../../Praca/Backend/DB_Connection/dbConnect.php";
+            require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
             $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
@@ -100,7 +100,7 @@
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>  
-            <form method='POST' action='../../../Praca/Backend/Server/backAdminEditUsers.php'>                                    
+            <form method='POST' action='../../../Praca_dyplomowa/Backend/Server/backAdminEditUsers.php'>                                    
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td>" . $row['username'] . "</td>
             <td>" . $row['email'] . "</td> 
