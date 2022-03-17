@@ -19,6 +19,19 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
+    <?php
+    require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+    $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+
+
+    $adminname = $_SESSION['user'];
+    $sql = "SELECT email,register_date from users";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    $_SESSION['user']
+
+    ?>
     <div class="container mt-5" style="border: 2px solid red">
         <div class="d-flex justify-content-center">
             <div class="card-block text-center bg-light" style="width:500px">
@@ -34,11 +47,11 @@
                     <hr class="badge-primary mt-0 w-50">
                     <div class="mt-4 ms-5">
                         <h5>Adres email</h5>
-                        <p>Adres</p>
+                        <p><?php echo $row['email'] ?></p>
                     </div>
                     <div class="mt-1 ms-5">
                         <h5>Data założenia konta</h5>
-                        <p>Data</p>
+                        <p><?php echo $row['register_date'] ?></p>
                     </div>
                     <div class="mt-1 ms-5">
                         <h5>Przejrzyj historię transkacji</h5>
