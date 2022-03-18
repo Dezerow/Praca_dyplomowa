@@ -7,11 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/aa02b8a033.js" crossorigin="anonymous"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
-    <script src="../../Frontend//AdminMenu/JS/disableDeletingUsers.php"></script>
-
-
 </head>
 
 <body>
@@ -26,7 +22,7 @@
     $email = $_POST['email'];
     ?>
 
-    <div class="container mt-5" style="border: 2px solid red">
+    <div class="container mt-5">
         <div class="d-flex justify-content-center">
             <div class="card-block text-center bg-light" style="width:500px">
                 <div class="row ms-2" style="width:480px; background-color:whitesmoke">

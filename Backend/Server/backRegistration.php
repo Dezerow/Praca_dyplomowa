@@ -22,8 +22,8 @@ if ($conn->connect_error) {
   //  $email = htmlentities($password, ENT_QUOTES, "UTF-8");
 
 
-  $sql = "INSERT INTO users(id, username, email, password, verification_code, register_date)
-     VALUES ('', '$username', '$email', '$password', '', '$date')";
+  $sql = "INSERT INTO users(id, username, email, password, verification_code, register_date, is_verifed)
+     VALUES ('', '$username', '$email', '$password', '', '$date', '0')";
 
   $result = mysqli_query($conn, $sql);
 

@@ -27,9 +27,6 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam laborum tempore dolorum quaerat doloribus quos ea perferendis ab repellendus sapiente asperiores molestiae ut, illo inventore ullam consequuntur nihil deserunt ratione eius pariatur quo omnis odio magnam non. Consequuntur quae aut reprehenderit voluptatem, dolore molestiae repellendus rerum tempora obcaecati nulla dicta asperiores non saepe delectus, odio sunt officiis explicabo distinctio. Aperiam minima quasi minus ullam. Ut consectetur, voluptate ad sapiente libero blanditiis quam dolore earum iure aspernatur illo? Consequatur consequuntur labore quod facilis nisi voluptatum soluta, rerum vitae ullam fuga laboriosam dolorum sint assumenda rem dignissimos mollitia impedit temporibus voluptates ducimus? Exercitationem laboriosam, adipisci officia minus velit cupiditate vel cum dolores ipsam nihil obcaecati quod aspernatur odit tempora tempore unde saepe pariatur eveniet distinctio! Ipsa magni a, officiis officia necessitatibus odit sapiente odio quia totam provident illum dolore vero possimus cumque quae quos vel repudiandae libero dolorum dicta quis voluptatibus consequatur?
             </div>
         </div>
-
-
-
     </div>
 
 

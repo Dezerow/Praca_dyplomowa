@@ -24,7 +24,8 @@
     <div class="container mt-5" id="" style="border: 4px solid red">
         <div class="row">
             <div class="col-6">
-                <img src="../Components/Images/bighoney.png" class="img-fluid" alt="..." id="upperPhoto">
+                <img src="http://drive.google.com/uc?export=view&id=1_hrIU656cOCgj6Q9eoUFHpOnptcsfoBl" class="img-fluid" alt="..." id="upperPhoto">
+
             </div>
             <div class="col-6">
                 <p>Nazwa sklepu ...najlepsze produkty pszczele</p>

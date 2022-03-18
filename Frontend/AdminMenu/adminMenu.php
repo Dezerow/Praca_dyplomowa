@@ -31,7 +31,7 @@
 
     ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5" style="margin-bottom: 100px">
         <div class="d-flex justify-content-center">
             <div class="card-block text-center bg-light" style="width:700px">
                 <div class="row ms-2" style="width:680px; background-color:whitesmoke">
@@ -40,6 +40,12 @@
                     </div>
                     <div class="col-md-6 col-sm-12 mt-3">
                         <p class="" style="font-size: 50px; color:#1E90FF"><?php echo $_SESSION['admin'] ?></p>
+                        <?php
+                        if (isset($_SESSION['adminAddUser'])) {
+                            echo $_SESSION['adminAddUser'];
+                            unset($_SESSION['adminAddUser']);
+                        }
+                        ?>
                     </div>
                 </div>
                 <div style="margin-left: 100px">
@@ -114,6 +120,20 @@
 
                     <div class="text-start mt-3 ms-3">
                         <div class="">
+                            <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/addUser.php">
+                                <button class="btn btn-primary">
+                                    Dodaj użytkownika
+                                </button>
+                            </a>
+                        </div>
+                        <div class="mt-3">
+                            <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/addArticle.php">
+                                <button class="btn btn-primary">
+                                    Dodaj artykuły
+                                </button>
+                            </a>
+                        </div>
+                        <div class="mt-3">
                             <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/editUsers.php">
                                 <button class="btn btn-primary">
                                     Edytuj dane użytkowników

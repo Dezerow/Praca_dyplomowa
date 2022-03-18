@@ -22,6 +22,27 @@
             <h1>Poszerz swoją wiedzę dzięki naszym artykułom</h1>
         </div>
 
+
+        <?php
+        require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+        $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+
+
+        $sql = "SELECT id, article_name, article_content, article_image from articles";
+        $result = $conn->query($sql);
+
+        ?>
+
+        <?php
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "";
+            }
+        }
+
+        ?>
+
         <div class="row py-5">
             <div class="row">
                 <div class="col-md-6 col-sm-12 ">
