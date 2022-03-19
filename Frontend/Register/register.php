@@ -24,7 +24,7 @@ if (isset(($_SESSION['logged']))) {
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
-    <div class="container-fluid mt-5" id="whenLittleMove">
+    <div class="container-fluid mt-5" id="whenLittleMove" style="margin-bottom: 100px">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
                 <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backRegistration.php" class="form-container">
