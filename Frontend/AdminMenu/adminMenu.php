@@ -150,7 +150,7 @@
                         <div class="mt-3">
                             <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/editArticles.php">
                                 <button class="btn btn-primary">
-                                    Edytuj artkuły
+                                    Edytuj artykuły
                                 </button>
                             </a>
                         </div>
