@@ -18,7 +18,14 @@
     </header>
 
     <?php
-    $productId = $_POST['id'];
+    $productId;
+    if (isset($_POST['id'])) {
+        $productId = $_POST['id'];
+    } else if (isset($_SESSION['zapisaneID'])) {
+        echo $_SESSION['zapisaneID'];
+        $productId = $_SESSION['zapisaneID'];
+    }
+    //   $productId = $_POST['id'];
 
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
@@ -31,7 +38,7 @@
     ?>
 
     <div class="container py-5">
-        <h1 class="text-center">Podgląd artykułu</h1>
+        <h1 class="text-center">Podgląd artykułu </h1>
         <div class="row">
             <div class="col-6"> <img src="<?php echo $row['product_image'] ?>" id="EditProductPhoto" alt="" class="img-fluid mb-3 mt-4"> </div>
             <div class="col-6">
@@ -46,54 +53,112 @@
                 </div>
             </div>
         </div>
-        <div class="text-center">
+        <div>
             <h1 class="text-center mt-3">Panel edycji produktu</h1>
             <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditArticle.php">
                 <input type='hidden' name='id' value=" . $row['id'] . ">
                 <div>
-                    <div class="mt-5">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeNazwy" aria-expanded="false" aria-controls="collapseExample">
-                            Zmień nazwę produktu
-                        </button>
-                    </div>
-                    <div class="collapse" id="pokazEdycjeNazwy">
-                        <div class="mt-3"><input type="text" name="newArticleName" style="width: 450px;"></div>
-                        <div class="mt-4"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
+
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mt-5">
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeNazwy" aria-expanded="false" aria-controls="collapseExample">
+                                    Zmień nazwę produktu
+                                </button>
+                            </div>
+                            <div class="collapse" id="pokazEdycjeNazwy">
+                                <div class="mt-3"><input type="text" name="newArticleName" style="width: 450px;"></div>
+                                <div class="mt-4"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
+                                </div>
+                            </div>
+
+
+                            <div class="mt-5">
+                                <div class="mt-5">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeKlucza" aria-expanded="false" aria-controls="collapseExample">
+                                        Zmień klucz produktu
+                                    </button>
+                                </div>
+                                <div class="collapse" id="pokazEdycjeKlucza">
+                                    <div class="mt-3">
+                                        <div class="mt-3"><input type="text" name="newProductKey" style="width: 150px;"></div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn btn-success" value="Zatwierdź zmianę klucza">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5">
+                                <div class="mt-5">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeTresci" aria-expanded="false" aria-controls="collapseExample">
+                                        Zmień opis produktu
+                                    </button>
+                                </div>
+                                <div class="collapse" id="pokazEdycjeTresci">
+                                    <div class="mt-3">
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="newArticleContent" rows="4" col="5" placeholder="Maksymalnie 50 znaków"></textarea>
+                                    </div>
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn btn-success" value="Zatwierdź zmianę opisu produktu">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="mt-5">
-                    <div class="mt-5">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeTresci" aria-expanded="false" aria-controls="collapseExample">
-                            Zmień opis produktu
-                        </button>
-                    </div>
-                    <div class="collapse" id="pokazEdycjeTresci">
-                        <div class="mt-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="newArticleContent" rows="4" col="5" placeholder="Maksymalnie 50 znaków"></textarea>
-                        </div>
-                        <div class="mt-4">
-                            <input type="submit" class="btn btn-success" value="Zatwierdź zmianę opisu produktu">
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5">
-                    <div class="mt-5">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeKlucza" aria-expanded="false" aria-controls="collapseExample">
-                            Zmień klucz produktu
-                        </button>
-                    </div>
-                    <div class="collapse" id="pokazEdycjeKlucza">
-                        <div class="mt-3">
-                            <div class="mt-3"><input type="text" name="newProductKey" style="width: 150px;"></div>
-                        </div>
-                        <div class="mt-4">
-                            <input type="submit" class="btn btn-success" value="Zatwierdź zmianę klucza">
-                        </div>
-                    </div>
-                </div>
             </form>
+
+            <div class="col-6">
+                <div id="wrapper">
+
+                    <div id="text_div">
+                        <form method="post" action="../../Backend/Server/backImageUpload.php">
+                            <input type='hidden' name='id' value=<?php
+                                                                    if (isset($_POST['id'])) {
+                                                                        echo $_POST['id'];
+                                                                    } else if (isset($_SESSION['zapisaneID'])) {
+                                                                        echo $_SESSION['zapisaneID'];
+                                                                    }
+                                                                    ?>>
+                            <input type="text" name="image_name" placeholder="Podaj nazwę zdjęcia">
+                            <input type="text" name="image_url" placeholder="Podaj link do zdjęcia">
+                            <input type="submit" name="save_image" value="Wybierz zdjęcie">
+                            <img src="<?php if (isset($_SESSION['path'])) {
+                                            echo $_SESSION['path'];
+                                        } ?>">
+                            <?php
+                            if (isset($_SESSION['path'])) {
+                                echo '
+                                <form action="../../Backend/Server/backImageUpload.php" method="POST">';
+                            ?>
+
+                                <input type="hidden" name="id" value=<?php
+                                                                        if (isset($_SESSION["zapisaneID"])) {
+                                                                            echo $_SESSION["zapisaneID"];
+                                                                        }
+                                                                        ?>>
+                            <?php
+                                echo '
+                                <input type="submit" name="upload_image" class="btn btn-success mt-3" value="Czy chcesz zatwierdzić zdjęcie?">
+                                </form>
+                                
+                                ';
+                            }
+                            ?>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
+
+
+
+
+    </div>
 
     </div>
 
