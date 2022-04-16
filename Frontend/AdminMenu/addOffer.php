@@ -19,8 +19,8 @@
 
 
     <div class="container py-5">
-        <h1 class="text-center">Panel dodawania artykułu do witryny</h1>
-        <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAddArticle.php">
+        <h1 class="text-center">Panel dodawania oferty do witryny</h1>
+        <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAddProduct.php">
             <div class="row">
                 <div class="col-6">
                     <img src="#" id="Photo" alt="#" class="img-fluid mb-3 mt-4">
@@ -30,25 +30,36 @@
                 <div class="col-6">
                     <div class="d-flex justify-content-center mt-3 card">
                         <h5 class="d-flex justify-content-center mt-3">
-                            <div class="mt-3">Podaj nazwę artykułu</div>
+                            <div class="mt-3">Podaj nazwę produktu</div>
                         </h5>
                         <div class="d-flex justify-content-center mt-3">
-                            <input type="text" name="addArticleName" style="width: 250px;">
+                            <input type="text" name="ProductName" style="width: 250px;">
                         </div>
 
                         <div class="card-body">
                             <h5 class="d-flex justify-content-center mt-3">
-                                Podaj treść artykułu
+                                Podaj w miarę krótki opis produktu
                             </h5>
                             <div class="mt-3">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="addArticleContent" rows="10"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="ProductDesc" rows="4"></textarea>
                             </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="d-flex justify-content-center mt-3">
+                                Podaj cenę produktu
+                            </h5>
+                            <div class="d-flex justify-content-center mt-3">
+                                <input type="number" min="1" name="ProductPrice" style="width: 150px;">
+                                <h5 class="ms-1 mt-1"> zł</h5>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-3">
-                <input type="submit" class="btn btn-success mt-5" value="Zatwierdź nowy artykuł" style="height: 60px; width:400px; font-size: 20px">
+                <input type="submit" class="btn btn-success mt-5" value="Zatwierdź nową ofertę" style="height: 60px; width:400px; font-size: 20px">
             </div>
         </form>
     </div>

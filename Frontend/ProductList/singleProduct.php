@@ -17,22 +17,30 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
+    <?php
+    require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+    $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+
+    $productId = $_GET["data"];
+    $sql = "SELECT id, product_name, product_description, product_price, product_image from product_list WHERE id='$productId'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    ?>
+
+
     <div class="container" id="MainContent">
         <div class="row" style="margin-top:50px">
-            <div class="col-md-4 col-sm-12">
-                <img src="../../../Praca_dyplomowa/Frontend/Components/Images/HoneySell2.jpg" class="img-fluid" id="BigPhoto">
-                <div class="mt-2" id="photoList">
-                    <img src="../../../Praca_dyplomowa/Frontend/Components/Images/HoneySell2.jpg" class="img-fluid littlePhoto">
-                    <img src="../../../Praca_dyplomowa/Frontend/Components/Images/HoneySell2.jpg" class="img-fluid littlePhoto">
-                    <img src="../../../Praca_dyplomowa/Frontend/Components/Images/HoneySell2.jpg" class="img-fluid littlePhoto">
-                    <i class="fa-solid fa-chevron-right" id="changePhoto"></i>
-                </div>
+            <div class="col-md-6 col-sm-12">
+                <img src="<?php echo $row['product_image'] ?>" class="img-fluid" id="BigPhoto">
             </div>
-            <div class="col-md-8 col-sm-12 text-left" style="border:2px solid red">
-                <h2 class="mt-5">Nazwa produktu z bazy</h2>
-                <h5 class="mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, aliquam sint magni, eius iure, laudantium recusandae sit nesciunt necessitatibus itaque quis inventore possimus eveniet tempore. Magni inventore sint voluptatibus nobis vel possimus, iusto error. Fuga ducimus asperiores voluptatem iste ipsam praesentium quasi incidunt quibusdam odit atque quam earum molestiae corrupti pariatur reprehenderit deserunt alias nobis consectetur quo dolores veritatis inventore, unde repudiandae. Commodi, expedita aperiam? Sequi tempora aliquam, nostrum nam quas quibusdam libero expedita et minima tempore quidem, itaque quasi ea? Quis dolor magni maxime aliquid, recusandae laudantium consectetur cumque illo, labore, ducimus error illum temporibus. Porro fuga iste voluptatum?</h5>
-                <h4 class="mt-4" id="price">Cena z bazy: 50ziko</h4>
-                <button class="btn btn-success mt-4 ms-3">Dodaj do koszyka</button>
+            <div class="col-md-6 col-sm-12 text-left">
+                <h2 class="mt-5"><?php echo $row['product_name'] ?></h2>
+                <h5 class="mt-4"><?php echo $row['product_description'] ?></h5>
+                <h5 class="mt-3"><a href="#">W celu większej ilości informacji zalecamy przeczytać artykuł</a></h5>
+                <h4 class="mt-5" id="price">Cena: <?php echo $row['product_price'] ?> zł</h4>
+
+                <button class="btn btn-success mt-4" style="height: 60px; width:200px; font-size: 18px">Dodaj do koszyka</button>
 
             </div>
         </div>

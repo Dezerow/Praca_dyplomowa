@@ -45,7 +45,7 @@
         <div class="text-center">
             <h1 class="text-center mt-3">Panel edycji</h1>
             <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditArticle.php">
-                <input type='hidden' name='id' value=" . $row['id'] . ">
+                <input type='hidden' name='id' value="<?php echo $articleId ?>">
                 <div>
                     <div class="mt-5">
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeNazwy" aria-expanded="false" aria-controls="collapseExample">

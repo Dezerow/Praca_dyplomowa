@@ -21,128 +21,160 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
-    <div class="container mt-5" id="" style="border: 4px solid red">
-        <div class="row">
-            <div class="col-6">
-                <img src="http://drive.google.com/uc?export=view&id=1_hrIU656cOCgj6Q9eoUFHpOnptcsfoBl" class="img-fluid" alt="..." id="upperPhoto">
-
-            </div>
-            <div class="col-6">
-                <p>Nazwa sklepu ...najlepsze produkty pszczele</p>
-                <p>Zdjęcie do obróki aby przedłużyć po całości kontenera, zaznaczonego na czerwono</p>
-            </div>
-        </div>
+    <div class="container mt-5" id="">
+        <img src="../Components/Images/glownaLogo.jpg" class="img-fluid" style="width:100%;" alt="..." id="upperPhoto">
     </div>
+
+
+    <?php
+    require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+    $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+
+    $sqlDayProduct = "SELECT * from product_list WHERE id='5'";
+    $resultDayProduct = $conn->query($sqlDayProduct);
+    $rowDayProduct = $resultDayProduct->fetch_assoc();
+
+    $sqlDayArticle = "SELECT * from articles WHERE id='5'";
+    $resultDayArticle = $conn->query($sqlDayArticle);
+    $rowDayArticle = $resultDayArticle->fetch_assoc();
+
+    ?>
 
     <div class="container mt-5" id="produktyDnia">
         <div class="row">
-            <div class="col-4" style="border: 2px solid red">
-                <div style="font-size: 35px">
-                    Produkt dnia
+            <div class="col-md-4 col-sm-12">
+                <div class="card">
+                    <div class="d-flex justify-content-center" style="font-size: 35px">
+                        Produkt dnia
+                    </div>
+                    <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php $rowDayProduct['id'] ?>" class="links mb-5">
+                        <div class="d-flex justify-content-center" style="font-size: 25px">
+                            <?php echo $rowDayProduct['product_name'] ?>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="<?php echo $rowDayProduct['product_image'] ?>" class="img-fluid" alt="..." id="upperPhoto">
+                        </div>
+                        <div class="d-flex justify-content-center" style="font-size: 25px;">Cena: <?php echo $rowDayProduct['product_price'] ?> zł</div>
+                    </a>
                 </div>
-                <div style="font-size: 25px">
-                    Nazwa produktu z bazy
-                </div>
-                <div>
-                    <img src="../Components/Images/honeySell.jpg" class="img-fluid" alt="..." id="upperPhoto">
-                    <div class="col" style="font-size: 25px; margin-left: 70px">Cena 100zł</div>
-                </div>
+
             </div>
-            <div class="col-8" style="border: 2px solid green;">
-                <div class="" style="font-size: 35px">
+            <div class="col-md-8 col-sm-12 card">
+                <div class="d-flex justify-content-center" style="font-size: 35px">
                     Artykuł dnia
                 </div>
-                <div style="font-size: 25px">
-                    Nazwa artykułu z bazy
+                <div class="d-flex justify-content-center">
+                    <img src="<?php echo $rowDayArticle['article_image'] ?>" class="img-fluid mt-2" id="dayArticleImage" alt="...">
                 </div>
-                <div style="margin-top: 20px; font-size: 25px">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque magnam est perspiciatis ad quod, vitae sunt commodi obcaecati atque vero tenetur quae voluptatem minima ex repellat facere! Ipsam culpa pariatur iusto in distinctio, quisquam magni voluptatem alias doloribus quasi laudantium nulla voluptatibus ducimus blanditiis incidunt porro natus atque repellendus officiis.
+                <div style="font-size: 25px" class="d-flex justify-content-center">
+                    <?php echo $rowDayArticle['article_name'] ?>
+                </div>
+                <div class="hideLongText mt-2" style="font-size: 22px">
+                    <?php echo $rowDayArticle['article_content'] ?>
+                </div>
+                <div class="d-flex justify-content-center" style="font-size: 20px">
+                    <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=<?php $rowDayArticle['id'] ?>">Czytaj dalej>>></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+
+    $sqlBestSeller1 = "SELECT * from product_list WHERE id='5'";
+    $sqlBestSeller2 = "SELECT * from product_list WHERE id='2'";
+    $sqlBestSeller3 = "SELECT * from product_list WHERE id='4'";
+    $resultBestSeller1 = $conn->query($sqlBestSeller1);
+    $resultBestSeller2 = $conn->query($sqlBestSeller2);
+    $resultBestSeller3 = $conn->query($sqlBestSeller3);
+    $rowBestSeller1 = $resultBestSeller1->fetch_assoc();
+    $rowBestSeller2 = $resultBestSeller2->fetch_assoc();
+    $rowBestSeller3 = $resultBestSeller3->fetch_assoc();
+
+
+    ?>
+
+    <div class="container mt-5" id="popularneProdukty">
+        <div class="mt-5 d-flex justify-content-center" style="font-size: 35px">Najchętniej kupowane produkty</div>
+        <div class="row mt-3">
+            <div class="col-md-4 col-sm-12 card mt-3">
+                <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php echo $rowBestSeller1['id'] ?>" class="links">
+
+                    <div style="font-size: 25px" class="d-flex justify-content-center">
+                        <?php echo $rowBestSeller1['product_name'] ?>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <img src="<?php echo $rowBestSeller1['product_image'] ?>" class="img-fluid bestsellers mt-2" alt="...">
+                    </div>
+                    <div class="d-flex justify-content-center" style="font-size: 25px;"><?php echo $rowBestSeller1['product_price'] ?> zł</div>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-sm-12 card mt-3">
+                <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php echo $rowBestSeller2['id'] ?>" class="links">
+                    <div style="font-size: 25px" class="d-flex justify-content-center">
+                        <?php echo $rowBestSeller2['product_name'] ?>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <img src="<?php echo $rowBestSeller2['product_image'] ?>" class="img-fluid bestsellers mt-2" alt="...">
+                    </div>
+                    <div class="d-flex justify-content-center" style="font-size: 25px;"><?php echo $rowBestSeller2['product_price'] ?> zł</div>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-sm-12 card mt-3">
+                <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php echo $rowBestSeller3['id'] ?>" class="links">
+                    <div style="font-size: 25px" class="d-flex justify-content-center">
+                        <?php echo $rowBestSeller3['product_name'] ?>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <img src="<?php echo $rowBestSeller3['product_image'] ?>" class="img-fluid bestsellers mt-2" alt="...">
+                    </div>
+                    <div class="d-flex justify-content-center" style="font-size: 25px;"><?php echo $rowBestSeller3['product_price'] ?> zł</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <?php
+
+    $sqlBestArticle1 = "SELECT * from articles WHERE id='7'";
+    $sqlBestArticle2 = "SELECT * from articles WHERE id='1'";
+    $resultBestArticle1 = $conn->query($sqlBestArticle1);
+    $resultBestArticle2 = $conn->query($sqlBestArticle2);
+    $rowBestArticle1 = $resultBestArticle1->fetch_assoc();
+    $rowBestArticle2 = $resultBestArticle2->fetch_assoc();
+    ?>
+
+    <div class="container mt-5" id="popularneProdukty">
+        <div class="mt-5 d-flex justify-content-center" style="font-size: 35px">Poszerz swoja wiedzę</div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 card mt-3">
+                <div class="d-flex justify-content-center">
+                    <img src="<?php echo $rowBestArticle1['article_image'] ?>" class="img-fluid articlesImages mt-2" alt="...">
+                </div>
+                <div style="font-size: 25px" class="d-flex justify-content-center">
+                    <?php echo $rowBestArticle1['article_name'] ?>
+                </div>
+                <div style="margin-top: 20px; font-size: 20px" class="hideLongText2Articles">
+                    <?php echo $rowBestArticle1['article_content'] ?>
                 </div>
                 <div class="float-end" style="margin-top: 10px; font-size: 20px">
-                    Czytaj dalej>>>
+                    <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=<?php echo $rowBestArticle1['id'] ?>">Czytaj dalej>>></a>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container mt-5" id="popularneProdukty">
-        <div class="row">
-            <div class="col-8" style="font-size: 35px">Najchętniej kupowane produkty</div>
-            <div class="col-4 mt-2">
-                <div class="float-end" style="font-size: 20px">
-
-                    <button class="btn btn-success">
-                        < </button>
-                            <button class="btn btn-success"> > </button>
+            <div class="col-md-6 col-sm-12 card mt-3">
+                <div class="d-flex justify-content-center">
+                    <img src="<?php echo $rowBestArticle2['article_image'] ?>" class="img-fluid articlesImages mt-2" alt="...">
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col" style="border: 2px solid red">
-                    <div style="font-size: 25px">
-                        Nazwa produktu z bazy
-                    </div>
-                    <div>
-                        <img src="../Components/Images/honeySell.jpg" class="img-fluid" alt="..." id="upperPhoto">
-                        <div class="col" style="font-size: 25px; margin-left: 70px">Cena 100zł</div>
-                    </div>
+                <div style="font-size: 25px" class="d-flex justify-content-center">
+                    <?php echo $rowBestArticle2['article_name'] ?>
                 </div>
-                <div class="col" style="border: 2px solid green">
-                    <div style="font-size: 25px">
-                        Nazwa produktu z bazy
-                    </div>
-                    <div>
-                        <img src="../Components/Images/honeySell.jpg" class="img-fluid" alt="..." id="upperPhoto">
-                        <div class="col" style="font-size: 25px; margin-left: 70px">Cena 100zł</div>
-                    </div>
+                <div style="margin-top: 20px; font-size: 20px" class="hideLongText2Articles">
+                    <?php echo $rowBestArticle2['article_content'] ?>
                 </div>
-                <div class="col" style="border: 2px solid red">
-                    <div style="font-size: 25px">
-                        Nazwa produktu z bazy
-                    </div>
-                    <div>
-                        <img src="../Components/Images/honeySell.jpg" class="img-fluid" alt="..." id="upperPhoto">
-                        <div class="col" style="font-size: 25px; margin-left: 70px">Cena 100zł</div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container mt-5" id="popularneProdukty">
-        <div class="row">
-            <div class="col" style="font-size: 35px">Poszerz swoja wiedzę</div>
-            <div class="col mt-2">
-                <div class="float-end" style="font-size: 20px">
-
-                    <button class="btn btn-success">
-                        < </button>
-                            <button class="btn btn-success"> > </button>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col" style="border: 2px solid red">
-                    <div style="font-size: 25px">
-                        Nazwa artykułu z bazy
-                    </div>
-                    <div style="margin-top: 20px; font-size: 25px">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque magnam est perspiciatis ad quod, vitae sunt commodi obcaecati atque vero tenetur quae voluptatem minima ex repellat facere! Ipsam culpa pariatur iusto in distinctio, quisquam magni voluptatem alias doloribus quasi laudantium nulla voluptatibus ducimus blanditiis incidunt porro natus atque repellendus officiis.
-                    </div>
-                    <div class="float-end" style="margin-top: 10px; font-size: 20px">
-                        Czytaj dalej>>>
-                    </div>
-                </div>
-                <div class="col" style="border: 2px solid green">
-                    <div style="font-size: 25px">
-                        Nazwa artykułu z bazy
-                    </div>
-                    <div style="margin-top: 20px; font-size: 25px">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque magnam est perspiciatis ad quod, vitae sunt commodi obcaecati atque vero tenetur quae voluptatem minima ex repellat facere! Ipsam culpa pariatur iusto in distinctio, quisquam magni voluptatem alias doloribus quasi laudantium nulla voluptatibus ducimus blanditiis incidunt porro natus atque repellendus officiis.
-                    </div>
-                    <div class="float-end" style="margin-top: 10px; font-size: 20px">
-                        Czytaj dalej>>>
-                    </div>
+                <div class="float-end" style="margin-top: 10px; font-size: 20px">
+                    <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=<?php echo $rowBestArticle2['id'] ?>">Czytaj dalej>>></a>
                 </div>
             </div>
         </div>

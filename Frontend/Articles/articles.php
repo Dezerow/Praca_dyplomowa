@@ -22,47 +22,99 @@
             <h1>Poszerz swoją wiedzę dzięki naszym artykułom</h1>
         </div>
 
-
-        <?php
-        require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
-        $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
-
-
-        $sql = "SELECT id, article_name, article_content, article_image from articles";
-        $result = $conn->query($sql);
-
-        ?>
-
-        <?php
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "";
-            }
-        }
-
-        ?>
-
         <div class="row py-5">
-            <div class="row">
-                <div class="col-md-6 col-sm-12 ">
-                    <img src="../Components/Images/honeyHand.jpg" alt="" class="img-fluid mb-3 articlePhoto">
-                    <h3>Nazwa artykułu z bazy danych</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem labore in quisquam consectetur sequi nostrum doloremque expedita veritatis maxime aut id veniam aliquam nisi corrupti exercitationem, molestias deleniti ab dicta fuga. Suscipit harum culpa id ullam similique molestias sed, consectetur veniam. Suscipit earum id quibusdam commodi, delectus enim similique odio.</p>
+
+            <?php
+            require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+            $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+
+            // define how many results you want per page
+            $results_per_page = 4;
+
+            // find out the number of results stored in database
+            $sql = 'SELECT * FROM product_list';
+            $result = mysqli_query($conn, $sql);
+            $number_of_results = mysqli_num_rows($result);
+
+
+            // determine number of total pages available
+            $number_of_pages = ceil($number_of_results / $results_per_page);
+
+
+
+            // determine which page number visitor is currently on
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+
+
+
+            // determine the sql LIMIT starting number for the results on the displaying page
+            $this_page_first_result = ($page - 1) * $results_per_page;
+
+
+
+            // retrieve selected results from database and display them on page
+            $sql = 'SELECT * FROM articles LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_array($result)) {
+
+
+
+                echo '
+                    <div class="col-md-6 col-sm-12 mt-5">
+                    <img src="' . $row['article_image'] . '" alt="" class="img-fluid mb-3 articlePhoto">
+                    <h3>' . $row['article_name'] . '</h3>
+                    <p id="hideLongText">' . $row['article_content'] . '</p>
                     <div style="margin-top: 10px; font-size: 15px">
-                        <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php" class="readSingleArticle">Czytaj dalej>>></a>
+                        <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=' . $row['id'] . '" class="readSingleArticle">Czytaj dalej>>></a>
                     </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <img src="../Components/Images/honeySell.jpg" alt="" class="img-fluid mb-3 articlePhoto">
-                    <h3>Nazwa artykułu z bazy danych</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus sequi adipisci, temporibus libero nostrum ratione quis officia, provident magnam molestias possimus repudiandae rerum sed quasi dignissimos, recusandae tempora expedita. Delectus temporibus laudantium necessitatibus nisi voluptatum. Vero in sequi dolores tempore quas, odio neque architecto dicta eum debitis vel esse? Ex.</p>
-                    <div style="margin-top: 10px; font-size: 15px">
-                        <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php" class="readSingleArticle">Czytaj dalej>>></a>
-                    </div>
-                </div>
+                    </div>';
+            };
+
+            // display the links to the pages
+            $firstPage = 1;
+            ?>
+
+            <div class="mt-4">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination customFont">
+                        <li class="page-item">
+                            <a class="page-link" href="../../Frontend/Articles/articles.php?page=<?php
+                                                                                                    if ($page - 1 > 0) {
+                                                                                                        echo $page - 1;
+                                                                                                    } else {
+                                                                                                        echo $page = 1;
+                                                                                                    }
+
+                                                                                                    ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <?php
+
+
+                        for ($page = 1; $page <= $number_of_pages; $page++) {
+                            echo '<li class="page-item"><a class="page-link" href="../../Frontend/Articles/articles.php?page=' . $page . '">' . $page . '</a> </li> ';
+                        }
+                        $page = 1;
+                        ?>
+
+                        <li class="page-item">
+                            <a class="page-link" href="../../Frontend/Articles/articles.php?page=<?php
+                                                                                                    echo $page + 1;
+
+                                                                                                    ?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
+
     </div>
 
     <?php include "../Components/Footer/footer.php" ?>

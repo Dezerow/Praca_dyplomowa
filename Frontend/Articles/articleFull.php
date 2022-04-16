@@ -16,15 +16,26 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
+    <?php
+    require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+    $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+
+    $articleID = $_GET["data"];
+    $sql = "SELECT id, article_name, article_content, article_image, product_article from articles WHERE id='$articleID'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    ?>
+
 
     <div class="container py-5">
         <div class="d-flex justify-content-center mt-3">
-            <img src="../Components/Images/honeyHand.jpg" id="mainPhoto" alt="" class="img-fluid mb-3 articlePhoto">
+            <img src="<?php echo $row['article_image'] ?>" id="mainPhoto" alt="" class="img-fluid mb-3 articlePhoto">
         </div>
-        <h1 class="d-flex justify-content-center mt-3">Nazwa artykułu z bazy</h1>
+        <h1 class="d-flex justify-content-center mt-3"><?php echo $row['article_name'] ?></h1>
         <div class="d-flex justify-content-center mt-3 card" id="break_word">
             <div class="card-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam laborum tempore dolorum quaerat doloribus quos ea perferendis ab repellendus sapiente asperiores molestiae ut, illo inventore ullam consequuntur nihil deserunt ratione eius pariatur quo omnis odio magnam non. Consequuntur quae aut reprehenderit voluptatem, dolore molestiae repellendus rerum tempora obcaecati nulla dicta asperiores non saepe delectus, odio sunt officiis explicabo distinctio. Aperiam minima quasi minus ullam. Ut consectetur, voluptate ad sapiente libero blanditiis quam dolore earum iure aspernatur illo? Consequatur consequuntur labore quod facilis nisi voluptatum soluta, rerum vitae ullam fuga laboriosam dolorum sint assumenda rem dignissimos mollitia impedit temporibus voluptates ducimus? Exercitationem laboriosam, adipisci officia minus velit cupiditate vel cum dolores ipsam nihil obcaecati quod aspernatur odit tempora tempore unde saepe pariatur eveniet distinctio! Ipsa magni a, officiis officia necessitatibus odit sapiente odio quia totam provident illum dolore vero possimus cumque quae quos vel repudiandae libero dolorum dicta quis voluptatibus consequatur?
+                <?php echo $row['article_content'] ?>
             </div>
         </div>
     </div>

@@ -18,3 +18,12 @@
 .readSingleArticle {
   font-size: 20px;
 }
+
+
+#hideLongText {
+  display: block;
+  width: 550px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

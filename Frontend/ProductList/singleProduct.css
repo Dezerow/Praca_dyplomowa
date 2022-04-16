@@ -1,26 +1,8 @@
 #BigPhoto {
-  width: 400px;
-  height: 500px;
+  width: 500px;
+  height: 400px;
 }
 
-.littlePhoto {
-  width: 100px;
-  height: 100px;
-}
-
-#changePhoto {
-  font-size: 30px;
-  margin-left: 5px;
-}
-
-#photoList {
-  display: inline;
-  float: left;
-}
-
-#price {
-  float: left;
-}
 
 #MainContent {
   margin-bottom: 40px;

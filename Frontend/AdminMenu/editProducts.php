@@ -23,9 +23,9 @@
     <div class="container mt-5">
 
         <?php
-        if (isset($_SESSION['zmianaProduktu'])) {
-            echo $_SESSION['zmianaProduktu'];
-            unset($_SESSION['zmianaProduktu']);
+        if (isset($_SESSION['wynikEdycji'])) {
+            echo $_SESSION['wynikEdycji'];
+            unset($_SESSION['wynikEdycji']);
         }
         ?>
 

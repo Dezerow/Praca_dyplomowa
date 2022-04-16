@@ -15,7 +15,7 @@ if (isset(($_SESSION['logged']))) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" media="" />
-    <link href="../../../Praca_dyplomowa/Frontend/Register/register.css?v=1.0" rel="stylesheet" type="text/css" />
+    <link href="../../../Praca_dyplomowa/Frontend/AdminMenu/AdminMenuCss/addUser.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -24,12 +24,12 @@ if (isset(($_SESSION['logged']))) {
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
-    <div class="container-fluid mt-5" id="whenLittleMove">
+    <div class="container-fluid mt-5 moveFooter" id="whenLittleMove" style="margin-bottom: 550px;">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
                 <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAddUserByAdmin.php" class="form-container">
                     <label id="registerTitle">
-                        <h4 style=" text-align: center;">Dodaj użytkownika</h4>
+                        <h4 style=" text-align: center;">Zarejestruj użytkownika</h4>
                     </label>
                     <div class="form-group mt-3">
                         <label for="username">
@@ -55,7 +55,7 @@ if (isset(($_SESSION['logged']))) {
                         </label>
                         <input type="password" class="form-control" name="repeatPassword" required>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3" id="przyciskRejestracji">Zarejestruj się</button>
+                    <button type="submit" class="btn btn-primary mt-3" id="przyciskRejestracji">Dodaj użytkownika</button>
                 </form>
             </section>
         </section>

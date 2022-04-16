@@ -127,9 +127,16 @@
                             </a>
                         </div>
                         <div class="mt-3">
+                            <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/addOffer.php">
+                                <button class="btn btn-primary">
+                                    Dodaj produkt do oferty
+                                </button>
+                            </a>
+                        </div>
+                        <div class="mt-3">
                             <a href="../../../Praca_dyplomowa/Frontend/AdminMenu/addArticle.php">
                                 <button class="btn btn-primary">
-                                    Dodaj artykuły
+                                    Dodaj artykuł
                                 </button>
                             </a>
                         </div>

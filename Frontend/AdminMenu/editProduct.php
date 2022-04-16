@@ -49,14 +49,17 @@
                         </br>
                         </br>
                         Przypisany do artykułu o kluczu: <?php echo $row['product_article'] ?>
+                        </br>
+                        </br>
+                        Cena: <?php echo $row['product_price'];  ?>zł
                     </div>
                 </div>
             </div>
         </div>
         <div>
             <h1 class="text-center mt-3">Panel edycji produktu</h1>
-            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditArticle.php">
-                <input type='hidden' name='id' value=" . $row['id'] . ">
+            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditProduct.php">
+                <input type='hidden' name='id' value="<?php echo $productId; ?>">
                 <div>
 
 
@@ -68,7 +71,7 @@
                                 </button>
                             </div>
                             <div class="collapse" id="pokazEdycjeNazwy">
-                                <div class="mt-3"><input type="text" name="newArticleName" style="width: 450px;"></div>
+                                <div class="mt-3"><input type="text" name="newProductName" style="width: 450px;"></div>
                                 <div class="mt-4"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
                                 </div>
                             </div>
@@ -92,13 +95,29 @@
 
                             <div class="mt-5">
                                 <div class="mt-5">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeCeny" aria-expanded="false" aria-controls="collapseExample">
+                                        Zmień cenę produktu
+                                    </button>
+                                </div>
+                                <div class="collapse" id="pokazEdycjeCeny">
+                                    <div class="mt-3">
+                                        <div class="mt-3"><input type="number" min="1" name="newProductPrice" style="width: 150px;"></div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn btn-success" value="Zatwierdź zmianę ceny">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5">
+                                <div class="mt-5">
                                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeTresci" aria-expanded="false" aria-controls="collapseExample">
                                         Zmień opis produktu
                                     </button>
                                 </div>
                                 <div class="collapse" id="pokazEdycjeTresci">
                                     <div class="mt-3">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="newArticleContent" rows="4" col="5" placeholder="Maksymalnie 50 znaków"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="newProductContent" rows="4" col="5" placeholder="Maksymalnie 50 znaków"></textarea>
                                     </div>
                                     <div class="mt-4">
                                         <input type="submit" class="btn btn-success" value="Zatwierdź zmianę opisu produktu">

@@ -18,3 +18,8 @@ img {
 #MainContent {
   margin-bottom: 50px;
 }
+
+
+.customFont{
+  font-size: 20px;
+}

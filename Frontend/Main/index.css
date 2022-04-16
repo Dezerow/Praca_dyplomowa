@@ -1,5 +1,6 @@
 #upperPhoto {
-  height: 300px;
+  width:250px;
+  height: 250px;
 }
 
 #produktyDnia {
@@ -8,4 +9,40 @@
 
 #popularneProdukty {
   max-width: 1000px;
+}
+
+.links{
+  text-decoration: none;
+  color: inherit;
+}
+
+.hideLongText {
+  display: block;
+  width: 600px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hideLongText2Articles {
+  display: block;
+  width: 450px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bestsellers{
+  width: 200px;
+  height: 200px;
+}
+
+.articlesImages{
+  width: 300px;
+  height: 300px;
+}
+
+#dayArticleImage{
+  width: 250px;
+  height: 250px;
 }
