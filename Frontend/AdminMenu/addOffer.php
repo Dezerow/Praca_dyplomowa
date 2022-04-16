@@ -19,7 +19,7 @@
 
 
     <div class="container py-5">
-        <h1 class="text-center">Panel dodawania oferty do witryny</h1>
+        <h1 class="text-center">Panel zamieszczania oferty do witryny</h1>
         <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAddProduct.php">
             <div class="row">
                 <div class="col-6">

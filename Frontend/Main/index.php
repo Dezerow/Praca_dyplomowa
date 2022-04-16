@@ -47,7 +47,7 @@
                     <div class="d-flex justify-content-center" style="font-size: 35px">
                         Produkt dnia
                     </div>
-                    <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php $rowDayProduct['id'] ?>" class="links mb-5">
+                    <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php echo $rowDayProduct['id'] ?>" class="links mb-5">
                         <div class="d-flex justify-content-center" style="font-size: 25px">
                             <?php echo $rowDayProduct['product_name'] ?>
                         </div>
