@@ -1,0 +1,37 @@
+.userProducts{
+    max-width: 500px;   
+}
+
+
+img {
+    width: 200px;
+    height: 300px;
+  }
+  
+  .card:hover {
+    transition: 1s;
+    -webkit-box-shadow: -12px -9px 22px 3px rgba(66, 68, 90, 1);
+    -moz-box-shadow: -12px -9px 22px 3px rgba(66, 68, 90, 1);
+    box-shadow: -12px -9px 22px 3px rgba(66, 68, 90, 1);
+  }
+  
+  .Products {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  #MainContent {
+    margin-bottom: 50px;
+  }
+  
+  
+  .customFont{
+    font-size: 20px;
+  }
+
+  
+  @media only screen and (max-width: 1000px) {
+   .toHideShoppingCart{
+     visibility: hidden;
+   }
+  }

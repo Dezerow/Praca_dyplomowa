@@ -32,6 +32,8 @@ session_start();
                 <?php
                 if (isset($_SESSION['user'])) {
                     echo '<li class="nav-item login"><a class="nav-link" href="../../../../Praca_dyplomowa/Frontend/UserMenu/userMenu.php"><i style="margin-right: 5px" class="fas fa-user"></i>' . $_SESSION['user'] . '</a></li>
+                    <li class="nav-item login"><a class="nav-link" href="../../../../Praca_dyplomowa/Frontend/UserMenu/shoppingCart.php"><i style="margin-right: 5px" class="fa-solid fa-cart-shopping"></i><sup>' . count($_SESSION['userShoppingCart']) . '</sup>
+                    Koszyk</a></li>
                             <li class="nav-item logout"><a class="nav-link" href="../../../../Praca_dyplomowa/Backend/Server/backLogout.php"><i style="margin-right: 5px" class="fas fa-user-plus"></i>Wyloguj</a></li>';
                 } else if (isset($_SESSION['admin'])) {
                     echo '<li class="nav-item login"><a class="nav-link" href="../../../../Praca_dyplomowa/Frontend/AdminMenu/adminMenu.php"><i style="margin-right: 5px" class="fas fa-user"></i>' . $_SESSION['admin'] . '</a></li>

@@ -51,16 +51,6 @@
         </div>
 
         <hr class="mb-4">
-        <div class="row align-items-left">
-            <div class="col-md-7 col-lg-8">
-                <p>
-                    Copyright @2022 All rights reserved by:
-                    <a href="#" style="text-decoration: none;">
-                        <strong class="text-warning">The Providers</strong>
-                    </a>
-                </p>
-            </div>
 
-        </div>
     </div>
 </footer>

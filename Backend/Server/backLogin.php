@@ -34,6 +34,9 @@ if ($conn->connect_error) {
     $username = $row['username'];
     $_SESSION['user'] = $username;
 
+    $ar = array();
+    $_SESSION['userShoppingCart'] = $ar;
+
     unset($_SESSION['error']);  // TUTAJ MOJE ZWOLNIENIE SESJI
     unset($_SESSION['registerSucc']);  // TUTAJ MOJE ZWOLNIENIE SESJI
 

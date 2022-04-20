@@ -20,8 +20,13 @@
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
-    $articleID = $_GET["data"];
-    $sql = "SELECT id, article_name, article_content, article_image, product_article from articles WHERE id='$articleID'";
+    if (isset($_GET['data'])) {
+        $articleID = $_GET["data"];
+        $sql = "SELECT id, article_name, article_content, article_image, product_article from articles WHERE id='$articleID'";
+    } else {
+        $articlekey = $_GET['dataKey'];
+        $sql = "SELECT * from articles WHERE product_article='$articlekey'";
+    }
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 

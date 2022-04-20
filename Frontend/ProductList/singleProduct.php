@@ -22,7 +22,7 @@
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
     $productId = $_GET["data"];
-    $sql = "SELECT id, product_name, product_description, product_price, product_image from product_list WHERE id='$productId'";
+    $sql = "SELECT * from product_list WHERE id='$productId'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
@@ -37,16 +37,39 @@
             <div class="col-md-6 col-sm-12 text-left">
                 <h2 class="mt-5"><?php echo $row['product_name'] ?></h2>
                 <h5 class="mt-4"><?php echo $row['product_description'] ?></h5>
-                <h5 class="mt-3"><a href="#">W celu większej ilości informacji zalecamy przeczytać artykuł</a></h5>
+                <h5 class="mt-3"><a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?dataKey=<?php echo $row['product_article']; ?>">W celu większej ilości informacji zalecamy przeczytać artykuł</a></h5>
                 <h4 class="mt-5" id="price">Cena: <?php echo $row['product_price'] ?> zł</h4>
 
-                <button class="btn btn-success mt-4" style="height: 60px; width:200px; font-size: 18px">Dodaj do koszyka</button>
-
+                <a href='../ProductList/singleProduct.php?data=<?php echo $productId ?>&addCart="teast"'>
+                    <button class="btn btn-primary mt-4" type="submit" style="height: 60px; width:200px; font-size: 18px">Dodaj do koszyka</button>
+                </a>
+                <a href='../UserMenu/buyMenu.php?data=<?php echo $productId ?>'>
+                    <button class="btn btn-success mt-4" style="height: 60px; width:200px; font-size: 18px">Kup teraz</button>
+                </a>
             </div>
         </div>
     </div>
     </div>
 
+
+    <?php
+
+    if (isset($_GET['addCart'])) {
+        if (count($_SESSION['userShoppingCart']) == 0) {
+            $ar = array();
+            $val = $row['id'];
+            array_push($ar, $val);
+            $_SESSION['userShoppingCart'] = $ar;
+            print_R($_SESSION['userShoppingCart']);
+        } else {
+            $val = $row['id'];
+            if (end($_SESSION['userShoppingCart']) !== $val) {
+                array_push($_SESSION['userShoppingCart'], $val);
+                print_R($_SESSION['userShoppingCart']);
+            }
+        }
+    }
+    ?>
 
 
 

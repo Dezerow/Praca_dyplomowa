@@ -73,7 +73,7 @@
                     <?php echo $rowDayArticle['article_content'] ?>
                 </div>
                 <div class="d-flex justify-content-center" style="font-size: 20px">
-                    <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=<?php $rowDayArticle['id'] ?>">Czytaj dalej>>></a>
+                    <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=<?php echo $rowDayArticle['id'] ?>">Czytaj dalej>>></a>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ if (isset(($_SESSION['logged']))) {
     <?php include "../Components/Navbar/navbar.php" ?>
   </header>
 
-  <div class="container-fluid mt-5" id="whenLittleMove">
+  <div class="container-fluid mt-5 mainContainer" id="whenLittleMove">
     <section class="row justify-content-center">
       <section class="col-12 col-sm-6 col-md-3">
         <form action="./../../Backend/Server/backLogin.php" method="POST" class="form-container">

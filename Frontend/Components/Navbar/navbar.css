@@ -6,6 +6,12 @@
   border: 2px solid green;
 }
 
+sup{
+  color:red;
+  font-weight: bold;
+
+}
+
 #szukaj {
   width: 10%;
   height: 40px;
