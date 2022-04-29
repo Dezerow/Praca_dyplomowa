@@ -21,8 +21,8 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
-    <div class="container mt-5" id="">
-        <img src="../Components/Images/glownaLogo.jpg" class="img-fluid" style="width:100%;" alt="..." id="upperPhoto">
+    <div class="container mt-5 mypicture" style="border: 2px solid red">
+        <!--- <img src="../Components/Images/glownaLogo.jpg" class="img-fluid" alt="..." id="upperPhoto"> -->
     </div>
 
 
@@ -182,12 +182,11 @@
 
 
     <div class="container mt-5" id="popularneProdukty" style="margin-bottom: 200px">
-        <div style="border: 4px solid red">
-            Reklama naszego sklepu, samosłodzenie
+        <h1 class="d-flex justify-content-center mt-5">Krótko o nas</h1>
+        <div class="mt-4" id="shopDesc">
+            Jesteśmy firmą zajmującą się od wielu lat pszczelarstwem, jest to nasza pasja jak i praca. Oferujemy produkty najwyższej jakości, wytworzone przez naszych pszczelarzy z wieloletnim doświadczeniem.
+            Na naszej witrynie internetowej możesz również poszerzyć swoją więdzę o informacje na temat artykułów prozdrowotnych. Oferujemy alternatywne rozwiązania na złe samopoczucie, za pomocą zdrowej żywności.
         </div>
-        <div style="border: 4px solid green">Opis krótko o nas</div>
-        <div style="border: 4px solid red">Reklama informującach o okresowych zniżkach/ofertach wraz z ikonami miodów etc</div>
-
     </div>
 
 

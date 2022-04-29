@@ -67,7 +67,7 @@
 
 
                     // retrieve selected results from database and display them on page
-                    $sql = 'SELECT * FROM product_list LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
+                    $sql = 'SELECT * FROM product_list LIMIT ' . $this_page_first_result . ',' .  $results_per_page . '';
                     $result = mysqli_query($conn, $sql);
 
                     while ($row = mysqli_fetch_array($result)) {

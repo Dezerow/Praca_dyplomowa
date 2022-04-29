@@ -1,6 +1,13 @@
-#upperPhoto {
-  width:250px;
+.mypicture{
+  background-image: url("../Components/Images/glownaLogo.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 250px;
+}
+
+#upperPhoto {
+  height: 250px;
+  width: 80%;
 }
 
 #produktyDnia {
@@ -45,4 +52,8 @@
 #dayArticleImage{
   width: 250px;
   height: 250px;
+}
+
+#shopDesc{
+  font-size: 27px;
 }

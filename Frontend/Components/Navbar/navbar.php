@@ -13,8 +13,10 @@ session_start();
             <a class="navbar-brand" href="../../../../Praca_dyplomowa/Frontend/Articles/articles.php">Artykuły</a>
         </div>
 
-        <input class="form-control me-2" id="inputSzukaj" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" id="szukaj" type="submit">Szukaj</button>
+        <form action="../../../../Praca_dyplomowa/Frontend/SearchResults/SearchResults.php" method="POST" class="navbar-nav" id="searchMenu">
+            <input class="form-control me-2" id="inputSzukaj" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" id="szukaj" type="submit">Szukaj</button>
+        </form>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#LittleNavMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

@@ -1,5 +1,4 @@
 #inputSzukaj {
-  width: 20%;
   height: 40px;
   border-radius: 60px;
   outline: none;
@@ -13,7 +12,6 @@ sup{
 }
 
 #szukaj {
-  width: 10%;
   height: 40px;
   border-radius: 60px;
   outline: none;
@@ -59,12 +57,18 @@ sup{
     visibility: visible;
   }
 
+  #searchMenu{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+  }
+
   #inputSzukaj {
-    width: 50%;
+    text-align: center;
   }
 
   #szukaj {
-    width: 30%;
+    text-align: center;
   }
 
   .alittle {
@@ -86,11 +90,17 @@ sup{
     font-size: 1px;
   }
 
-  #inputSzukaj {
+  #searchMenu{
+    margin: auto;
     width: 25%;
+    padding: 10px;
+  }
+
+  #inputSzukaj {
+    text-align: center;
   }
 
   #szukaj {
-    width: 10%;
+    text-align: center;
   }
 }
