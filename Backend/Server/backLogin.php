@@ -36,6 +36,8 @@ if ($conn->connect_error) {
 
     $ar = array();
     $_SESSION['userShoppingCart'] = $ar;
+    $_SESSION['CartTotalPrice'] = 0;
+
 
     unset($_SESSION['error']);  // TUTAJ MOJE ZWOLNIENIE SESJI
     unset($_SESSION['registerSucc']);  // TUTAJ MOJE ZWOLNIENIE SESJI

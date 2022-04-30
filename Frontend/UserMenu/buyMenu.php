@@ -147,27 +147,27 @@ if (isset(($_SESSION['logged']))) {
                                 <p><?php echo $row['product_price'] ?>zł</p>
                             </div>
                         </div>
-                        <h5 class="mt-2">Typ wysyłki:</h5>
+                        <h4 class="mt-2">Typ wysyłki:</h4>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault1" value="0">
+                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault1" value="0" onclick="calculatePrice(0)">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Odbiór osobisty: 0zł
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault2" value="10">
+                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault2" value="10" onclick="calculatePrice(10)">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 InPost Paczkomaty: 10zł
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault3" value="12">
+                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault3" value="12" onclick="calculatePrice(12)">
                             <label class="form-check-label" for="flexRadioDefault3">
                                 Kurier: 12zł
                             </label>
                         </div>
-                        <h5 class="mt-2">Typ płatności:</h5>
+                        <h4 class="mt-2">Typ płatności:</h4>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="Payment" id="Payment1" value="1">
                             <label class="form-check-label" for="Payment1">
@@ -187,8 +187,8 @@ if (isset(($_SESSION['logged']))) {
                             </label>
                         </div>
 
-                        <h5>Podsumowanie:</h5>
-                        <div><?php echo $row['product_price'] ?> zł</div>
+                        <h4>Podsumowanie:</h4>
+                        <h5 id="price"><?php echo $row['product_price'] ?> zł</h5>
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-success mt-2" id="buyButton">Kupuję i płace</button>
                         </div>
@@ -200,8 +200,11 @@ if (isset(($_SESSION['logged']))) {
     <?php include "../Components/Footer/footer.php" ?>
 
     <script>
-        var cenaUslugi = document.querySelector('input[name="deliveryType"]:checked').value;
-        var cenaOstateczna = $row['product_price'] + cenaUslugi;
+        function calculatePrice(deliveryPrice) {
+            productPrice = <?php echo $row['product_price'] ?>;
+            totalPrice = productPrice + deliveryPrice;
+            document.getElementById('price').textContent = totalPrice + " zł";
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

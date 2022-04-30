@@ -23,10 +23,15 @@
   }
   
   .MainContainer{
-    margin-bottom: 900px;
+    margin-bottom: 100px;
     }
 
     #buyButton{
-width:250px;
-height: 50px;
+      width:250px;
+      height: 50px;
+    }
+
+    #price{
+      font-weight: bold;
+      color: red;
     }

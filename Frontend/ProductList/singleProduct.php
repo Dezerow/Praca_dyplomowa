@@ -60,12 +60,18 @@
             $val = $row['id'];
             array_push($ar, $val);
             $_SESSION['userShoppingCart'] = $ar;
-            print_R($_SESSION['userShoppingCart']);
+            $_SESSION['CartTotalPrice'] += $row['product_price'];
+            echo '<script type="text/JavaScript"> 
+            location.reload();
+            </script>';
         } else {
             $val = $row['id'];
             if (end($_SESSION['userShoppingCart']) !== $val) {
                 array_push($_SESSION['userShoppingCart'], $val);
-                print_R($_SESSION['userShoppingCart']);
+                $_SESSION['CartTotalPrice'] += $row['product_price'];
+                echo '<script type="text/JavaScript"> 
+                location.reload();
+                </script>';
             }
         }
     }

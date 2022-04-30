@@ -35,16 +35,19 @@
                     Ilość produktów w koszyku: 
                         <h5 class="ms-2" style="color:red">' . count($_SESSION['userShoppingCart']) . ' </h5>                                    
                 </div>
+                <div class="d-flex justify-content-left">
+                    Cena całkowita: 
+                        <h5 class="ms-2" style="color:red">' . $_SESSION['CartTotalPrice'] . ' zł</h5>                                    
+                 </div>
             </div> ';
+            echo '<div class="row">';
 
             foreach ($_SESSION['userShoppingCart'] as $singleProduct) {
                 $sql = "SELECT * from product_list WHERE id='$singleProduct'";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
-
-                echo '    <div class="row">
-                        <div class="col-md-4 col-sm-12 d-flex justify-content-center"></div>
-                        <div class="col-md-4 col-sm-12">
+                echo '    
+                        <div class="col-md-4 col-sm-6">
                         <div class="card border-0 bg-light text-center userProducts mt-5">
                             <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=' . $row['id'] . '" class="Products">
                                 <div class="d-flex justify-content-center card-body">
@@ -54,10 +57,10 @@
                                 <p>' . $row['product_price'] . ' zł</p>
                             </a>
                         </div>
-                        <div class="col-md-4 col-sm-12 d-flex justify-content-center"></div>
                         </div>
-                        </div>';
+                        ';
             }
+            echo ' </div>';
             ?>
         </div>
     </div>
