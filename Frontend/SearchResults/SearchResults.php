@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" media="" />
-    <link href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -22,41 +21,53 @@
 
 
 
-        <div class="row mt-5">
+        <?php
+        if (isset($_POST['searchCategory'])) {
+            $searchCat = $_POST['searchCategory'];
+        } else {
+            $searchCat = $_GET['searchCategory'];
+        }
+        if ($searchCat === 'Products') {
+        ?>
 
-            <?php
-            require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
-            $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
-            if (isset($_POST["search"])) {
-                $search = $_POST["search"];
-            } else if (isset($_GET["search"])) {
-                $search = $_GET["search"];
-            }
+            <div class="row mt-5">
 
-            $results_per_page = 6;
-
-            $sql = "SELECT * FROM product_list WHERE product_name LIKE '%$search%'";
-            $result = mysqli_query($conn, $sql);
-            $number_of_results = mysqli_num_rows($result);
+                <link href="../../../Praca_dyplomowa/Frontend/ProductList/productList.css" rel="stylesheet" type="text/css" />
 
 
-            $number_of_pages = ceil($number_of_results / $results_per_page);
+                <?php
+                require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+                $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+                if (isset($_POST["search"])) {
+                    $search = $_POST["search"];
+                } else if (isset($_GET["search"])) {
+                    $search = $_GET["search"];
+                }
 
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
+                $results_per_page = 6;
 
-            $this_page_first_result = ($page - 1) * $results_per_page;
+                $sql = "SELECT * FROM product_list WHERE product_name LIKE '%$search%'";
+                $result = mysqli_query($conn, $sql);
+                $number_of_results = mysqli_num_rows($result);
 
-            $sql = "SELECT * from product_list WHERE product_name LIKE '%$search%' ORDER BY product_name ASC LIMIT $this_page_first_result,$results_per_page";
-            $result = $conn->query($sql);
 
-            if (mysqli_num_rows($result) > 0) {
-                for ($a = 0; $a < mysqli_num_rows($result); $a++) {
-                    $row = $result->fetch_assoc();
-                    echo '
+                $number_of_pages = ceil($number_of_results / $results_per_page);
+
+                if (!isset($_GET['page'])) {
+                    $page = 1;
+                } else {
+                    $page = $_GET['page'];
+                }
+
+                $this_page_first_result = ($page - 1) * $results_per_page;
+
+                $sql = "SELECT * from product_list WHERE product_name LIKE '%$search%' ORDER BY product_name ASC LIMIT $this_page_first_result,$results_per_page";
+                $result = $conn->query($sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    for ($a = 0; $a < mysqli_num_rows($result); $a++) {
+                        $row = $result->fetch_assoc();
+                        echo '
                  <div class="col-4">
                  <div class="card border-0 bg-light text-center">
                      <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=' .  $row['id'] . '" class="Products">
@@ -68,59 +79,104 @@
                      </a>
                  </div>
                  </div>';
+                    }
                 }
-            }
 
-            $firstPage = 1;
+                $firstPage = 1;
 
-            ?>
+                ?>
 
-            <div class="mt-4">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination customFont">
-                        <!--   
-                    <li class="page-item">
-                            <a class="page-link" href="../../Frontend/SearchResults/SearchResults.php?search=<?php echo $search; ?>&page=<?php
-                                                                                                                                            if ($page - 1 > 0) {
-                                                                                                                                                echo $page - 1;
-                                                                                                                                            } else {
-                                                                                                                                                echo $page = 1;
-                                                                                                                                            }
-
-                                                                                                                                            ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                                                                                                                                        -->
-                        <?php
-
-
-                        for ($page = 1; $page <= $number_of_pages; $page++) {
-                            echo '<li class="page-item"><a class="page-link" href="../../Frontend/SearchResults/SearchResults.php?page=' . $page . '&search=' . $search . '">' . $page . '</a> </li> ';
-                        }
-                        $page = 1;
-                        ?>
-
-                        <!--     <li class="page-item">
-                            <a class="page-link" href="../../Frontend/SearchResults/SearchResults.php?search=<?php echo $search; ?>&page=<?php
-                                                                                                                                            echo $page + 1;
-
-                                                                                                                                            ?>'" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>-->
-                    </ul>
-                </nav>
+                <div class="mt-4">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination customFont">
+                            <?php
+                            for ($page = 1; $page <= $number_of_pages; $page++) {
+                                echo '<li class="page-item"><a class="page-link" href="../../Frontend/SearchResults/SearchResults.php?page=' . $page . '&search=' . $search . '&searchCategory=' . $searchCat . '">' . $page . '</a> </li> ';
+                            }
+                            $page = 1;
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
             </div>
 
 
+        <?php
+        } else if ($searchCat === 'Articles') {
+        ?>
+
+            <link href="../../../Praca_dyplomowa/Frontend/Articles/articles.css" rel="stylesheet" type="text/css" />
+
+            <div class="row mt-5">
+
+                <?php
+                require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
+                $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
+                if (isset($_POST["search"])) {
+                    $search = $_POST["search"];
+                } else if (isset($_GET["search"])) {
+                    $search = $_GET["search"];
+                }
+
+                $results_per_page = 4;
+
+                $sql = "SELECT * FROM articles WHERE article_name LIKE '%$search%'";
+                $result = mysqli_query($conn, $sql);
+                $number_of_results = mysqli_num_rows($result);
 
 
-        </div>
+                $number_of_pages = ceil($number_of_results / $results_per_page);
+
+                if (!isset($_GET['page'])) {
+                    $page = 1;
+                } else {
+                    $page = $_GET['page'];
+                }
+
+                $this_page_first_result = ($page - 1) * $results_per_page;
+
+                $sql = "SELECT * from articles WHERE article_name LIKE '%$search%' ORDER BY article_name ASC LIMIT $this_page_first_result,$results_per_page";
+                $result = $conn->query($sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    for ($a = 0; $a < mysqli_num_rows($result); $a++) {
+                        $row = $result->fetch_assoc();
+                        echo '
+                 <div class="col-6">
+                 <img src="' . $row['article_image'] . '" alt="" class="img-fluid mb-3 articlePhoto">
+                 <h3>' . $row['article_name'] . '</h3>
+                 <p id="hideLongText">' . $row['article_content'] . '</p>
+                 <div style="margin-top: 10px; font-size: 15px">
+                     <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=' . $row['id'] . '" class="readSingleArticle">Czytaj dalej>>></a>
+                 </div>
+                 </div>';
+                    }
+                }
+
+                $firstPage = 1;
+
+                ?>
+
+                <div class="mt-4">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination customFont">
+                            <?php
+                            for ($page = 1; $page <= $number_of_pages; $page++) {
+                                echo '<li class="page-item"><a class="page-link" href="../../Frontend/SearchResults/SearchResults.php?page=' . $page . '&search=' . $search . '&searchCategory=' . $searchCat . '">' . $page . '</a> </li> ';
+                            }
+                            $page = 1;
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        <?php
+
+        } ?>
+
+
     </div>
-
-
-
 
 
 

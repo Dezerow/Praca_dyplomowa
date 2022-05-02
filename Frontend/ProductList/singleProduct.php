@@ -40,9 +40,16 @@
                 <h5 class="mt-3"><a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?dataKey=<?php echo $row['product_article']; ?>">W celu większej ilości informacji zalecamy przeczytać artykuł</a></h5>
                 <h4 class="mt-5" id="price">Cena: <?php echo $row['product_price'] ?> zł</h4>
 
-                <a href='../ProductList/singleProduct.php?data=<?php echo $productId ?>&addCart="teast"'>
-                    <button class="btn btn-primary mt-4" type="submit" style="height: 60px; width:200px; font-size: 18px">Dodaj do koszyka</button>
-                </a>
+                <?php
+                if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
+                    echo '
+                    <a href="../ProductList/singleProduct.php?data=' . $productId . '&addCart="valueDoesntMatter"">
+                        <button class="btn btn-primary mt-4" type="submit" style="height: 60px; width:200px; font-size: 18px">Dodaj do koszyka</button>
+                    </a>
+                    ';
+                }
+                ?>
+
                 <a href='../UserMenu/buyMenu.php?data=<?php echo $productId ?>'>
                     <button class="btn btn-success mt-4" style="height: 60px; width:200px; font-size: 18px">Kup teraz</button>
                 </a>

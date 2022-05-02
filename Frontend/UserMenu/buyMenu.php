@@ -28,10 +28,18 @@ if (isset(($_SESSION['logged']))) {
     <?php
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
-    $userName = $_SESSION['user'];
-    $sql = "SELECT * from users WHERE username='$userName'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
+    if (isset($_SESSION['user'])) {
+        $userName = $_SESSION['user'];
+        $sql = "SELECT * from users WHERE username='$userName'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+    } else if (isset($_SESSION['admin'])) {
+        $userName = $_SESSION['admin'];
+        $sql = "SELECT * from adminlist WHERE username='$userName'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+    }
+
 
     ?>
 
@@ -118,7 +126,9 @@ if (isset(($_SESSION['logged']))) {
                             <label for="phoneNumber">
                                 <h5>Adres email</h5>
                             </label>
-                            <input type="text" class="form-control" name="email" placeholder="<?php echo $row['email'] ?>" required>
+                            <input type="text" class="form-control" name="email" placeholder="<?php if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
+                                                                                                    echo $row['email'];
+                                                                                                } ?>" required>
                         </div>
                     </div>
                 </div>

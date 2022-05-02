@@ -54,6 +54,10 @@ if ($conn->connect_error) {
       $adminName = $row2['username'];
       $_SESSION['admin'] = $adminName;
 
+      $ar = array();
+      $_SESSION['userShoppingCart'] = $ar;
+      $_SESSION['CartTotalPrice'] = 0;
+
       unset($_SESSION['error']);
       unset($_SESSION['registerSucc']);
 

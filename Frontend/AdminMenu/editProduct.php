@@ -22,10 +22,8 @@
     if (isset($_POST['id'])) {
         $productId = $_POST['id'];
     } else if (isset($_SESSION['zapisaneID'])) {
-        echo $_SESSION['zapisaneID'];
         $productId = $_SESSION['zapisaneID'];
     }
-    //   $productId = $_POST['id'];
 
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
@@ -71,7 +69,7 @@
                                 </button>
                             </div>
                             <div class="collapse" id="pokazEdycjeNazwy">
-                                <div class="mt-3"><input type="text" name="newProductName" style="width: 450px;"></div>
+                                <div class="mt-3"><input type="text" name="newProductName" required style="width: 450px;"></div>
                                 <div class="mt-4"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
                                 </div>
                             </div>
@@ -124,65 +122,85 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
             </form>
 
-            <div class="col-6">
-                <div id="wrapper">
-
-                    <div id="text_div">
-                        <form method="post" action="../../Backend/Server/backImageUpload.php">
-                            <input type='hidden' name='id' value=<?php
-                                                                    if (isset($_POST['id'])) {
-                                                                        echo $_POST['id'];
-                                                                    } else if (isset($_SESSION['zapisaneID'])) {
-                                                                        echo $_SESSION['zapisaneID'];
-                                                                    }
-                                                                    ?>>
-                            <input type="text" name="image_name" placeholder="Podaj nazwę zdjęcia">
-                            <input type="text" name="image_url" placeholder="Podaj link do zdjęcia">
-                            <input type="submit" name="save_image" value="Wybierz zdjęcie">
-                            <img src="<?php if (isset($_SESSION['path'])) {
-                                            echo $_SESSION['path'];
-                                        } ?>">
-                            <?php
-                            if (isset($_SESSION['path'])) {
-                                echo '
-                                <form action="../../Backend/Server/backImageUpload.php" method="POST">';
-                            ?>
-
-                                <input type="hidden" name="id" value=<?php
-                                                                        if (isset($_SESSION["zapisaneID"])) {
-                                                                            echo $_SESSION["zapisaneID"];
-                                                                        }
-                                                                        ?>>
-                            <?php
-                                echo '
-                                <input type="submit" name="upload_image" class="btn btn-success mt-3" value="Czy chcesz zatwierdzić zdjęcie?">
-                                </form>
-                                
-                                ';
-                            }
-                            ?>
-
-                        </form>
+            <form method="POST" action="../../Backend/Server/backDeleteProduct.php">
+                <input type='hidden' name='id' value="<?php echo $productId; ?>">
+                <div class="mt-5">
+                    <div class="mt-5">
+                        <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#pokazUsuwanie" aria-expanded="false" aria-controls="collapseExample">
+                            Usuń produkt
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazUsuwanie">
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-danger" name="DeleteProduct" value="Zatwierdź usunięcie produktu">
+                        </div>
                     </div>
                 </div>
-
-            </div>
-
+            </form>
         </div>
 
 
+        <div class="col-6">
+            <div id="wrapper" class="mt-4">
 
+                <div id="text_div">
+                    <form method="post" action="../../Backend/Server/backImageProductUpload.php">
+                        <input type='hidden' name='id' value=<?php
+                                                                if (isset($_POST['id'])) {
+                                                                    echo $_POST['id'];
+                                                                } else if (isset($_SESSION['zapisaneID'])) {
+                                                                    echo $_SESSION['zapisaneID'];
+                                                                }
+                                                                ?>>
+                        <input type="text" onkeyup="unblockButton()" name="image_name" id="image_name" <?php if (!isset($_SESSION['path'])) {
+                                                                                                            echo 'required';
+                                                                                                        } ?> placeholder="Podaj nazwę zdjęcia">
+                        <input type="text" onkeyup="unblockButton()" name="image_url" id="image_url" <?php if (!isset($_SESSION['path'])) {
+                                                                                                            echo 'required';
+                                                                                                        } ?> placeholder="Podaj link do zdjęcia">
+                        <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
+                        <img class="mt-3" style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
+                                                                                                echo $_SESSION['path'];
+                                                                                            } ?>">
+                        <?php
+                        if (isset($_SESSION['path'])) {
+                            echo '
+                                <form action="../../Backend/Server/backImageProductUpload.php" method="POST">';
+                        ?>
 
+                            <input type="hidden" name="id" value=<?php
+                                                                    if (isset($_SESSION["zapisaneID"])) {
+                                                                        echo $_SESSION["zapisaneID"];
+                                                                    }
+                                                                    ?>>
+                            </br>
+                        <?php
+                            echo '
+                                <input type="submit" name="upload_image" class="btn btn-success mt-3" value="Czy chcesz zatwierdzić zdjęcie?">
+                                </form>                                
+                                ';
+                        }
+                        ?>
 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
-    </div>
 
-
-
+    <script>
+        function unblockButton() {
+            if (document.getElementById("image_name").value === "" || document.getElementById("image_url").value === "") {
+                document.getElementById('save_image').disabled = true;
+            } else {
+                document.getElementById('save_image').disabled = false;
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>

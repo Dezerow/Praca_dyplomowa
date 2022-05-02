@@ -18,7 +18,13 @@
     </header>
 
     <?php
-    $articleId = $_POST['id'];
+    $articleId;
+    if (isset($_POST['id'])) {
+        $articleId = $_POST['id'];
+    } else if (isset($_SESSION['zapisaneID'])) {
+        $articleId = $_SESSION['zapisaneID'];
+    }
+
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
@@ -76,10 +82,82 @@
             </form>
         </div>
 
+        <div class="mt-5 text-center">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeZdjecia" aria-expanded="false" aria-controls="collapseExample">
+                Zmień zdjęcie artykułu
+            </button>
+        </div>
+        <div class="collapse text-center mt-3" id="pokazEdycjeZdjecia">
+            <form method="post" action="../../Backend/Server/backImageArticleUpload.php">
+                <input type='hidden' name='id' value=<?php
+                                                        if (isset($_POST['id'])) {
+                                                            echo $_POST['id'];
+                                                        } else if (isset($_SESSION['zapisaneID'])) {
+                                                            echo $_SESSION['zapisaneID'];
+                                                        }
+                                                        ?>>
+                <input type="text" onkeyup="unblockButton()" name="image_name" id="image_name" <?php if (!isset($_SESSION['path'])) {
+                                                                                                    echo 'required';
+                                                                                                } ?> placeholder="Podaj nazwę zdjęcia">
+                <input type="text" onkeyup="unblockButton()" name="image_url" id="image_url" <?php if (!isset($_SESSION['path'])) {
+                                                                                                    echo 'required';
+                                                                                                } ?> placeholder="Podaj link do zdjęcia">
+                <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
+                </br>
+                <img style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
+                                                                            echo $_SESSION['path'];
+                                                                        } ?>">
+                <?php
+                if (isset($_SESSION['path'])) {
+                    echo '
+                                <form action="../../Backend/Server/backImageArticleUpload.php" method="POST">';
+                ?>
+
+                    <input type="hidden" name="id" value=<?php
+                                                            if (isset($_SESSION["zapisaneID"])) {
+                                                                echo $_SESSION["zapisaneID"];
+                                                            }
+                                                            ?>>
+                    </br>
+                <?php
+                    echo '
+                                <input type="submit" name="upload_image" class="btn btn-success mt-3" value="Czy chcesz zatwierdzić zdjęcie?">
+                                </form>                                
+                                ';
+                }
+                ?>
+            </form>
+        </div>
+
+        <form method="POST" action="../../Backend/Server/backDeleteArticle.php">
+            <div class="text-center mt-3">
+                <input type='hidden' name='id' value="<?php echo $articleId; ?>">
+                <div class="mt-5">
+                    <div class="mt-5">
+                        <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#pokazUsuwanie" aria-expanded="false" aria-controls="collapseExample">
+                            Usuń artykuł
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazUsuwanie">
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-danger" name="DeleteProduct" value="Zatwierdź usunięcie artykułu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
 
-
+    <script>
+        function unblockButton() {
+            if (document.getElementById("image_name").value === "" && document.getElementById("image_url").value === "") {
+                document.getElementById('save_image').disabled = true;
+            } else {
+                document.getElementById('save_image').disabled = false;
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>

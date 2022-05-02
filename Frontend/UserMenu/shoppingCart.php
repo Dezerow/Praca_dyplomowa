@@ -41,7 +41,6 @@
                  </div>
             </div> ';
             echo '<div class="row">';
-
             foreach ($_SESSION['userShoppingCart'] as $singleProduct) {
                 $sql = "SELECT * from product_list WHERE id='$singleProduct'";
                 $result = $conn->query($sql);
@@ -56,11 +55,18 @@
                                 <h6 class="card-body">' . $row['product_name'] . '</h6>
                                 <p>' . $row['product_price'] . ' zł</p>
                             </a>
+                            <form method="POST" action="../../Backend/Server/backDeleteFromShoppingCart.php">
+                            <input name="id" hidden value=' . $row['id'] . '>
+                            <button class="btn btn-danger">Usuń z koszyka</button>
+                            </form>
                         </div>
                         </div>
                         ';
             }
             echo ' </div>';
+
+
+
             ?>
         </div>
     </div>

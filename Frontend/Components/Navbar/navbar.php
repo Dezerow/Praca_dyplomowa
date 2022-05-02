@@ -5,7 +5,7 @@ session_start();
 
 <link href="../../../../Praca_dyplomowa/Frontend/Components/Navbar/navbar.css?v=1.0 " rel="stylesheet" type="text/css" />
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <div class="collapse collapse navbar-collapse" id="BigMenu">
             <a class="navbar-brand MainHref" href="../../../../Praca_dyplomowa/Frontend/Main/index.php">Strona główna</a>
@@ -14,7 +14,11 @@ session_start();
         </div>
 
         <form action="../../../../Praca_dyplomowa/Frontend/SearchResults/SearchResults.php" method="POST" class="navbar-nav" id="searchMenu">
-            <input class="form-control me-2" id="inputSzukaj" name="search" placeholder="Search" aria-label="Search">
+            <select class="form-select text-center" name="searchCategory" id="selectCategory">
+                <option value="Products">Produkty</option>
+                <option value="Articles">Artykuły</option>
+            </select>
+            <input class="form-control me-2" id="inputSzukaj" name="search" placeholder="Co chcesz znaleźć?">
             <button class="btn btn-outline-success" id="szukaj" type="submit">Szukaj</button>
         </form>
 
@@ -39,6 +43,8 @@ session_start();
                             <li class="nav-item logout"><a class="nav-link" href="../../../../Praca_dyplomowa/Backend/Server/backLogout.php"><i style="margin-right: 5px" class="fas fa-user-plus"></i>Wyloguj</a></li>';
                 } else if (isset($_SESSION['admin'])) {
                     echo '<li class="nav-item login"><a class="nav-link" href="../../../../Praca_dyplomowa/Frontend/AdminMenu/adminMenu.php"><i style="margin-right: 5px" class="fas fa-user"></i>' . $_SESSION['admin'] . '</a></li>
+                    <li class="nav-item login"><a class="nav-link" href="../../../../Praca_dyplomowa/Frontend/UserMenu/shoppingCart.php"><i style="margin-right: 5px" class="fa-solid fa-cart-shopping"></i><sup>' . count($_SESSION['userShoppingCart']) . '</sup>
+                    Koszyk</a></li>
                             <li class="nav-item logout"><a class="nav-link" href="../../../../Praca_dyplomowa/Backend/Server/backLogout.php"><i style="margin-right: 5px" class="fa-solid fa-arrow-right-from-bracket"></i>Wyloguj</a></li>';
                 } else {
                     echo '<li class="nav-item login"><a class="nav-link" href="../../../../Praca_dyplomowa/Frontend/Login/login.php"><i style="margin-right: 5px" class="fas fa-user"></i>Logowanie</a></li>
