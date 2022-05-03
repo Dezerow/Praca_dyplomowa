@@ -39,6 +39,12 @@
                     Cena całkowita: 
                         <h5 class="ms-2" style="color:red">' . $_SESSION['CartTotalPrice'] . ' zł</h5>                                    
                  </div>
+                 <div class="d-flex justify-content-left">
+                 <form method="POST" action="../UserMenu/buyMenu.php">
+                   <input hidden name="buyFromShoppingCart">
+                   <input type="submit" class="btn btn-success" value="Zakup dodane produkty">  
+                 </form>                                                    
+                 </div>
             </div> ';
             echo '<div class="row">';
             foreach ($_SESSION['userShoppingCart'] as $singleProduct) {
@@ -57,7 +63,7 @@
                             </a>
                             <form method="POST" action="../../Backend/Server/backDeleteFromShoppingCart.php">
                             <input name="id" hidden value=' . $row['id'] . '>
-                            <button class="btn btn-danger">Usuń z koszyka</button>
+                            <button style="width:100%" class="btn btn-danger">Usuń z koszyka</button>
                             </form>
                         </div>
                         </div>

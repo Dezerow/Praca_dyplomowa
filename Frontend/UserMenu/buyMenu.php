@@ -134,88 +134,187 @@ if (isset(($_SESSION['logged']))) {
                 </div>
             </div>
 
+            <?php if (isset($_POST['productId'])) { ?>
 
-            <?php
+                <?php
 
-            $idZakupu = $_GET['data'];
-            $sql = "SELECT * from product_list WHERE id='$idZakupu'";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            ?>
-            <div class="col-6 d-flex justify-content-start">
-                <div class="card" style="width: 26rem;">
-                    <div class="card-body">
-                        <label id="registerTitle">
-                            <h4 style=" text-align: center;">Informacje na temat zakupu</h4>
-                        </label>
-                        <div class="form-group mt-3">
-                            <div class="card border-0 bg-light text-center userProducts mt-5">
-                                <div class="d-flex justify-content-center card-body">
-                                    <img src="<?php echo $row['product_image'] ?>" class="img-fluid" alt="...">
+                $idZakupu = $_POST['productId'];
+                $sql = "SELECT * from product_list WHERE id='$idZakupu'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                ?>
+                <div class="col-6 d-flex justify-content-start">
+                    <div class="card" style="width: 26rem;">
+                        <div class="card-body">
+                            <label id="registerTitle">
+                                <h4 style=" text-align: center;">Informacje na temat zakupu</h4>
+                            </label>
+                            <div class="form-group mt-3">
+                                <div class="card border-0 bg-light text-center userProducts mt-5">
+                                    <div class="d-flex justify-content-center card-body">
+                                        <img src="<?php echo $row['product_image'] ?>" class="img-fluid" alt="...">
+                                    </div>
+                                    <h6 class="card-body"><?php echo $row['product_name'] ?></h6>
+                                    <p><?php echo $row['product_price'] ?>zł</p>
                                 </div>
-                                <h6 class="card-body"><?php echo $row['product_name'] ?></h6>
-                                <p><?php echo $row['product_price'] ?>zł</p>
                             </div>
-                        </div>
-                        <h4 class="mt-2">Typ wysyłki:</h4>
+                            <h4 class="mt-2">Typ wysyłki:</h4>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault1" value="0" onclick="calculatePrice(0)">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Odbiór osobisty: 0zł
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault2" value="10" onclick="calculatePrice(10)">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                InPost Paczkomaty: 10zł
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault3" value="12" onclick="calculatePrice(12)">
-                            <label class="form-check-label" for="flexRadioDefault3">
-                                Kurier: 12zł
-                            </label>
-                        </div>
-                        <h4 class="mt-2">Typ płatności:</h4>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Payment" id="Payment1" value="1">
-                            <label class="form-check-label" for="Payment1">
-                                Przelew natychmiastowy
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Payment" id="Payment2" value="1">
-                            <label class="form-check-label" for="Payment2">
-                                Blik
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Payment" id="Payment3" value="1">
-                            <label class="form-check-label" for="Payment2">
-                                Karta kredytowa
-                            </label>
-                        </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault1" value="0" onclick="calculatePrice(0)">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Odbiór osobisty: 0zł
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault2" value="10" onclick="calculatePrice(10)">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    InPost Paczkomaty: 10zł
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault3" value="12" onclick="calculatePrice(12)">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Kurier: 12zł
+                                </label>
+                            </div>
+                            <h4 class="mt-2">Typ płatności:</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Payment" id="Payment1" value="1">
+                                <label class="form-check-label" for="Payment1">
+                                    Przelew natychmiastowy
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Payment" id="Payment2" value="1">
+                                <label class="form-check-label" for="Payment2">
+                                    Blik
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Payment" id="Payment3" value="1">
+                                <label class="form-check-label" for="Payment2">
+                                    Karta kredytowa
+                                </label>
+                            </div>
 
-                        <h4>Podsumowanie:</h4>
-                        <h5 id="price"><?php echo $row['product_price'] ?> zł</h5>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-success mt-2" id="buyButton">Kupuję i płace</button>
+                            <h4>Podsumowanie:</h4>
+                            <h5 id="price"><?php echo $row['product_price'] ?> zł</h5>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-success mt-2" id="buyButton">Kupuję i płace</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <script>
+                    function calculatePrice(deliveryPrice) {
+                        productPrice = <?php echo $row['product_price'] ?>;
+                        totalPrice = productPrice + deliveryPrice;
+                        document.getElementById('price').textContent = totalPrice + " zł";
+                    }
+                </script>
+
+            <?php } else {
+
+
+            ?>
+                <div class="col-6 d-flex justify-content-start">
+                    <div class="card" style="width: 26rem;">
+                        <div class="card-body">
+                            <label id="registerTitle">
+                                <h4 style=" text-align: center;">Informacje na temat zakupu</h4>
+                            </label>
+                            <div class="form-group mt-3">
+                                <div class="card border-0 bg-light text-center userProducts mt-5">
+                                    <?php
+                                    while ($row = mysqli_fetch_array($result)) {
+
+                                        foreach ($_SESSION['userShoppingCart'] as $singleProduct) {
+                                            $sql = "SELECT * from product_list WHERE id='$singleProduct'";
+                                            $result = $conn->query($sql);
+                                            $row = $result->fetch_assoc();
+                                            echo '    
+                                                    <div class="card border-0 bg-light mt-1" style="text-align:center; display: inline-block; vertical-align: middle;">
+                                                      <div style="display:inline">
+                                                        <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=' . $row['id'] . '" style="display:inline">                                                           
+                                                            <h6 style="display:inline" class="card-body">' . $row['product_name'] . '</h6>
+                                                            <p style="display:inline">' . $row['product_price'] . ' zł</p>
+                                                        </a>   
+                                                       </div>
+                                                        <div style="display:inline">
+                                                             <input class="ms-3" type="number" min="1" name="ProductPrice" id="ProductPrice" value="1" onkeyup="changeTotalPrice()" style="display:inline; width:60px">
+                                                        </div>
+                                                    </div>
+                                                    ';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <h4 class="mt-2">Typ wysyłki:</h4>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault1" value="0" onclick="calculatePrice(0)">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Odbiór osobisty: 0zł
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault2" value="10" onclick="calculatePrice(10)">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    InPost Paczkomaty: 10zł
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryType" id="flexRadioDefault3" value="12" onclick="calculatePrice(12)">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Kurier: 12zł
+                                </label>
+                            </div>
+                            <h4 class="mt-2">Typ płatności:</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Payment" id="Payment1" value="1">
+                                <label class="form-check-label" for="Payment1">
+                                    Przelew natychmiastowy
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Payment" id="Payment2" value="1">
+                                <label class="form-check-label" for="Payment2">
+                                    Blik
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Payment" id="Payment3" value="1">
+                                <label class="form-check-label" for="Payment2">
+                                    Karta kredytowa
+                                </label>
+                            </div>
+
+                            <h4>Podsumowanie:</h4>
+                            <h5 id="price"><?php echo $_SESSION['CartTotalPrice'] ?> zł</h5>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-success mt-2" id="buyButton">Kupuję i płace</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function calculatePrice(deliveryPrice) {
+                        productPrice = <?php echo $_SESSION['CartTotalPrice'] ?>;
+                        totalPrice = productPrice + deliveryPrice;
+                        document.getElementById('price').textContent = totalPrice + " zł";
+                    }
+                </script>
+
+            <?php } ?>
         </div>
     </div>
     <?php include "../Components/Footer/footer.php" ?>
 
-    <script>
-        function calculatePrice(deliveryPrice) {
-            productPrice = <?php echo $row['product_price'] ?>;
-            totalPrice = productPrice + deliveryPrice;
-            document.getElementById('price').textContent = totalPrice + " zł";
-        }
-    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

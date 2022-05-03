@@ -22,10 +22,14 @@
 
 
         <?php
-        if (isset($_POST['searchCategory'])) {
-            $searchCat = $_POST['searchCategory'];
-        } else {
-            $searchCat = $_GET['searchCategory'];
+        if (isset($_POST['searchCategory']) && !isset($_SESSION['cat'])) {
+            $_SESSION['cat'] = $_POST['searchCategory'];
+            $searchCat = $_SESSION['cat'];
+        } else if (isset($_GET['searchCategory']) && !isset($_SESSION['cat'])) {
+            $_SESSION['cat'] = $_GET['searchCategory'];
+            $searchCat = $_SESSION['cat'];
+        } else if (isset($_SESSION['cat'])) {
+            $searchCat = $_SESSION['cat'];
         }
         if ($searchCat === 'Products') {
         ?>
@@ -39,9 +43,13 @@
                 require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
                 $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
                 if (isset($_POST["search"])) {
-                    $search = $_POST["search"];
-                } else if (isset($_GET["search"])) {
-                    $search = $_GET["search"];
+                    $_SESSION['search'] = $_POST['search'];
+                    $search = $_SESSION['search'];
+                } else if (isset($_GET["search"]) && !isset($_SESSION['search'])) {
+                    $_SESSION['search'] = $_GET["search"];
+                    $search = $_SESSION['search'];
+                } else if (isset($_SESSION['search'])) {
+                    $search = $_SESSION['search'];
                 }
 
                 $results_per_page = 6;
@@ -113,9 +121,13 @@
                 require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
                 $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
                 if (isset($_POST["search"])) {
-                    $search = $_POST["search"];
-                } else if (isset($_GET["search"])) {
-                    $search = $_GET["search"];
+                    $_SESSION['search'] = $_POST['search'];
+                    $search = $_SESSION['search'];
+                } else if (isset($_GET["search"]) && !isset($_SESSION['search'])) {
+                    $_SESSION['search'] = $_GET["search"];
+                    $search = $_SESSION['search'];
+                } else if (isset($_SESSION['search'])) {
+                    $search = $_SESSION['search'];
                 }
 
                 $results_per_page = 4;

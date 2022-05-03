@@ -29,7 +29,7 @@ if ($conn->connect_error) {
     $url = $_POST['image_url'];
     $name = $_POST['image_name'];
     $data = file_get_contents($url);
-    $new =  '../../Frontend/Components/Images/Product_Images/';
+    $new =  '../../Frontend/Components/Images/Article_Images/';
     $pathToImage = $new . $name . 'Article' . '.jpg';
     file_put_contents($pathToImage, $data);
     $_SESSION['path'] = $pathToImage;

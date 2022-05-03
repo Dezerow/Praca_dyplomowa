@@ -24,8 +24,15 @@
                 <div class="mt-5">
                     <h5>Kategorie</h5>
                     <div>
-                        Tutaj do wypisania kategorie
+                        <a href="../ProductList/productListWithCategory.php?typeM='Miody'">Miody</a>
                     </div>
+                    <div>
+                        <a href="../ProductList/productListWithCategory.php?typeP='Przetwory'">Przetwory</a>
+                    </div>
+                    <div>
+                        <a href="../ProductList/productListWithCategory.php?typeS='Slodycze'">Słodycze</a>
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-10 col-sm-12">

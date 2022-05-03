@@ -37,7 +37,9 @@
             <div class="col-md-6 col-sm-12 text-left">
                 <h2 class="mt-5"><?php echo $row['product_name'] ?></h2>
                 <h5 class="mt-4"><?php echo $row['product_description'] ?></h5>
-                <h5 class="mt-3"><a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?dataKey=<?php echo $row['product_article']; ?>">W celu większej ilości informacji zalecamy przeczytać artykuł</a></h5>
+                <?php if ($row['product_article'] !== '') { ?>
+                    <h5 class="mt-3"><a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?dataKey=<?php echo $row['product_article']; ?>">W celu większej ilości informacji zalecamy przeczytać artykuł</a></h5>
+                <?php }  ?>
                 <h4 class="mt-5" id="price">Cena: <?php echo $row['product_price'] ?> zł</h4>
 
                 <?php
@@ -50,9 +52,10 @@
                 }
                 ?>
 
-                <a href='../UserMenu/buyMenu.php?data=<?php echo $productId ?>'>
-                    <button class="btn btn-success mt-4" style="height: 60px; width:200px; font-size: 18px">Kup teraz</button>
-                </a>
+                <form method="POST" action="../UserMenu/buyMenu.php">
+                    <input hidden name="productId" value=<?php echo $productId ?>>
+                    <input type="submit" class="btn btn-success mt-4" style="height: 60px; width:200px; font-size: 18px" value="Kup teraz">
+                </form>
             </div>
         </div>
     </div>

@@ -26,43 +26,65 @@ if ($conn->connect_error) {
   $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
 
-  $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+  $sql = "SELECT * FROM users WHERE username='$username'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $username = $row['username'];
-    $_SESSION['user'] = $username;
-
-    $ar = array();
-    $_SESSION['userShoppingCart'] = $ar;
-    $_SESSION['CartTotalPrice'] = 0;
 
 
-    unset($_SESSION['error']);  // TUTAJ MOJE ZWOLNIENIE SESJI
-    unset($_SESSION['registerSucc']);  // TUTAJ MOJE ZWOLNIENIE SESJI
-
-    $result->free_result(); // Jest to zwolnienie pamięci, można dać close(); lub free(); lub free-result(); Mega ważne, duży błąd
-    header('Location: ../../Frontend/Main/index.php');
-  } else {
-
-    $sql2 = "SELECT * FROM adminlist WHERE username='$username' AND password='$password'";
-    $result2 = $conn->query($sql2);
-
-    if ($result2->num_rows > 0) {
-      $row2 = $result2->fetch_assoc();
-      $adminName = $row2['username'];
-      $_SESSION['admin'] = $adminName;
+    if (password_verify($password, $row['password'])) {
+      $username = $row['username'];
+      $_SESSION['user'] = $username;
 
       $ar = array();
       $_SESSION['userShoppingCart'] = $ar;
       $_SESSION['CartTotalPrice'] = 0;
 
-      unset($_SESSION['error']);
-      unset($_SESSION['registerSucc']);
+      unset($_SESSION['error']);  // TUTAJ MOJE ZWOLNIENIE SESJI
+      unset($_SESSION['registerSucc']);  // TUTAJ MOJE ZWOLNIENIE SESJI
 
-      $result2->free_result();
+      $result->free_result(); // Jest to zwolnienie pamięci, można dać close(); lub free(); lub free-result(); Mega ważne, duży błąd
       header('Location: ../../Frontend/Main/index.php');
+    } else {
+      $_SESSION['error'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        Błędne hasło.
+      </div>
+    </div>';
+      header('Location: ../../Frontend/Login/login.php');
+    }
+  } else {
+
+    $sql2 = "SELECT * FROM adminlist WHERE username='$username'";
+    $result2 = $conn->query($sql2);
+
+    if ($result2->num_rows > 0) {
+      $row2 = $result2->fetch_assoc();
+
+      if (password_verify($password, $row2['password'])) {
+        $adminName = $row2['username'];
+        $_SESSION['admin'] = $adminName;
+
+        $ar = array();
+        $_SESSION['userShoppingCart'] = $ar;
+        $_SESSION['CartTotalPrice'] = 0;
+
+        unset($_SESSION['error']);
+        unset($_SESSION['registerSucc']);
+
+        $result2->free_result();
+        header('Location: ../../Frontend/Main/index.php');
+      } else {
+        $_SESSION['error'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+          Błędne hasło.
+        </div>
+      </div>';
+        header('Location: ../../Frontend/Login/login.php');
+      }
     } else {
 
       $_SESSION['error'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
