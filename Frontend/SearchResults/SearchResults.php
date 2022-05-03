@@ -22,15 +22,16 @@
 
 
         <?php
-        if (isset($_POST['searchCategory']) && !isset($_SESSION['cat'])) {
-            $_SESSION['cat'] = $_POST['searchCategory'];
-            $searchCat = $_SESSION['cat'];
-        } else if (isset($_GET['searchCategory']) && !isset($_SESSION['cat'])) {
-            $_SESSION['cat'] = $_GET['searchCategory'];
-            $searchCat = $_SESSION['cat'];
-        } else if (isset($_SESSION['cat'])) {
-            $searchCat = $_SESSION['cat'];
+        if (isset($_POST['searchCategory'])) {
+            //  $_SESSION['cat'] = $_POST['searchCategory'];
+            $searchCat = $_POST['searchCategory'];
+        } else if ($_GET['searchCategory']) {
+            //   $_SESSION['cat'] = $_GET['searchCategory'];
+            $searchCat = $_GET['searchCategory'];
         }
+        //else if (isset($_SESSION['cat'])) {
+        // $searchCat = $_SESSION['cat'];
+        //  }
         if ($searchCat === 'Products') {
         ?>
 

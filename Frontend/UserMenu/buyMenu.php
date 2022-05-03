@@ -228,13 +228,11 @@ if (isset(($_SESSION['logged']))) {
                             <div class="form-group mt-3">
                                 <div class="card border-0 bg-light text-center userProducts mt-5">
                                     <?php
-                                    while ($row = mysqli_fetch_array($result)) {
-
-                                        foreach ($_SESSION['userShoppingCart'] as $singleProduct) {
-                                            $sql = "SELECT * from product_list WHERE id='$singleProduct'";
-                                            $result = $conn->query($sql);
-                                            $row = $result->fetch_assoc();
-                                            echo '    
+                                    foreach ($_SESSION['userShoppingCart'] as $singleProduct) {
+                                        $sql = "SELECT * from product_list WHERE id='$singleProduct'";
+                                        $result = $conn->query($sql);
+                                        $row = $result->fetch_assoc();
+                                        echo '    
                                                     <div class="card border-0 bg-light mt-1" style="text-align:center; display: inline-block; vertical-align: middle;">
                                                       <div style="display:inline">
                                                         <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=' . $row['id'] . '" style="display:inline">                                                           
@@ -247,7 +245,6 @@ if (isset(($_SESSION['logged']))) {
                                                         </div>
                                                     </div>
                                                     ';
-                                        }
                                     }
                                     ?>
                                 </div>
