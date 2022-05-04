@@ -1,0 +1,17 @@
+{
+    "name": "shadow/praca_dyplomowa",
+    "autoload": {
+        "psr-4": {
+            "Shadow\\PracaDyplomowa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dezerow",
+            "email": "55897835+Dezerow@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    }
+}

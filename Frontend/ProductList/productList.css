@@ -24,4 +24,33 @@ img {
   font-size: 20px;
 }
 
+.categories{
+  font-size: 23px;
+}
 
+.singleCategory{
+  margin-top: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+.categories{
+  text-align:center; display: inline-block; vertical-align: middle;
+  margin-left: 15%;
+}
+
+.d-flex justify-content-center{}
+
+.singleCategory{
+  display:inline;
+  margin-left: 10px;
+}
+
+.productsFromDatabase{
+  min-height: 300px;
+  margin-top: 10px;
+}
+
+
+}

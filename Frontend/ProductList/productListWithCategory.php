@@ -27,17 +27,18 @@
 
             <div class="col-md-2 col-sm-12">
                 <div class="mt-5">
-                    <h5>Kategorie</h5>
-                    <div>
-                        <a href="../ProductList/productListWithCategory.php?typeM='Miody'">Miody</a>
+                    <h3 class="text-center">Kategorie</h3>
+                    <div class="categories text-center">
+                        <div class="singleCategory">
+                            <a href="../ProductList/productListWithCategory.php?typeM='Miody'">Miody</a>
+                        </div>
+                        <div class="singleCategory">
+                            <a href="../ProductList/productListWithCategory.php?typeP='Przetwory'">Przetwory</a>
+                        </div>
+                        <div class="singleCategory">
+                            <a href="../ProductList/productListWithCategory.php?typeS='Slodycze'">Słodycze</a>
+                        </div>
                     </div>
-                    <div>
-                        <a href="../ProductList/productListWithCategory.php?typeP='Przetwory'">Przetwory</a>
-                    </div>
-                    <div>
-                        <a href="../ProductList/productListWithCategory.php?typeS='Slodycze'">Słodycze</a>
-                    </div>
-
                 </div>
             </div>
 
@@ -87,7 +88,7 @@
                     $row = $result->fetch_assoc();
                     echo '
                  <div class="col-4">
-                 <div class="card border-0 bg-light text-center">
+                 <div class="card border-0 bg-light text-center productsFromDatabase">
                      <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=' .  $row['id'] . '" class="Products">
                          <div class="d-flex justify-content-center card-body">
                              <img src="' .  $row['product_image'] . '" class="img-fluid" alt="...">

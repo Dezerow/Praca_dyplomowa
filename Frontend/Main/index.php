@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <div class="card">
-                    <div class="d-flex justify-content-center" style="font-size: 35px">
+                    <div class="d-flex justify-content-center" style="font-size: 30px">
                         Produkt dnia
                     </div>
                     <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php echo $rowDayProduct['id'] ?>" class="links mb-5">
@@ -60,7 +60,7 @@
 
             </div>
             <div class="col-md-8 col-sm-12 card">
-                <div class="d-flex justify-content-center" style="font-size: 35px">
+                <div class="d-flex justify-content-center" style="font-size: 30px">
                     Artykuł dnia
                 </div>
                 <div class="d-flex justify-content-center">
@@ -95,7 +95,7 @@
     ?>
 
     <div class="container mt-5" id="popularneProdukty">
-        <div class="mt-5 d-flex justify-content-center" style="font-size: 35px">Najchętniej kupowane produkty</div>
+        <div class="mt-5 d-flex justify-content-center" style="font-size: 30px">Najchętniej kupowane produkty</div>
         <div class="row mt-3">
             <div class="col-md-4 col-sm-12 card mt-3">
                 <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=<?php echo $rowBestSeller1['id'] ?>" class="links">
@@ -147,7 +147,7 @@
     ?>
 
     <div class="container mt-5" id="popularneProdukty">
-        <div class="mt-5 d-flex justify-content-center" style="font-size: 35px">Poszerz swoja wiedzę</div>
+        <div class="mt-5 d-flex justify-content-center" style="font-size: 30px">Poszerz swoja wiedzę</div>
         <div class="row">
             <div class="col-md-6 col-sm-12 card mt-3">
                 <div class="d-flex justify-content-center">

@@ -24,13 +24,27 @@ if (isset(($_SESSION['logged']))) {
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
-    <div class="container-fluid mt-5 mainContainer" id="whenLittleMove">
+    <div class="container-fluid mt-5" id="whenLittleMove" style="margin-bottom:<?php if (isset($_SESSION['registerFailed'])) {
+                                                                                    echo '700px';
+                                                                                } else {
+                                                                                    echo '600px';
+                                                                                } ?>">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
                 <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backRegistration.php" class="form-container">
                     <label id="registerTitle">
                         <h4 style=" text-align: center;">Panel Rejestracji</h4>
                     </label>
+                    <?php
+                    if (isset($_SESSION['registerFailed'])) {
+                        echo '
+                        <div class="mt-3">
+                            ' . $_SESSION['registerFailed'] . '
+                        </div>
+                        ';
+                        unset($_SESSION['registerFailed']);
+                    }
+                    ?>
                     <div class="form-group mt-3">
                         <label for="username">
                             <h5>Nazwa użytkownika</h5>
