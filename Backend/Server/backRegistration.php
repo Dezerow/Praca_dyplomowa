@@ -36,14 +36,14 @@ if ($conn->connect_error) {
   try {
     $mail->SMTPDebug = 0;
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = 'smtp.protonmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'pszczelarzezpasji4453@gmail.com';
-    $mail->Password = 'pszczola9901a24';
+    $mail->Username = 'Pszczelarzezpasji4352@protonmail.com';
+    $mail->Password = 'pszczola312';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 465;
 
-    $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Mailer');
+    $mail->setFrom('Pszczelarzezpasji4352@protonmail.com', 'Mailer');
     $mail->addAddress($email, $username);
 
     $mail->isHTML(true);
@@ -51,8 +51,7 @@ if ($conn->connect_error) {
     $mail->Subject = 'Email verification';
     $mail->Body = '<p>Twój kod weryfikacji to ' . $verification_code . '</p>';
     $showCode = $verification_code;
-
-    $email->send();
+    $mail->send();
 
     $sql = "INSERT INTO users(id, username, email, password, verification_code, register_date, is_verifed)
      VALUES ('', '$username', '$email', '$hashedPassword', '$verification_code', '$date', '0')";
