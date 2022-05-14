@@ -32,6 +32,11 @@ img {
   margin-top: 10px;
 }
 
+.productsFromDatabase{
+  min-height: 350px;
+  margin-top: 10px;
+}
+
 
 @media only screen and (max-width: 600px) {
 

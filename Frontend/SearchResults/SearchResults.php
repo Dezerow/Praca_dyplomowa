@@ -22,15 +22,11 @@
 
 
         <?php
-        if (isset($_POST['searchCategory']) && !isset($_SESSION['cat'])) {
-            $_SESSION['cat'] = $_POST['searchCategory'];
-            $searchCat = $_POST['searchCategory'];
-        } else if (isset($_GET['searchCategory']) && !isset($_SESSION['cat'])) {
-            $_SESSION['cat'] = $_GET['searchCategory'];
+        if (isset($_GET['searchCategory'])) {
             $searchCat = $_GET['searchCategory'];
-        } else if (isset($_SESSION['cat'])) {
-            $searchCat = $_SESSION['cat'];
         }
+
+
         if ($searchCat === 'Products') {
         ?>
             <link href="../../../Praca_dyplomowa/Frontend/ProductList/productList.css" rel="stylesheet" type="text/css" />
@@ -40,14 +36,8 @@
                 <?php
                 require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
                 $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
-                if (isset($_POST["search"])) {
-                    $_SESSION['search'] = $_POST['search'];
-                    $search = $_SESSION['search'];
-                } else if (isset($_GET["search"]) && !isset($_SESSION['search'])) {
-                    $_SESSION['search'] = $_GET["search"];
-                    $search = $_SESSION['search'];
-                } else if (isset($_SESSION['search'])) {
-                    $search = $_SESSION['search'];
+                if (isset($_GET["search"])) {
+                    $search = $_GET["search"];
                 }
 
                 $results_per_page = 6;
@@ -75,7 +65,7 @@
                         $row = $result->fetch_assoc();
                         echo '
                  <div class="col-4">
-                 <div class="card border-0 bg-light text-center">
+                 <div class="card border-0 bg-light text-center productsFromDatabase">
                      <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=' .  $row['id'] . '" class="Products">
                          <div class="d-flex justify-content-center card-body">
                              <img src="' .  $row['product_image'] . '" class="img-fluid" alt="...">
@@ -86,6 +76,8 @@
                  </div>
                  </div>';
                     }
+                } else if (mysqli_num_rows($result) <= 0) {
+                    echo '<h2 style="color:red; text-align: center; margin-top: 7%">Brak wyników wyszukiwania</h2>';
                 }
 
                 $firstPage = 1;
@@ -118,14 +110,8 @@
                 <?php
                 require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
                 $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
-                if (isset($_POST["search"])) {
-                    $_SESSION['search'] = $_POST['search'];
-                    $search = $_SESSION['search'];
-                } else if (isset($_GET["search"]) && !isset($_SESSION['search'])) {
-                    $_SESSION['search'] = $_GET["search"];
-                    $search = $_SESSION['search'];
-                } else if (isset($_SESSION['search'])) {
-                    $search = $_SESSION['search'];
+                if (isset($_GET["search"])) {
+                    $search = $_GET["search"];
                 }
 
                 $results_per_page = 4;
@@ -161,6 +147,8 @@
                  </div>
                  </div>';
                     }
+                } else if (mysqli_num_rows($result) <= 0) {
+                    echo '<h2 style="color:red; text-align: center; margin-top: 7%">Brak wyników wyszukiwania</h2>';
                 }
 
                 $firstPage = 1;

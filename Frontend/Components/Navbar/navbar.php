@@ -13,27 +13,14 @@ session_start();
             <a class="navbar-brand" href="../../../../Praca_dyplomowa/Frontend/Articles/articles.php">Artykuły</a>
         </div>
 
-        <div id="searchMenu">
+        <form action="../../../../Praca_dyplomowa/Backend/Server/backSearchChangeData.php" method="POST" class="navbar-nav" id="searchMenu">
             <select class="form-select text-center" name="searchCategory" id="selectCategory">
                 <option value="Products">Produkty</option>
                 <option value="Articles">Artykuły</option>
             </select>
             <input class="form-control me-2" id="inputSzukaj" name="search" placeholder="Co chcesz znaleźć?">
-
-            <?php
-            echo "<script>
-                var Category = document.getElementById('selectCategory');
-                var SearchValue = document.getElementById('inputSzukaj');
-             </script>";
-
-            $searchCat = "<script>document.writeln(Category);</script>";
-            $search = "<script>document.writeln(SearchValue);</script>";
-            ?>
-
-            <a class="btn btn-outline-success" id="szukaj" href="../../../../Praca_dyplomowa/Frontend/SearchResults/SearchResults.php?searchCategory='<?php echo $searchCat ?>'&search='<?php echo $search ?>'" class="navbar-nav">
-                Szukaj
-            </a>
-        </div>
+            <button class="btn btn-outline-success" id="szukaj" type="submit">Szukaj</button>
+        </form>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#LittleNavMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
