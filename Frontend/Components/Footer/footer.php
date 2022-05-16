@@ -12,10 +12,13 @@
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Co oferujemy?</h5>
                 <p>
-                    <a href="../../../../Praca_dyplomowa/Frontend/ProductList/productList.php" class="text-white" style="text-decoration: none;">Miody</a>
+                    <a href="../../../../Praca_dyplomowa/Frontend/ProductList/productListWithCategory.php?typeM" class="text-white" style="text-decoration: none;">Miody</a>
                 </p>
                 <p>
-                    <a href="../../../../Praca_dyplomowa/Frontend/ProductList/productList.php" class="text-white" style="text-decoration: none;">Ramki</a>
+                    <a href="../../../../Praca_dyplomowa/Frontend/ProductList/productListWithCategory.php?typeP" class="text-white" style="text-decoration: none;">Przetwory</a>
+                </p>
+                <p>
+                    <a href="../../../../Praca_dyplomowa/Frontend/ProductList/productListWithCategory.php?typeS" class="text-white" style="text-decoration: none;">Słodycze</a>
                 </p>
                 <p>
                     <a href="../../../../Praca_dyplomowa/Frontend/Articles/articles.php" class="text-white" style="text-decoration: none;">Wiedzę na temat artykułów prozdrowotnych</a>
@@ -31,6 +34,9 @@
                 </p>
                 <p>
                     <a href="../../../../Praca_dyplomowa/Frontend/Articles/articles.php" class="text-white" style="text-decoration: none;">Lista artykułów</a>
+                </p>
+                <p>
+                    <a href="../../../../Praca_dyplomowa/Frontend/SupportContact/contact.php" class="text-white" style="text-decoration: none;">Pomoc - kontakt z adminstracją</a>
                 </p>
             </div>
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">

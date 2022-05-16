@@ -40,10 +40,9 @@
                         <h5 class="ms-2" style="color:red">' . $_SESSION['CartTotalPrice'] . ' zł</h5>                                    
                  </div>
                  <div class="d-flex justify-content-left">
-                 <form method="POST" action="../UserMenu/buyMenu.php">
-                   <input hidden name="buyFromShoppingCart">
+                 <a href="../UserMenu/buyMenu.php?buyFromShoppingCart">
                    <input type="submit" class="btn btn-success" value="Zakup dodane produkty">  
-                 </form>                                                    
+                 </a>                                                    
                  </div>
             </div> ';
             echo '<div class="row">';

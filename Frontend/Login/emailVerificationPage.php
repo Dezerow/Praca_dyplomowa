@@ -28,32 +28,25 @@ if (isset(($_SESSION['logged']))) {
     <div class="container-fluid mt-5 mainContainer" id="whenLittleMove">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
-                <form action="./../../Backend/Server/backLogin.php" method="POST" class="form-container">
-                    <label id="loginTitle">
-                        <h4 style=" text-align: center;">Panel potwierdzający konto użytkownika</h4>
+                <form action="./../../Backend/Server/backUserVerification.php" method="POST" class="form-container">
+                    <label id="Verification">
+                        <h4 style=" text-align: center;">Weryfikacja użytkownika</h4>
                     </label>
                     <?php
-                    if (isset($_SESSION['registerSucc'])) {
-                        echo $_SESSION['registerSucc'];
-                        unset($_SESSION['registerSucc']);
-                    } else if (isset($_SESSION['error'])) {
-                        echo $_SESSION['error'];
+                    if (isset($_SESSION['verfCode'])) {
+                        echo $_SESSION['verfCode'];
+                        unset($_SESSION['verfCode']);
                     }
                     ?>
                     <div class="form-group mt-3">
-                        <label for="username">
-                            <h5>Nazwa użytkownika</h5>
+                        <label for="Code">
+                            <h5>Podaj kod weryfikacyjny, wysłany na twój adres email</h5>
                         </label>
-                        <input type="text" class="form-control" id="username" placeholder="Podaj nazwę użytkownika" name="username">
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="password">
-                            <h5>Hasło</h5>
-                        </label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input hidden name="username" value="<?php echo $_GET['username'] ?>">
+                        <input type="text" class="form-control" id="Code" placeholder="Wpisz kod" name="Code">
                     </div>
                     <div id="kontenerPrzyciskZaloguj">
-                        <button type="submit" class="btn btn-primary mt-3" id="przyciskLogowania">Zaloguj się</button>
+                        <button type="submit" class="btn btn-primary mt-3" id="przyciskLogowania">Zatwierdź kod weryfikacyjny</button>
                     </div>
                 </form>
 

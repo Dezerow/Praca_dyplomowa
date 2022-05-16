@@ -60,10 +60,6 @@
                             <h5>Data założenia konta</h5>
                             <p><?php echo $row['register_date'] ?></p>
                         </div>
-                        <div class="mt-1 ms-5">
-                            <h5>Przejrzyj historię transkacji</h5>
-                            <a href="#">Data</a>
-                        </div>
                     </div>
 
                     <div class="text-start mt-5 ms-3">

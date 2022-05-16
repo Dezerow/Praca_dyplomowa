@@ -32,20 +32,24 @@ if ($conn->connect_error) {
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
-
     if (password_verify($password, $row['password'])) {
-      $username = $row['username'];
-      $_SESSION['user'] = $username;
+      if ($row['is_verifed'] !== '1') {
+        header('Location: ../../Frontend/Login/emailVerificationPage.php?username=' . $username . '');
+      } else {
 
-      $ar = array();
-      $_SESSION['userShoppingCart'] = $ar;
-      $_SESSION['CartTotalPrice'] = 0;
+        $username = $row['username'];
+        $_SESSION['user'] = $username;
 
-      unset($_SESSION['error']);  // TUTAJ MOJE ZWOLNIENIE SESJI
-      unset($_SESSION['registerSucc']);  // TUTAJ MOJE ZWOLNIENIE SESJI
+        $ar = array();
+        $_SESSION['userShoppingCart'] = $ar;
+        $_SESSION['CartTotalPrice'] = 0;
 
-      $result->free_result(); // Jest to zwolnienie pamięci, można dać close(); lub free(); lub free-result(); Mega ważne, duży błąd
-      header('Location: ../../Frontend/Main/index.php');
+        unset($_SESSION['error']);  // TUTAJ MOJE ZWOLNIENIE SESJI
+        unset($_SESSION['registerSucc']);  // TUTAJ MOJE ZWOLNIENIE SESJI
+
+        $result->free_result(); // Jest to zwolnienie pamięci, można dać close(); lub free(); lub free-result(); Mega ważne, duży błąd
+        header('Location: ../../Frontend/Main/index.php');
+      }
     } else {
       $_SESSION['error'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>

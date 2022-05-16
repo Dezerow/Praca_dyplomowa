@@ -19,7 +19,8 @@ session_start();
                 <option value="Articles">Artykuły</option>
             </select>
             <input class="form-control me-2" id="inputSzukaj" name="search" placeholder="Co chcesz znaleźć?">
-            <button class="btn btn-outline-success" id="szukaj" type="submit">Szukaj</button>
+            <i id="Nagraj_glos" class="fa-solid fa-volume-high fa-2xl mt-3"></i>
+            <button class="btn btn-outline-success ms-2" id="szukaj" type="submit">Szukaj</button>
         </form>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#LittleNavMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,3 +60,4 @@ session_start();
 </nav>
 
 <script src="https://kit.fontawesome.com/aa02b8a033.js" crossorigin="anonymous"></script>
+<script src="../../../../Praca_dyplomowa/Frontend/Components/SpeechToText/SpeechToText_JS_WebKit"></script>

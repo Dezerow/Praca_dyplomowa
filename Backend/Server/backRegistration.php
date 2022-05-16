@@ -34,22 +34,20 @@ if ($conn->connect_error) {
   $mail = new PHPMailer(true);
 
   try {
-    $mail->SMTPDebug = 0;
     $mail->isSMTP();
-    $mail->Host = 'smtp.protonmail.com';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'Pszczelarzezpasji4352@protonmail.com';
-    $mail->Password = 'pszczola312';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 465;
+    $mail->Username = 'pszczelarzezpasji4453@gmail.com';
+    $mail->Password = 'pszczola9901a24';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-    $mail->setFrom('Pszczelarzezpasji4352@protonmail.com', 'Mailer');
-    $mail->addAddress($email, $username);
-
+    $mail->Subject = 'Weryfikacja adresu email - Pszczelarzezpasji.com';
+    $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
     $mail->isHTML(true);
     $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-    $mail->Subject = 'Email verification';
-    $mail->Body = '<p>Twój kod weryfikacji to ' . $verification_code . '</p>';
+    $mail->Body = '<p>Witaj ' . $username . '! </p> </br> <p>Twój kod weryfikacji to ' . $verification_code . '</p>';
+    $mail->addAddress($email, $username);
     $showCode = $verification_code;
     $mail->send();
 

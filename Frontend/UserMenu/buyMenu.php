@@ -239,10 +239,7 @@ if (isset(($_SESSION['logged']))) {
                                                             <h6 style="display:inline" class="card-body">' . $row['product_name'] . '</h6>
                                                             <p style="display:inline">' . $row['product_price'] . ' zł</p>
                                                         </a>   
-                                                       </div>
-                                                        <div style="display:inline">
-                                                             <input class="ms-3" type="number" min="1" name="ProductPrice" id="ProductPrice" value="1" onkeyup="changeTotalPrice()" style="display:inline; width:60px">
-                                                        </div>
+                                                       </div>                                                       
                                                     </div>
                                                     ';
                                     }
