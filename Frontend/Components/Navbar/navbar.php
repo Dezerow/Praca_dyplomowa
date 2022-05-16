@@ -60,4 +60,4 @@ session_start();
 </nav>
 
 <script src="https://kit.fontawesome.com/aa02b8a033.js" crossorigin="anonymous"></script>
-<script src="../../../../Praca_dyplomowa/Frontend/Components/SpeechToText/SpeechToText_JS_WebKit"></script>
+<script src="../../../../Praca_dyplomowa/Frontend/Components/SpeechToText/SpeechToText_JS_WebKit.js"></script>
