@@ -20,6 +20,13 @@
     </header>
 
     <?php
+    if (!isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
+
+    <?php
     $UserId = $_POST['id'];
     $Username = $_POST['name'];
     $email = $_POST['email'];
@@ -40,8 +47,6 @@
                             <hr class="badge-primary mt-0 w-50">
                         </div>
                         <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEditAdmin.php">
-
-                            <input type='hidden' name='id' value='<?php echo $UserId ?>'>
                             <div class="mt-5">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazNazweUzytkownika" aria-expanded="false" aria-controls="collapseExample">
                                     Zmień nazwę użytkownika
@@ -49,12 +54,14 @@
                             </div>
                             <div class="collapse" id="pokazNazweUzytkownika">
                                 <div class="row mt-4">
-                                    <div class="col mt-1"><input type="text" placeholder="<?php echo $Username ?>" name="newUsername"></div>
+                                    <input type='hidden' name='id' value='<?php echo $UserId ?>'>
+                                    <div class="col mt-1"><input type="text" placeholder="<?php echo $Username ?>" name="newUsername" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
                                     </div>
                                 </div>
                             </div>
-
+                        </form>
+                        <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEditAdmin.php">
                             <div class="mt-3">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeEmaila" aria-expanded="false" aria-controls="collapseExample">
                                     Zmień adres email użytkownika
@@ -62,12 +69,14 @@
                             </div>
                             <div class="collapse" id="pokazEdycjeEmaila">
                                 <div class="row mt-4">
-                                    <div class="col mt-1"><input type="text" placeholder="<?php echo $email ?>" name="newUserEmail"></div>
+                                    <input type='hidden' name='id' value='<?php echo $UserId ?>'>
+                                    <div class="col mt-1"><input type="text" placeholder="<?php echo $email ?>" name="newUserEmail" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź email">
                                     </div>
                                 </div>
                             </div>
-
+                        </form>
+                        <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEditAdmin.php">
                             <div class="mt-3">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeHasla" aria-expanded="false" aria-controls="collapseExample">
                                     Zmień hasło użytkownika
@@ -75,12 +84,14 @@
                             </div>
                             <div class="collapse" id="pokazEdycjeHasla">
                                 <div class="row mt-4">
-                                    <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newUserPassword"></div>
+                                    <input type='hidden' name='id' value='<?php echo $UserId ?>'>
+                                    <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newUserPassword" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź hasło">
                                     </div>
                                 </div>
                             </div>
-
+                        </form>
+                        <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEditAdmin.php">
                             <div class="mt-3">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeRoli" aria-expanded="false" aria-controls="collapseExample">
                                     Zmień uprawnienia administratora
@@ -94,6 +105,7 @@
                                             <option value="User">Użytkownik</option>
                                         </select>
                                     </div>
+                                    <input type='hidden' name='id' value='<?php echo $UserId ?>'>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź rolę">
                                     </div>
                                 </div>
@@ -117,6 +129,7 @@
                                             <option value="Yes">Tak</option>
                                         </select>
                                     </div>
+                                    <input type='hidden' name='id' value='<?php echo $UserId ?>'>
                                     <div class="col"> <input type="submit" id="DeleteButton" disabled class="btn btn-danger" value="Usuń">
                                     </div>
                                 </div>

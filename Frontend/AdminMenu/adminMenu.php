@@ -20,6 +20,13 @@
     </header>
 
     <?php
+    if (!isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
+
+    <?php
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
@@ -78,7 +85,6 @@
 
                         <div>
                             <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEdit.php">
-
                                 <div class="mt-2">
                                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeEmaila" aria-expanded="false" aria-controls="collapseExample">
                                         Zmień adres email
@@ -86,12 +92,15 @@
                                 </div>
                                 <div class="collapse" id="pokazEdycjeEmaila">
                                     <div class="row mt-4">
-                                        <div class="col mt-1"><input type="text" placeholder="Podaj nowy adres" name="newAdminEmail"></div>
+                                        <input type="hidden" name="adminname" value="<?php echo $_SESSION['admin'] ?>">
+                                        <div class="col mt-1"><input type="email" placeholder="Podaj nowy adres" name="newAdminEmail" required></div>
                                         <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź email">
                                         </div>
                                     </div>
                                 </div>
+                            </form>
 
+                            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEdit.php">
                                 <div class="mt-3">
                                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeHasla" aria-expanded="false" aria-controls="collapseExample">
                                         Zmień hasło
@@ -99,12 +108,12 @@
                                 </div>
                                 <div class="collapse" id="pokazEdycjeHasla">
                                     <div class="row mt-4">
-                                        <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newAdminPassword"></div>
+                                        <input type="hidden" name="adminname" value="<?php echo $_SESSION['admin'] ?>">
+                                        <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newAdminPassword" required></div>
                                         <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź hasło">
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="adminname" value="<?php echo $_SESSION['admin'] ?>">
                             </form>
                         </div>
                     </div>

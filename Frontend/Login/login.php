@@ -1,12 +1,3 @@
-<?php
-include '../../Backend/DB_Connection/dbConnect.php';
-if (isset(($_SESSION['logged']))) {
-  header('../../Frontend/Main/index.php');
-  exit();
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +16,13 @@ if (isset(($_SESSION['logged']))) {
     <?php include "../Components/Navbar/navbar.php" ?>
   </header>
 
+  <?php
+  if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
+    header('Location: ../../Frontend/Main/index.php');
+    exit();
+  }
+  ?>
+
   <div class="container-fluid mt-5 mainContainer" id="whenLittleMove">
     <section class="row justify-content-center">
       <section class="col-12 col-sm-6 col-md-3">
@@ -38,19 +36,20 @@ if (isset(($_SESSION['logged']))) {
             unset($_SESSION['registerSucc']);
           } else if (isset($_SESSION['error'])) {
             echo $_SESSION['error'];
+            unset($_SESSION['error']);
           }
           ?>
           <div class="form-group mt-3">
             <label for="username">
               <h5>Nazwa użytkownika</h5>
             </label>
-            <input type="text" class="form-control" id="username" placeholder="Podaj nazwę użytkownika" name="username">
+            <input type="text" class="form-control" id="username" placeholder="Podaj nazwę użytkownika" name="username" required>
           </div>
           <div class="form-group mt-3">
             <label for="password">
               <h5>Hasło</h5>
             </label>
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" required>
           </div>
           <div id="kontenerPrzyciskZaloguj">
             <button type="submit" class="btn btn-primary mt-3" id="przyciskLogowania">Zaloguj się</button>

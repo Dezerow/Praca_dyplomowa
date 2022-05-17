@@ -19,6 +19,13 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
+    <?php
+    if (!isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
+
     <div class="container mt-5">
         <div class="text-center">
             <div>
@@ -44,7 +51,7 @@
             $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
-            $sql = "SELECT id, username, email,register_date from adminlist";
+            $sql = "SELECT * from adminlist";
             $result = $conn->query($sql);
 
             ?>
@@ -55,6 +62,8 @@
                         <th scope="col">Nazwa administratora</th>
                         <th scope="col">Adres email administratora</th>
                         <th>Data utworzenia konta</th>
+                        <th scope="col">Klucz weryfikacyjny</th>
+                        <th scope="col">Stan konta</th>
                         <th scope="col">Edytuj dane administratora</th>
                     </tr>
                 </thead>
@@ -68,6 +77,8 @@
             <td><input type='hidden' name='name' value=" . $row['username'] . ">" . $row['username'] . "</td>
             <td><input type='hidden' name='email' value=" . $row['email'] . ">" . $row['email'] . "</td>
             <td>" . $row['register_date'] . "</td> 
+            <td>" . $row['verification_code'] . "</td>   
+            <td>" . $row['is_verifed'] . "</td>   
             <td><input class='btn btn-warning' type='submit' value='Edytuj dane administratora' ></td>
             </form>
             </tr>";
@@ -87,7 +98,7 @@
             $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
-            $sql = "SELECT id, username, email, register_date from users";
+            $sql = "SELECT * from users";
             $result = $conn->query($sql);
 
             ?>
@@ -98,6 +109,8 @@
                         <th scope="col">Nazwa użytkownika</th>
                         <th scope="col">Adres email użytkownika</th>
                         <th scope="col">Data utworzenia konta</th>
+                        <th scope="col">Klucz weryfikacyjny</th>
+                        <th scope="col">Stan konta</th>
                         <th scope="col">Edytuj dane użytkownika</th>
                     </tr>
                 </thead>
@@ -110,7 +123,9 @@
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td><input type='hidden' name='name' value=" . $row['username'] . ">" . $row['username'] . "</td>
             <td><input type='hidden' name='email' value=" . $row['email'] . ">" . $row['email'] . "</td>
-            <td>" . $row['register_date'] . "</td>          
+            <td>" . $row['register_date'] . "</td>      
+            <td>" . $row['verification_code'] . "</td>   
+            <td>" . $row['is_verifed'] . "</td>              
             <td><input class='btn btn-warning' type='submit' value='Edytuj dane użytkownika'></td>
             </form>
             </tr>";

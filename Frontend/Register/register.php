@@ -1,11 +1,3 @@
-<?php
-include '../../Backend/DB_Connection/dbConnect.php';
-if (isset(($_SESSION['logged']))) {
-    header('../../Frontend/Main/index.php');
-    exit(); // Dzięki exit wszystko poniżej się nie wykona, wszystkie instrukcje etc tylko od razu wychodzi do headera
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +15,13 @@ if (isset(($_SESSION['logged']))) {
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
+
+    <?php
+    if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
 
     <div class="container-fluid mt-5" id="whenLittleMove" style="margin-bottom:<?php if (isset($_SESSION['registerFailed'])) {
                                                                                     echo '700px';
@@ -49,7 +48,7 @@ if (isset(($_SESSION['logged']))) {
                         <label for="username">
                             <h5>Nazwa użytkownika</h5>
                         </label>
-                        <input type="text" class="form-control" name="username" placeholder="Podaj nazwę użytkownika" required>
+                        <input type="text" class="form-control" name="username" placeholder="Podaj nazwę użytkownika" maxlength="15" required>
                     </div>
                     <div class="form-group mt-3">
                         <label for="email">

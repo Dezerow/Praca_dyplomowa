@@ -1,11 +1,3 @@
-<?php
-include '../../Backend/DB_Connection/dbConnect.php';
-if (isset(($_SESSION['logged']))) {
-    header('../../Frontend/Main/index.php');
-    exit(); // Dzięki exit wszystko poniżej się nie wykona, wszystkie instrukcje etc tylko od razu wychodzi do headera
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +15,13 @@ if (isset(($_SESSION['logged']))) {
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
+
+    <?php
+    if (!isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
 
     <div class="container-fluid mt-5 moveFooter" id="whenLittleMove" style="margin-bottom: 550px;">
         <section class="row justify-content-center">

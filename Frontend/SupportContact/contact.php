@@ -35,14 +35,14 @@
                                     <h5 class="mt-5 ">
                                         Podaj swój adres email
                                     </h5>
-                                    <input class="form-control d-flex justify-content-center inputFields" type="text" name="email">
+                                    <input class="form-control d-flex justify-content-center inputFields" type="email" name="email" required>
                                 </div>
                                 <div>
                                     <h5 class="mt-5">
                                         Podaj opis problemu
                                     </h5>
                                     <div class="mt-3">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="problemDesc" rows="4" col="2" placeholder=""></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="problemDesc" rows="4" col="2" placeholder="" minlength="20" required></textarea>
                                     </div>
                                 </div>
                                 <div class="mt-4">

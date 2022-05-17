@@ -18,6 +18,13 @@
     </header>
 
     <?php
+    if (!isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
+
+    <?php
     $articleId;
     if (isset($_POST['id'])) {
         $articleId = $_POST['id'];

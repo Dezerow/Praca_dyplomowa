@@ -17,6 +17,12 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
+    <?php
+    if (!isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
 
     <div class="container py-5">
         <h1 class="text-center">Panel zamieszczania artykułu do witryny</h1>

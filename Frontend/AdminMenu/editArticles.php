@@ -20,6 +20,13 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
+    <?php
+    if (!isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
+
     <div class="container mt-5">
 
         <?php

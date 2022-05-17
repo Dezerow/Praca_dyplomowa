@@ -8,8 +8,6 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" media="" />
     <link href="../../../Praca_dyplomowa/Frontend/UserMenu/shoppingCart.css" rel="stylesheet" type="text/css" />
-
-
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -17,6 +15,13 @@
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
+
+    <?php
+    if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
 
     <div class="container" id="MainContent">
         <h2 class="d-flex justify-content-center" style="margin-top:40px">Koszyk użytkownika</h2>

@@ -10,10 +10,6 @@
     <script src="https://kit.fontawesome.com/aa02b8a033.js" crossorigin="anonymous"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
     <link href="../UserMenu/userMenu.css" rel="stylesheet" type="text/css" />
-
-
-
-
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -21,6 +17,13 @@
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
+
+    <?php
+    if (!isset($_SESSION['user'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
 
     <?php
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
@@ -79,8 +82,7 @@
                             <h3 class="mt-5 ms-2">Edytuj swoje dane</h3>
                             <hr class="badge-primary mt-0 w-50">
                         </div>
-                        <form method="POST" action="../../../Praca/Backend/Server/backUserEdit.php">
-
+                        <form method="POST" action="../../Backend/Server/backUserEdit.php">
                             <div>
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeEmaila" aria-expanded="false" aria-controls="collapseExample">
                                     Zmień adres email
@@ -88,12 +90,14 @@
                             </div>
                             <div class="collapse" id="pokazEdycjeEmaila">
                                 <div class="row mt-4">
-                                    <div class="col mt-1"><input type="text" placeholder="Podaj nowy adres" name="newUserEmail"></div>
+                                    <input type="hidden" name="username" value="<?php echo $_SESSION['user'] ?>">
+                                    <div class="col mt-1"><input type="email" placeholder="Podaj nowy adres" name="newUserEmail" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź email">
                                     </div>
                                 </div>
                             </div>
-
+                        </form>
+                        <form method="POST" action="../../Backend/Server/backUserEdit.php">
                             <div class="mt-3">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeHasla" aria-expanded="false" aria-controls="collapseExample">
                                     Zmień hasło
@@ -101,13 +105,12 @@
                             </div>
                             <div class="collapse" id="pokazEdycjeHasla">
                                 <div class="row mt-4">
-                                    <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newUserPassword"></div>
+                                    <input type="hidden" name="username" value="<?php echo $_SESSION['user'] ?>">
+                                    <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newUserPassword" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź hasło">
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" name="username" value="<?php echo $_SESSION['user'] ?>">
-
                         </form>
                     </div>
                 </div>

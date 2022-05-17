@@ -1,12 +1,3 @@
-<?php
-include '../../Backend/DB_Connection/dbConnect.php';
-if (isset(($_SESSION['logged']))) {
-    header('../../Frontend/Main/index.php');
-    exit();
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +15,13 @@ if (isset(($_SESSION['logged']))) {
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
+
+    <?php
+    if (isset($_SESSION['user']) || isset($_SESSION['admin']) || !isset($_GET['username'])) {
+        header('Location: ../../Frontend/Main/index.php');
+        exit();
+    }
+    ?>
 
     <div class="container-fluid mt-5 mainContainer" id="whenLittleMove">
         <section class="row justify-content-center">
