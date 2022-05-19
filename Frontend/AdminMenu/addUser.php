@@ -23,10 +23,10 @@
     }
     ?>
 
-    <div class="container-fluid mt-5 moveFooter" id="whenLittleMove" style="margin-bottom: 550px;">
+    <div class="container-fluid mt-5" id="whenLittleMove">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
-                <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAddUserByAdmin.php" class="form-container">
+                <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAddUserByAdmin.php" class="form-container test">
                     <label id="registerTitle">
                         <h4 style=" text-align: center;">Zarejestruj użytkownika</h4>
                     </label>
@@ -34,7 +34,7 @@
                         <label for="username">
                             <h5>Nazwa użytkownika</h5>
                         </label>
-                        <input type="text" class="form-control" name="username" placeholder="Podaj nazwę użytkownika" required>
+                        <input type="text" class="form-control" name="username" placeholder="Podaj nazwę użytkownika" maxlength="15" required>
                     </div>
                     <div class="form-group mt-3">
                         <label for="email">

@@ -28,7 +28,7 @@
         <h1 class="text-center">Panel zamieszczania artykułu do witryny</h1>
         <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAddArticle.php">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                     <div id="wrapper" class="mt-3">
                         <div id="text_div">
                             <input type='hidden' name='id' value=<?php
@@ -54,7 +54,7 @@
 
                 </div>
 
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                     <div class="d-flex justify-content-center mt-3 card">
                         <div class="card-body">
                             <h5 class="d-flex justify-content-center mt-3">

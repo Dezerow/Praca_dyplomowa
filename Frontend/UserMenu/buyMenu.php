@@ -43,7 +43,7 @@
 
     <div class="container mt-5 MainContainer" id="whenLittleMove">
         <div class="row">
-            <div class="col-6 d-flex justify-content-end">
+            <div class="col-md-6 col-sm-12 d-flex justify-content-md-end">
                 <div class="card" style="width: 22rem;">
                     <div class="card-body">
                         <label id="registerTitle">
@@ -141,8 +141,8 @@
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 ?>
-                <div class="col-6 d-flex justify-content-start">
-                    <div class="card" style="width: 26rem;">
+                <div class="col-md-6 col-sm-12 d-flex justify-content-start">
+                    <div class="card">
                         <div class="card-body">
                             <label id="registerTitle">
                                 <h4 style=" text-align: center;">Informacje na temat zakupu</h4>
@@ -217,7 +217,7 @@
 
 
             ?>
-                <div class="col-6 d-flex justify-content-start">
+                <div class="col-md-6 col-sm-12 d-flex justify-content-start">
                     <div class="card" style="width: 26rem;">
                         <div class="card-body">
                             <label id="registerTitle">

@@ -42,10 +42,10 @@
         <div class="d-flex justify-content-center">
             <div class="card-block text-center bg-light" style="width:500px">
                 <div class="row ms-2" style="width:480px; background-color:whitesmoke">
-                    <div class="col-md-8 col-sm-12"> <i class="fa-regular fa-address-card fa-10x"></i>
+                    <div class="col-md-6 col-sm-12"> <i class="fa-regular fa-address-card fa-10x"></i>
                     </div>
-                    <div class="col-md-4 col-sm-12 text-start mt-3 d-flex justify-content-center">
-                        <p class="fw-bold" style="font-size: 50px; color:#1E90FF"><?php echo $_SESSION['user'] ?></p>
+                    <div class="col-md-6 col-sm-12 text-start mt-3 d-flex justify-content-center">
+                        <p class="fw-bold" style="font-size: 25px; color:#1E90FF"><?php echo $_SESSION['user'] ?></p>
                     </div>
                 </div>
                 <div class="text-start">

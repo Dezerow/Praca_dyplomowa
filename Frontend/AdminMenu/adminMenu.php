@@ -46,15 +46,15 @@
                         <i class="fa-regular fa-address-card fa-10x "></i>
                     </div>
                     <div class="col-md-6 col-sm-12 mt-3">
-                        <p class="" style="font-size: 50px; color:#1E90FF"><?php echo $_SESSION['admin'] ?></p>
-                        <?php
-                        if (isset($_SESSION['adminAddUser'])) {
-                            echo $_SESSION['adminAddUser'];
-                            unset($_SESSION['adminAddUser']);
-                        }
-                        ?>
+                        <p class="" style="font-size: 40px; color:#1E90FF"><?php echo $_SESSION['admin'] ?></p>
                     </div>
                 </div>
+                <?php
+                if (isset($_SESSION['adminAddUser'])) {
+                    echo $_SESSION['adminAddUser'];
+                    unset($_SESSION['adminAddUser']);
+                }
+                ?>
                 <div style="margin-left: 100px">
                     <div class="text-start">
                         <h3 class="mt-5 ms-4">Dane administratora</h3>
@@ -175,7 +175,7 @@
     </div>
 
 
-
+    <?php include "../Components/Footer/footer.php" ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

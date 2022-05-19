@@ -21,8 +21,8 @@
         <?php include "../Components/Navbar/navbar.php" ?>
     </header>
 
-    <div class="container mt-5 mypicture" style="border: 2px solid red">
-        <!--- <img src="../Components/Images/glownaLogo.jpg" class="img-fluid" alt="..." id="upperPhoto"> -->
+    <div class="container mt-5 ">
+        <img class="mypicture" src="../Components/Images/Static_Images/LogoMin.jpg" alt="..." id="upperPhoto">
     </div>
 
 

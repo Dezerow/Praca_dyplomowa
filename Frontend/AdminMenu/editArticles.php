@@ -50,9 +50,9 @@
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">Zdjęcie</th>
+                    <th class="PhotoDiv" scope="col">Zdjęcie</th>
                     <th scope="col">Nazwa Artykułu</th>
-                    <th>Wycinek treści artykułu</th>
+                    <th class="Description">Wycinek treści artykułu</th>
                     <th scope="col">Panel edycji</th>
                 </tr>
             </thead>
@@ -63,9 +63,9 @@
                         echo "<tr>            
             <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editArticle.php'>                          
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
-            <td><img src='" . $row['article_image'] . "' class='img-fluid' alt='...' id='articlePhoto'></td>
+            <td class='PhotoDiv'><img src='" . $row['article_image'] . "' class='img-fluid' alt='...' id='articlePhoto'></td>
             <td>" . $row['article_name'] . "</td>
-            <td><textarea disabled rows='8' cols='33'>" . $row['article_content'] . "</textarea></td>          
+            <td class='Description'><textarea disabled rows='8' cols='33'>" . $row['article_content'] . "</textarea></td>          
             <td><input class='btn btn-warning' type='submit' value='Edytuj artykuł' ></td>
             </form>
             </tr>";
@@ -77,6 +77,9 @@
             </tbody>
         </table>
     </div>
+
+    <?php include "../Components/Footer/footer.php" ?>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

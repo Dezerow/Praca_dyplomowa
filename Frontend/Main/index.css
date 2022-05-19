@@ -1,8 +1,7 @@
 .mypicture{
-  background-image: url("../Components/Images/123.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 250px;
+ width: 100%;
+ height: 100px;
+ object-fit: cover;
 }
 
 #upperPhoto {
@@ -56,4 +55,22 @@
 
 #shopDesc{
   font-size: 27px;
+}
+
+@media only screen and (min-width: 1100px) {
+  .mypicture{
+    margin-left: 120px;  
+  }
+}
+
+@media only screen and (max-width: 1090px) {
+  .mypicture{
+    margin-left: 50px;  
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mypicture{
+    margin-left: 40px;  
+  }
 }

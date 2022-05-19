@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
@@ -43,10 +43,10 @@
     ?>
 
     <div class="container py-5">
-        <h1 class="text-center">Podgląd artykułu </h1>
+        <h1 class="text-center">Podgląd produktu</h1>
         <div class="row">
-            <div class="col-6"> <img src="<?php echo $row['product_image'] ?>" id="EditProductPhoto" alt="" class="img-fluid mb-3 mt-4"> </div>
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12"> <img src="<?php echo $row['product_image'] ?>" id="EditProductPhoto" alt="" class="img-fluid mb-3 mt-4"> </div>
+            <div class="col-md-6 col-sm-12">
                 <h3 class="d-flex justify-content-center mt-3"><?php echo $row['product_name'] ?></h3>
                 <div class="d-flex justify-content-center mt-3 card">
                     <div class="card-body">
@@ -66,10 +66,54 @@
             <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditProduct.php">
                 <input type='hidden' name='id' value="<?php echo $productId; ?>">
                 <div>
-
-
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-sm-12">
+                            <div id="wrapper" class="mt-5">
+                                <div id="text_div">
+                                    <form method="post" action="../../Backend/Server/backImageProductUpload.php">
+                                        <input type='hidden' name='id' value=<?php
+                                                                                if (isset($_POST['id'])) {
+                                                                                    echo $_POST['id'];
+                                                                                } else if (isset($_SESSION['zapisaneID'])) {
+                                                                                    echo $_SESSION['zapisaneID'];
+                                                                                }
+                                                                                ?>>
+                                        <input type="text" onkeyup="unblockButton()" name="image_name" id="image_name" <?php if (!isset($_SESSION['path'])) {
+                                                                                                                            echo 'required';
+                                                                                                                        } ?> placeholder="Podaj nazwę zdjęcia">
+                                        <input type="text" onkeyup="unblockButton()" name="image_url" id="image_url" <?php if (!isset($_SESSION['path'])) {
+                                                                                                                            echo 'required';
+                                                                                                                        } ?> placeholder="Podaj link do zdjęcia">
+                                        <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
+                                        <img class="mt-3" style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
+                                                                                                                echo $_SESSION['path'];
+                                                                                                            } ?>">
+                                        <?php
+                                        if (isset($_SESSION['path'])) {
+                                            echo '
+                                <form action="../../Backend/Server/backImageProductUpload.php" method="POST">';
+                                        ?>
+
+                                            <input type="hidden" name="id" value=<?php
+                                                                                    if (isset($_SESSION["zapisaneID"])) {
+                                                                                        echo $_SESSION["zapisaneID"];
+                                                                                    }
+                                                                                    ?>>
+                                            </br>
+                                        <?php
+                                            echo '
+                                <input type="submit" name="upload_image" class="btn btn-success mt-3" value="Czy chcesz zatwierdzić zdjęcie?">
+                                </form>                                
+                                ';
+                                        }
+                                        ?>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
                             <div class="mt-5">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeNazwy" aria-expanded="false" aria-controls="collapseExample">
                                     Zmień nazwę produktu
@@ -147,56 +191,8 @@
                 </div>
             </form>
         </div>
-
-
-        <div class="col-6">
-            <div id="wrapper" class="mt-4">
-
-                <div id="text_div">
-                    <form method="post" action="../../Backend/Server/backImageProductUpload.php">
-                        <input type='hidden' name='id' value=<?php
-                                                                if (isset($_POST['id'])) {
-                                                                    echo $_POST['id'];
-                                                                } else if (isset($_SESSION['zapisaneID'])) {
-                                                                    echo $_SESSION['zapisaneID'];
-                                                                }
-                                                                ?>>
-                        <input type="text" onkeyup="unblockButton()" name="image_name" id="image_name" <?php if (!isset($_SESSION['path'])) {
-                                                                                                            echo 'required';
-                                                                                                        } ?> placeholder="Podaj nazwę zdjęcia">
-                        <input type="text" onkeyup="unblockButton()" name="image_url" id="image_url" <?php if (!isset($_SESSION['path'])) {
-                                                                                                            echo 'required';
-                                                                                                        } ?> placeholder="Podaj link do zdjęcia">
-                        <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
-                        <img class="mt-3" style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
-                                                                                                echo $_SESSION['path'];
-                                                                                            } ?>">
-                        <?php
-                        if (isset($_SESSION['path'])) {
-                            echo '
-                                <form action="../../Backend/Server/backImageProductUpload.php" method="POST">';
-                        ?>
-
-                            <input type="hidden" name="id" value=<?php
-                                                                    if (isset($_SESSION["zapisaneID"])) {
-                                                                        echo $_SESSION["zapisaneID"];
-                                                                    }
-                                                                    ?>>
-                            </br>
-                        <?php
-                            echo '
-                                <input type="submit" name="upload_image" class="btn btn-success mt-3" value="Czy chcesz zatwierdzić zdjęcie?">
-                                </form>                                
-                                ';
-                        }
-                        ?>
-
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-    </div>
+
 
 
     <script>

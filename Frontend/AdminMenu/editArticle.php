@@ -45,8 +45,8 @@
     <div class="container py-5">
         <h1 class="text-center">Podgląd artykułu</h1>
         <div class="row">
-            <div class="col-6"> <img src="<?php echo $row['article_image'] ?>" id="EditArticlePhoto" alt="" class="img-fluid mb-3 mt-4"> </div>
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12"> <img src="<?php echo $row['article_image'] ?>" id="EditArticlePhoto" alt="" class="img-fluid mb-3 mt-4"> </div>
+            <div class="col-md-6 col-sm-12">
                 <h3 class="d-flex justify-content-center mt-3"><?php echo $row['article_name'] ?></h3>
                 <div class="d-flex justify-content-center mt-3 card">
                     <div class="card-body">

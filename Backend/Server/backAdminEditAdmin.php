@@ -27,106 +27,139 @@ if ($conn->connect_error) {
 
   if (isset($_POST['newUsername'])  && $_POST['newUsername'] !== "") {
     $username = $_POST['newUsername'];
-    $sql = "UPDATE adminlist SET username='$username' WHERE id='$userId' ";
-    $result = $conn->query($sql);
-    $_SESSION['adminUserEdit'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
+
+    $nameUser = "SELECT * FROM users WHERE username='$username'";
+    $nameUserResult = mysqli_query($conn, $nameUser);
+    $nameAdmin = "SELECT * FROM adminlist WHERE username='$username'";
+    $nameAdminResult = mysqli_query($conn, $nameAdmin);
+
+    if ($nameAdminResult->num_rows > 0 || $nameUserResult->num_rows > 0) {
+      $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+         Podana nazwa użytkownika jest już zajęta.
+      </div>
+    </div>';
+      header("Location: ../../Frontend/AdminMenu/editUsers.php");
+    } else {
+
+      $sql = "UPDATE adminlist SET username='$username' WHERE id='$userId' ";
+      $result = $conn->query($sql);
+      $_SESSION['adminUserEdit'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
         <div>
           Nazwa administratora została zmieniona 
         </div>
       </div>';
 
-    try {
-      $mail = new PHPMailer(true);
-      $mail->isSMTP();
-      $mail->Host = 'smtp.gmail.com';
-      $mail->SMTPAuth = true;
-      $mail->Username = 'pszczelarzezpasji4453@gmail.com';
-      $mail->Password = 'pszczola9901a24';
-      $mail->SMTPSecure = 'tls';
-      $mail->Port = 587;
+      try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'pszczelarzezpasji4453@gmail.com';
+        $mail->Password = 'pszczola9901a24';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
 
-      $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
-      $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
-      $mail->isHTML(true);
-      $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-      $mail->Body = '<p>Witaj!</p><p>Twoja nowa nazwa użytkownika to: ' . $username . '</p>';
-      $mail->addAddress($emailDatabase, $username);
-      $showCode = $verification_code;
-      $mail->send();
-    } catch (Exception $e) {
+        $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
+        $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
+        $mail->isHTML(true);
+        $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+        $mail->Body = '<p>Witaj!</p><p>Twoja nowa nazwa użytkownika to: ' . $username . '</p>';
+        $mail->addAddress($emailDatabase, $username);
+        $showCode = $verification_code;
+        $mail->send();
+      } catch (Exception $e) {
 
-      $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+        $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
             <div>
-              Użytkownik posiada nieistniejący adres email. ' . $emailDatabase . ' 
+              Administrator posiada nieistniejący adres email.
             </div>
           </div>';
-      header("Location: ../../Frontend/AdminMenu/editUsers.php");
+        header("Location: ../../Frontend/AdminMenu/editUsers.php");
+      }
     }
   }
   if (isset($_POST['newUserEmail'])  && $_POST['newUserEmail'] !== "") {
     $email = $_POST['newUserEmail'];
 
-    try {
-      $mail = new PHPMailer(true);
-      $mail->isSMTP();
-      $mail->Host = 'smtp.gmail.com';
-      $mail->SMTPAuth = true;
-      $mail->Username = 'pszczelarzezpasji4453@gmail.com';
-      $mail->Password = 'pszczola9901a24';
-      $mail->SMTPSecure = 'tls';
-      $mail->Port = 587;
+    $emailUser = "SELECT * FROM users WHERE email='$email'";
+    $emailUserResult = mysqli_query($conn, $emailUser);
+    $emailAdmin = "SELECT * FROM adminlist WHERE email='$email'";
+    $emailAdminResult = mysqli_query($conn, $emailAdmin);
 
-      $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
-      $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
-      $mail->isHTML(true);
-      $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-      $mail->Body = '<p>Witaj ' . $usernameDatabase . '! </p> </br> <p>Twój adres mailowy został zmieniony na: ' . $email . ' </p>';
-      $mail->addAddress($email, $usernameDatabase);
-      $sql = "UPDATE adminlist SET email='$email' WHERE id='$userId' ";
-      $result = $conn->query($sql);
-      $_SESSION['adminUserEdit'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
+    if ($emailUserResult->num_rows > 0 || $emailAdminResult->num_rows > 0) {
+      $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+         Podany adres email jest już używany.
+      </div>
+    </div>';
+      header("Location: ../../Frontend/AdminMenu/editUsers.php");
+    } else {
+
+
+      try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'pszczelarzezpasji4453@gmail.com';
+        $mail->Password = 'pszczola9901a24';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
+        $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
+        $mail->isHTML(true);
+        $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+        $mail->Body = '<p>Witaj ' . $usernameDatabase . '! </p> </br> <p>Twój adres mailowy został zmieniony na: ' . $email . ' </p>';
+        $mail->addAddress($email, $usernameDatabase);
+        $sql = "UPDATE adminlist SET email='$email' WHERE id='$userId' ";
+        $result = $conn->query($sql);
+        $_SESSION['adminUserEdit'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
         <div>
           Adres mailowy administratora został zmieniony.
         </div>
       </div>';
-      $mail->send();
-      try {
-        $oldMail = new PHPMailer(true);
-        $oldMail->isSMTP();
-        $oldMail->Host = 'smtp.gmail.com';
-        $oldMail->SMTPAuth = true;
-        $oldMail->Username = 'pszczelarzezpasji4453@gmail.com';
-        $oldMail->Password = 'pszczola9901a24';
-        $oldMail->SMTPSecure = 'tls';
-        $oldMail->Port = 587;
+        $mail->send();
+        try {
+          $oldMail = new PHPMailer(true);
+          $oldMail->isSMTP();
+          $oldMail->Host = 'smtp.gmail.com';
+          $oldMail->SMTPAuth = true;
+          $oldMail->Username = 'pszczelarzezpasji4453@gmail.com';
+          $oldMail->Password = 'pszczola9901a24';
+          $oldMail->SMTPSecure = 'tls';
+          $oldMail->Port = 587;
 
-        $oldMail->Subject = 'Zmiana adresu email - Pszczelarzezpasji.com';
-        $oldMail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
-        $oldMail->isHTML(true);
-        $oldMail->Body = '<p>Witaj ' . $usernameDatabase . '! </p> </br> <p>Twój adres mailowy został zmieniony na: ' . $email . ' </p>';
-        $oldMail->addAddress($emailDatabase, $usernameDatabase);
-        $oldMail->send();
-      } catch (Exception $e) {
-        $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+          $oldMail->Subject = 'Zmiana adresu email - Pszczelarzezpasji.com';
+          $oldMail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
+          $oldMail->isHTML(true);
+          $oldMail->Body = '<p>Witaj ' . $usernameDatabase . '! </p> </br> <p>Twój adres mailowy został zmieniony na: ' . $email . ' </p>';
+          $oldMail->addAddress($emailDatabase, $usernameDatabase);
+          $oldMail->send();
+        } catch (Exception $e) {
+          $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
           <div>
-             Podano nieistniejący adres email 1 blad ze starym. ' . $emailDatabase;
-        $usernameDatabase . '
+             Podano nieistniejący adres email 1 blad ze starym.          
           </div>
         </div>';
-      }
-    } catch (Exception $e) {
+        }
+      } catch (Exception $e) {
 
-      $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+        $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
             <div>
-              Podano nieistniejący adres email 2 blad z nowym.
+              Podano nieistniejący adres email.
             </div>
           </div>';
-      header("Location: ../../Frontend/AdminMenu/editUsers.php");
+        header("Location: ../../Frontend/AdminMenu/editUsers.php");
+      }
     }
   } else if (isset($_POST['newUserPassword']) && $_POST['newUserPassword'] !== "") {
     $password = $_POST['newUserPassword'];
@@ -161,7 +194,7 @@ if ($conn->connect_error) {
       $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
               <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
               <div>
-                Użytkownik posiada nieistniejący adres email.
+                Administrator posiada nieistniejący adres email.
               </div>
             </div>';
       header("Location: ../../Frontend/AdminMenu/editUsers.php");
@@ -219,12 +252,12 @@ if ($conn->connect_error) {
       $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                 <div>
-                  Użytkownik posiada nieistniejący adres email.
+                  Administrator posiada nieistniejący adres email.
                 </div>
               </div>';
       header("Location: ../../Frontend/AdminMenu/editUsers.php");
     }
-  } else {
+  } else if (isset($_POST['role']) && $_POST['role'] === "Admin") {
     $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
     <div>
@@ -232,6 +265,101 @@ if ($conn->connect_error) {
     </div>
   </div>';
     header("Location: ../../Frontend/AdminMenu/editUsers.php");
+  } else if (isset($_POST['is_verf'])) {
+    $Sql = "SELECT * FROM adminlist WHERE id='$userId'";
+    $wyniki = $conn->query($Sql);
+    $wiersz = $wyniki->fetch_assoc();
+    $aktualnyStanKonta = $wiersz['is_verifed'];
+
+    if ($_POST['is_verf'] === '1' && $aktualnyStanKonta === '0') {
+      try {
+        $sqlActivate = "UPDATE adminlist SET is_verifed=1 WHERE id='$userId'";
+        $resultActivate = $conn->query($sqlActivate);
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'pszczelarzezpasji4453@gmail.com';
+        $mail->Password = 'pszczola9901a24';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
+        $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
+        $mail->isHTML(true);
+        $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+        $mail->Body = '<p>Witaj ' . $usernameDatabase . '!</p><p>Twoje konto zostało aktywowane przez administratora</p>';
+        $mail->addAddress($emailDatabase, $usernameDatabase);
+        $showCode = $verification_code;
+        $mail->send();
+
+        $_SESSION['adminUserEdit'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Zmieniono stan konta administratora na aktywny.
+            </div>
+          </div>';
+        header("Location: ../../Frontend/AdminMenu/editUsers.php");
+      } catch (Exception $e) {
+
+        $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Administrator posiada nieistniejący adres email.
+            </div>
+          </div>';
+        header("Location: ../../Frontend/AdminMenu/editUsers.php");
+      }
+    } else if ($_POST['is_verf'] === '0' && $aktualnyStanKonta === '1') {
+      try {
+        $sqlActivate = "UPDATE adminlist SET is_verifed=0 WHERE id='$userId'";
+        $resultActivate = $conn->query($sqlActivate);
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'pszczelarzezpasji4453@gmail.com';
+        $mail->Password = 'pszczola9901a24';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
+        $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
+        $mail->isHTML(true);
+        $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+        $mail->Body = '<p>Witaj ' . $usernameDatabase . '!</p><p>Twoje konto zostało dezaktywowane przez administratora</p>';
+        $mail->addAddress($emailDatabase, $usernameDatabase);
+        $showCode = $verification_code;
+        $mail->send();
+
+        $_SESSION['adminUserEdit'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+            Zmieniono stan konta administratora na nieaktywny.
+            </div>
+          </div>';
+        header("Location: ../../Frontend/AdminMenu/editUsers.php");
+      } catch (Exception $e) {
+
+        $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Użytkownik posiada nieistniejący adres email.
+            </div>
+          </div>';
+        header("Location: ../../Frontend/AdminMenu/editUsers.php");
+      }
+    } else {
+      $_SESSION['adminUserEdit'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                Wybrano aktualnie nadany stan konta administratora. Brak zmian.
+              </div>
+            </div>';
+      header("Location: ../../Frontend/AdminMenu/editUsers.php");
+    }
   }
 
   header("Location: ../../Frontend/AdminMenu/editUsers.php");

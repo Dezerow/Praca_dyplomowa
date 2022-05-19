@@ -50,11 +50,11 @@
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">Zdjęcie</th>
+                    <th scope="col" class="PhotoDiv">Zdjęcie</th>
                     <th scope="col">Nazwa produktu</th>
-                    <th>Opis produktu</th>
+                    <th class="Description">Opis produktu</th>
                     <th>Cena produktu</th>
-                    <th>Klucz produkt-artykuł</th>
+                    <th class="ProductKey">Klucz produkt-artykuł</th>
                     <th scope="col">Panel edycji</th>
                 </tr>
             </thead>
@@ -65,11 +65,11 @@
                         echo "<tr>            
             <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editProduct.php'>                          
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
-            <td><img src='" . $row['product_image'] . "' class='img-fluid' alt='...' id='productPhoto'></td>
+            <td class='PhotoDiv'><img src='" . $row['product_image'] . "' class='img-fluid' alt='...' id='productPhoto'></td>
             <td>" . $row['product_name'] . "</td>
-            <td><textarea disabled rows='6' cols='25'>" . $row['product_description'] . "</textarea></td>        
+            <td class='Description'><textarea disabled rows='6' cols='25'>" . $row['product_description'] . "</textarea></td>        
             <td>" . $row['product_price'] . " zł</td>  
-            <td>" . $row['product_article'] . "</td>
+            <td class='ProductKey'>" . $row['product_article'] . "</td>
             <td><input class='btn btn-warning' type='submit' value='Edytuj produkt' ></td>
             </form>
             </tr>";
@@ -81,6 +81,9 @@
             </tbody>
         </table>
     </div>
+
+    <?php include "../Components/Footer/footer.php" ?>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

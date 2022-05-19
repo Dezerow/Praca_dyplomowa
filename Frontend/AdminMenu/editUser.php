@@ -29,7 +29,7 @@
     $email = $_POST['email'];
     ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5" style="margin-bottom: 50px">
         <div class="d-flex justify-content-center">
             <div class="card-block text-center bg-light" style="width:500px">
                 <div class="row ms-2" style="width:480px; background-color:whitesmoke">
@@ -52,7 +52,7 @@
                             <div class="collapse" id="pokazNazweUzytkownika">
                                 <div class="row mt-4">
                                     <input type='hidden' name='id' value='<?php echo $UserId ?>'>
-                                    <div class="col mt-1"><input type="text" placeholder="<?php echo $Username; ?>" name="newUsername" required></div>
+                                    <div class="col mt-1"><input type="text" maxlength="15" placeholder="<?php echo $Username; ?>" name="newUsername" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
                                     </div>
                                 </div>
@@ -112,6 +112,27 @@
                             </div>
                         </form>
 
+                        <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backAdminEditUser.php">
+                            <div class="mt-3">
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeStanu" aria-expanded="false" aria-controls="collapseExample">
+                                    Zmień stan konta użytkownika
+                                </button>
+                            </div>
+                            <div class="collapse" id="pokazEdycjeStanu">
+                                <div class="row mt-4">
+                                    <div class="col mt-0">
+                                        <select class="form-select" name="is_verf">
+                                            <option value="1">Aktywowany - 1</option>
+                                            <option value="0">Nieaktywowany - 0</option>
+                                        </select>
+                                    </div>
+                                    <input type='hidden' name='id' value='<?php echo $UserId ?>'>
+                                    <div class="col"> <input type="submit" class="btn btn-success" value="Zmień stan konta">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                         <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/deleteUser.php">
                             <div class="mt-3">
                                 <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#pokazUsuwanie" aria-expanded="false" aria-controls="collapseExample">
@@ -143,6 +164,8 @@
 
     </div>
 
+
+    <?php include "../Components/Footer/footer.php" ?>
 
 
     <script type="text/javascript">
