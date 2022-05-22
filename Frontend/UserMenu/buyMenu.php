@@ -17,13 +17,6 @@
     </header>
 
     <?php
-    if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) {
-        header('Location: ../../Frontend/Main/index.php');
-        exit();
-    }
-    ?>
-
-    <?php
     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
     if (isset($_SESSION['user'])) {

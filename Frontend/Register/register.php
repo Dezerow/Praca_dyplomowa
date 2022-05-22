@@ -60,21 +60,30 @@
                         <label for="password">
                             <h5>Hasło</h5>
                         </label>
-                        <input type="password" class="form-control" name="password" required>
+                        <input type="password" class="form-control" id="password" name="password" onchange="unblockButton()" required>
                     </div>
                     <div class="form-group mt-3">
                         <label for="password">
                             <h5>Powtórz hasło</h5>
                         </label>
-                        <input type="password" class="form-control" name="repeatPassword" required>
+                        <input type="password" class="form-control" id="repeatPassword" onchange="unblockButton()" name="repeatPassword" required>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3" id="przyciskRejestracji">Zarejestruj się</button>
+                    <button type="submit" disabled class="btn btn-primary mt-3" id="przyciskRejestracji">Zarejestruj się</button>
                 </form>
             </section>
         </section>
     </div>
     <?php include "../Components/Footer/footer.php" ?>
 
+    <script>
+        function unblockButton() {
+            if (document.getElementById("password").value !== document.getElementById("repeatPassword").value) {
+                document.getElementById('przyciskRejestracji').disabled = true;
+            } else {
+                document.getElementById('przyciskRejestracji').disabled = false;
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 

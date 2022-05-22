@@ -42,7 +42,7 @@
         $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
-        $sql = "SELECT id, article_name, article_content, article_image from articles";
+        $sql = "SELECT * from articles";
         $result = $conn->query($sql);
 
         ?>
@@ -53,6 +53,7 @@
                     <th class="PhotoDiv" scope="col">Zdjęcie</th>
                     <th scope="col">Nazwa Artykułu</th>
                     <th class="Description">Wycinek treści artykułu</th>
+                    <th class="Key">Klucz artykuł-produkt</th>
                     <th scope="col">Panel edycji</th>
                 </tr>
             </thead>
@@ -65,7 +66,8 @@
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td class='PhotoDiv'><img src='" . $row['article_image'] . "' class='img-fluid' alt='...' id='articlePhoto'></td>
             <td>" . $row['article_name'] . "</td>
-            <td class='Description'><textarea disabled rows='8' cols='33'>" . $row['article_content'] . "</textarea></td>          
+            <td class='Description'><textarea disabled rows='8' cols='33'>" . $row['article_content'] . "</textarea></td>       
+            <td>" . $row['product_article'] . "</td>   
             <td><input class='btn btn-warning' type='submit' value='Edytuj artykuł' ></td>
             </form>
             </tr>";

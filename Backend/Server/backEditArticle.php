@@ -33,6 +33,16 @@ if ($conn->connect_error) {
           Treść artykułu została zmieniona pomyślnie.
         </div>
       </div>';
+  } else if (isset($_POST['newArticleKey']) && $_POST['newArticleKey'] !== "") {
+    $newArticleKey = $_POST['newArticleKey'];
+    $sql = "UPDATE articles SET product_article='$newArticleKey' WHERE id='$ArticleId'";
+    $result = $conn->query($sql);
+    $_SESSION['zmianaArtykulu'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      Klucz artykułu został zmieniony pomyślnie.
+    </div>
+  </div>';
   }
 
   header("Location: ../../Frontend/AdminMenu/editArticles.php");

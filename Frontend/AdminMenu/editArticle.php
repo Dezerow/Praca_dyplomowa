@@ -58,7 +58,6 @@
         <div class="text-center">
             <h1 class="text-center mt-3">Panel edycji</h1>
             <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditArticle.php">
-                <input type='hidden' name='id' value="<?php echo $articleId ?>">
                 <div>
                     <div class="mt-5">
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeNazwy" aria-expanded="false" aria-controls="collapseExample">
@@ -66,11 +65,14 @@
                         </button>
                     </div>
                     <div class="collapse" id="pokazEdycjeNazwy">
-                        <div class="mt-3"><input type="text" name="newArticleName" style="width: 450px;"></div>
+                        <input type='hidden' name='id' value="<?php echo $articleId ?>">
+                        <div class="mt-3"><input type="text" name="newArticleName" style="width: 450px;" required></div>
                         <div class="mt-4"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
                         </div>
                     </div>
                 </div>
+            </form>
+            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditArticle.php">
                 <div class="mt-5">
                     <div class="mt-5">
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeTresci" aria-expanded="false" aria-controls="collapseExample">
@@ -79,10 +81,30 @@
                     </div>
                     <div class="collapse" id="pokazEdycjeTresci">
                         <div class="mt-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="newArticleContent" rows="10"></textarea>
+                            <input type='hidden' name='id' value="<?php echo $articleId ?>">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="newArticleContent" rows="10" required></textarea>
                         </div>
                         <div class="mt-4">
                             <input type="submit" class="btn btn-success" value="Zatwierdź zmianę treści">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditArticle.php">
+                <div class="mt-5">
+                    <div class="mt-5">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeKlucza" aria-expanded="false" aria-controls="collapseExample">
+                            Zmień klucz produktu
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazEdycjeKlucza">
+                        <div class="mt-3">
+                            <input type='hidden' name='id' value="<?php echo $articleId ?>">
+                            <div class="mt-3"><input type="text" name="newArticleKey" style="width: 150px;" required></div>
+                        </div>
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-success" value="Zatwierdź zmianę klucza">
                         </div>
                     </div>
                 </div>
