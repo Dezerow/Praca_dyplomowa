@@ -43,13 +43,13 @@
             <label for="username">
               <h5>Nazwa użytkownika</h5>
             </label>
-            <input type="text" class="form-control" id="username" placeholder="Podaj nazwę użytkownika" name="username" required>
+            <input type="text" class="form-control" id="username" pattern="^[A-Za-z0-9]{4,15}" placeholder="Podaj nazwę użytkownika" maxlength="15" name="username" required>
           </div>
           <div class="form-group mt-3">
             <label for="password">
               <h5>Hasło</h5>
             </label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control" pattern="^[A-Za-z0-9]{4,40}" id=" password" name="password" required>
           </div>
           <div id="kontenerPrzyciskZaloguj">
             <button type="submit" class="btn btn-primary mt-3" id="przyciskLogowania">Zaloguj się</button>

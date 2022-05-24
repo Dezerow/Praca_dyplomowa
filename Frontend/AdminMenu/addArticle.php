@@ -79,7 +79,7 @@
                                 <div class="mt-3">Podaj klucz artykułu(Służy do łączenia z artykułami)</div>
                             </h5>
                             <div class="d-flex justify-content-center mt-3">
-                                <input type="text" name="ArticleKey" id="ArticleKey" onkeyup="unblockAddArticle()" style="width: 250px;">
+                                <input type="text" name="ArticleKey" id="ArticleKey" style="width: 250px;">
                             </div>
                         </div>
 
@@ -116,7 +116,7 @@
 
             enableButton = '<?php echo $checkIfPhotoAdded; ?>';
 
-            if (document.getElementById("ArticleName").value === "" || document.getElementById("ArticleContent").value === "" || document.getElementById("ArticleKey").value === "" || enableButton === "0") {
+            if (document.getElementById("ArticleName").value === "" || document.getElementById("ArticleContent").value === "" || enableButton === "0") {
                 document.getElementById('addToDatabase').disabled = true;
             } else {
                 document.getElementById('addToDatabase').disabled = false;

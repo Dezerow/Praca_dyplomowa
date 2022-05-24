@@ -60,5 +60,7 @@ if (isset($_POST['upload_image'])) {
         </div>
         </div>';
     }
+    unset($_SESSION["path"]);
+
     header('Location: ../../Frontend/AdminMenu/editProducts.php');
 }

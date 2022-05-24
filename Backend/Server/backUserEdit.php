@@ -19,6 +19,7 @@ if ($conn->connect_error) {
 } else {
 
   $username = $_POST['username'];
+  $username = htmlentities($username, ENT_QUOTES, "UTF-8");
   $zapytanieSql = "SELECT * FROM users WHERE username='$username'";
   $wynik = $conn->query($zapytanieSql);
   $wiersz = $wynik->fetch_assoc();

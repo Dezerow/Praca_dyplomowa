@@ -85,7 +85,7 @@
                                 Podaj klucz produktu(Służy do łączenia z artykułami)
                             </h5>
                             <div class="d-flex justify-content-center mt-3">
-                                <input type="text" name="ProductKey" id="ProductKey" onkeyup="unblockAddOffer()" style="width: 250px;">
+                                <input type="text" name="ProductKey" id="ProductKey" style="width: 250px;">
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
 
             enableButton = '<?php echo $checkIfPhotoAdded; ?>';
 
-            if (document.getElementById("ProductName").value === "" || document.getElementById("ProductDesc").value === "" || document.getElementById("ProductPrice").value === "" || enableButton === "0" || document.getElementById("ProductKey").value === "") {
+            if (document.getElementById("ProductName").value === "" || document.getElementById("ProductDesc").value === "" || document.getElementById("ProductPrice").value === "" || enableButton === "0") {
                 document.getElementById('addToDatabase').disabled = true;
             } else {
                 document.getElementById('addToDatabase').disabled = false;

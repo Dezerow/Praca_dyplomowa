@@ -163,7 +163,8 @@ if ($conn->connect_error) {
     }
   } else if (isset($_POST['newUserPassword']) && $_POST['newUserPassword'] !== "") {
     $password = $_POST['newUserPassword'];
-    $sql = "UPDATE adminlist SET password='$password' WHERE id='$userId' ";
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "UPDATE adminlist SET password='$hashedPassword' WHERE id='$userId' ";
     $result = $conn->query($sql);
     $_SESSION['adminUserEdit'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>

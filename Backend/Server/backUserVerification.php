@@ -9,7 +9,9 @@ if ($conn->connect_error) {
   die("Połączenie zakończyło się błędem: " . $conn->connect_error);
 } else {
   $code = $_POST['Code'];
+  $code = htmlentities($code, ENT_QUOTES, "UTF-8");
   $username = $_POST['username'];
+  $username = htmlentities($username, ENT_QUOTES, "UTF-8");
   $sql = "SELECT * FROM users WHERE verification_code='$code'";
   $result = $conn->query($sql);
 

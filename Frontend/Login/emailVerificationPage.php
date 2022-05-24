@@ -17,7 +17,7 @@
     </header>
 
     <?php
-    if (isset($_SESSION['user']) || isset($_SESSION['admin']) || !isset($_GET['username'])) {
+    if (isset($_SESSION['user']) || isset($_SESSION['admin'])) {
         header('Location: ../../Frontend/Main/index.php');
         exit();
     }
@@ -41,7 +41,7 @@
                             <h5>Podaj kod weryfikacyjny, wysłany na twój adres email</h5>
                         </label>
                         <input hidden name="username" value="<?php echo $_GET['username'] ?>">
-                        <input type="text" class="form-control" id="Code" placeholder="Wpisz kod" name="Code">
+                        <input type="text" class="form-control" pattern="^[0-9]{4,40}" id="Code" placeholder="Wpisz kod" name="Code">
                     </div>
                     <div id="kontenerPrzyciskZaloguj">
                         <button type="submit" class="btn btn-primary mt-3" id="przyciskLogowania">Zatwierdź kod weryfikacyjny</button>

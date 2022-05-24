@@ -11,7 +11,7 @@
 
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body>
 
     <header class="sticky-top">
         <?php include "../Components/Navbar/navbar.php" ?>
@@ -36,7 +36,7 @@
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
-    $sql = "SELECT id, product_name, product_description, product_price, product_image, product_article from product_list WHERE id='$productId'";
+    $sql = "SELECT * from product_list WHERE id='$productId'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
@@ -45,137 +45,146 @@
     <div class="container py-5">
         <h1 class="text-center">Podgląd produktu</h1>
         <div class="row">
-            <div class="col-md-6 col-sm-12"> <img src="<?php echo $row['product_image'] ?>" id="EditProductPhoto" alt="" class="img-fluid mb-3 mt-4"> </div>
+            <div class="col-md-6 col-sm-12"> <img src="<?php echo $row['product_image'] ?>" id="EditArticlePhoto" alt="" class="img-fluid mb-3 mt-4"> </div>
             <div class="col-md-6 col-sm-12">
                 <h3 class="d-flex justify-content-center mt-3"><?php echo $row['product_name'] ?></h3>
                 <div class="d-flex justify-content-center mt-3 card">
                     <div class="card-body">
                         <?php echo $row['product_description'] ?>
-                        </br>
-                        </br>
-                        Przypisany do artykułu o kluczu: <?php echo $row['product_article'] ?>
-                        </br>
-                        </br>
-                        Cena: <?php echo $row['product_price'];  ?>zł
+                    </div>
+                    <div class="card-body">
+                        <?php
+                        if (($row['product_article']) !== '') {
+                            echo 'Klucz produktu: ' . $row['product_article'];
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-            <h1 class="text-center mt-3">Panel edycji produktu</h1>
+        <div class="text-center">
+            <h1 class="text-center mt-3">Panel edycji</h1>
             <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditProduct.php">
-                <input type='hidden' name='id' value="<?php echo $productId; ?>">
                 <div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <div id="wrapper" class="mt-5">
-                                <div id="text_div">
-                                    <form method="post" action="../../Backend/Server/backImageProductUpload.php">
-                                        <input type='hidden' name='id' value=<?php
-                                                                                if (isset($_POST['id'])) {
-                                                                                    echo $_POST['id'];
-                                                                                } else if (isset($_SESSION['zapisaneID'])) {
-                                                                                    echo $_SESSION['zapisaneID'];
-                                                                                }
-                                                                                ?>>
-                                        <input type="text" onkeyup="unblockButton()" name="image_name" id="image_name" <?php if (!isset($_SESSION['path'])) {
-                                                                                                                            echo 'required';
-                                                                                                                        } ?> placeholder="Podaj nazwę zdjęcia">
-                                        <input type="text" onkeyup="unblockButton()" name="image_url" id="image_url" <?php if (!isset($_SESSION['path'])) {
-                                                                                                                            echo 'required';
-                                                                                                                        } ?> placeholder="Podaj link do zdjęcia">
-                                        <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
-                                        <img class="mt-3" style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
-                                                                                                                echo $_SESSION['path'];
-                                                                                                            } ?>">
-                                        <?php
-                                        if (isset($_SESSION['path'])) {
-                                            echo '
-                                <form action="../../Backend/Server/backImageProductUpload.php" method="POST">';
-                                        ?>
+                    <div class="mt-5">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeNazwy" aria-expanded="false" aria-controls="collapseExample">
+                            Zmień nazwę produktu
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazEdycjeNazwy">
+                        <input type='hidden' name='id' value="<?php echo $productId ?>">
+                        <div class="mt-3"><input type="text" name="newProductName" style="width: 450px;" required></div>
+                        <div class="mt-4"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditProduct.php">
+                <div class="mt-5">
+                    <div class="mt-5">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeTresci" aria-expanded="false" aria-controls="collapseExample">
+                            Zmień opis produktu
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazEdycjeTresci">
+                        <div class="mt-3">
+                            <input type='hidden' name='id' value="<?php echo $productId ?>">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="newProductContent" rows="10" required></textarea>
+                        </div>
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-success" value="Zatwierdź zmianę treści">
+                        </div>
+                    </div>
+                </div>
+            </form>
 
-                                            <input type="hidden" name="id" value=<?php
-                                                                                    if (isset($_SESSION["zapisaneID"])) {
-                                                                                        echo $_SESSION["zapisaneID"];
-                                                                                    }
-                                                                                    ?>>
-                                            </br>
-                                        <?php
-                                            echo '
+            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditProduct.php">
+                <div class="mt-5">
+                    <div class="mt-5">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeKlucza" aria-expanded="false" aria-controls="collapseExample">
+                            Zmień klucz produktu
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazEdycjeKlucza">
+                        <div class="mt-3">
+                            <input type='hidden' name='id' value="<?php echo $productId ?>">
+                            <div class="mt-3"><input type="text" name="newProductKey" style="width: 150px;" required></div>
+                        </div>
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-success" value="Zatwierdź zmianę klucza">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditProduct.php">
+                <div class="mt-5">
+                    <div class="mt-5">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeCeny" aria-expanded="false" aria-controls="collapseExample">
+                            Zmień cenę produktu
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazEdycjeCeny">
+                        <div class="mt-3">
+                            <input type='hidden' name='id' value="<?php echo $productId ?>">
+                            <div class="mt-3"><input type="number" min="1" value="1" name="newProductPrice" style="width: 150px;" required></div>
+                        </div>
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-success" value="Zatwierdź zmianę ceny">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="mt-5 text-center">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeZdjecia" aria-expanded="false" aria-controls="collapseExample">
+                Zmień zdjęcie produktu
+            </button>
+        </div>
+        <div class="collapse text-center mt-3" id="pokazEdycjeZdjecia">
+            <form method="post" action="../../Backend/Server/backImageProductUpload.php">
+                <input type='hidden' name='id' value=<?php
+                                                        if (isset($_POST['id'])) {
+                                                            echo $_POST['id'];
+                                                        } else if (isset($_SESSION['zapisaneID'])) {
+                                                            echo $_SESSION['zapisaneID'];
+                                                        }
+                                                        ?>>
+                <input type="text" onkeyup="unblockButton()" name="image_name" id="image_name" <?php if (!isset($_SESSION['path'])) {
+                                                                                                    echo 'required';
+                                                                                                } ?> placeholder="Podaj nazwę zdjęcia">
+                <input type="text" onkeyup="unblockButton()" name="image_url" id="image_url" <?php if (!isset($_SESSION['path'])) {
+                                                                                                    echo 'required';
+                                                                                                } ?> placeholder="Podaj link do zdjęcia">
+                <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
+                </br>
+                <img style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
+                                                                            echo $_SESSION['path'];
+                                                                        } ?>">
+                <?php
+                if (isset($_SESSION['path'])) {
+                    echo '
+                                <form action="../../Backend/Server/backImageProductUpload.php" method="POST">';
+                ?>
+
+                    <input type="hidden" name="id" value=<?php
+                                                            if (isset($_SESSION["zapisaneID"])) {
+                                                                echo $_SESSION["zapisaneID"];
+                                                            }
+                                                            ?>>
+                    </br>
+                <?php
+                    echo '
                                 <input type="submit" name="upload_image" class="btn btn-success mt-3" value="Czy chcesz zatwierdzić zdjęcie?">
                                 </form>                                
                                 ';
-                                        }
-                                        ?>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-sm-12">
-                            <div class="mt-5">
-                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeNazwy" aria-expanded="false" aria-controls="collapseExample">
-                                    Zmień nazwę produktu
-                                </button>
-                            </div>
-                            <div class="collapse" id="pokazEdycjeNazwy">
-                                <div class="mt-3"><input type="text" name="newProductName" required style="width: 450px;"></div>
-                                <div class="mt-4"> <input type="submit" class="btn btn-success" value="Zatwierdź zmianę nazwy">
-                                </div>
-                            </div>
-
-
-                            <div class="mt-5">
-                                <div class="mt-5">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeKlucza" aria-expanded="false" aria-controls="collapseExample">
-                                        Zmień klucz produktu
-                                    </button>
-                                </div>
-                                <div class="collapse" id="pokazEdycjeKlucza">
-                                    <div class="mt-3">
-                                        <div class="mt-3"><input type="text" name="newProductKey" style="width: 150px;"></div>
-                                    </div>
-                                    <div class="mt-4">
-                                        <input type="submit" class="btn btn-success" value="Zatwierdź zmianę klucza">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-5">
-                                <div class="mt-5">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeCeny" aria-expanded="false" aria-controls="collapseExample">
-                                        Zmień cenę produktu
-                                    </button>
-                                </div>
-                                <div class="collapse" id="pokazEdycjeCeny">
-                                    <div class="mt-3">
-                                        <div class="mt-3"><input type="number" min="1" name="newProductPrice" style="width: 150px;"></div>
-                                    </div>
-                                    <div class="mt-4">
-                                        <input type="submit" class="btn btn-success" value="Zatwierdź zmianę ceny">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-5">
-                                <div class="mt-5">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeTresci" aria-expanded="false" aria-controls="collapseExample">
-                                        Zmień opis produktu
-                                    </button>
-                                </div>
-                                <div class="collapse" id="pokazEdycjeTresci">
-                                    <div class="mt-3">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="newProductContent" rows="4" col="5" placeholder="Maksymalnie 50 znaków"></textarea>
-                                    </div>
-                                    <div class="mt-4">
-                                        <input type="submit" class="btn btn-success" value="Zatwierdź zmianę opisu produktu">
-                                    </div>
-                                </div>
-                            </div>
+                }
+                ?>
             </form>
+        </div>
 
-            <form method="POST" action="../../Backend/Server/backDeleteProduct.php">
+        <form method="POST" action="../../Backend/Server/backDeleteProduct.php">
+            <div class="text-center mt-3">
                 <input type='hidden' name='id' value="<?php echo $productId; ?>">
                 <div class="mt-5">
                     <div class="mt-5">
@@ -189,15 +198,14 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-
 
 
     <script>
         function unblockButton() {
-            if (document.getElementById("image_name").value === "" || document.getElementById("image_url").value === "") {
+            if (document.getElementById("image_name").value === "" && document.getElementById("image_url").value === "") {
                 document.getElementById('save_image').disabled = true;
             } else {
                 document.getElementById('save_image').disabled = false;

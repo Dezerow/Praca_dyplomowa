@@ -53,7 +53,7 @@ if ($conn->connect_error) {
         </div>
       </div>';
 
-    unset($_SESSION['path']);
+    unset($_SESSION["path"]);
 
 
 

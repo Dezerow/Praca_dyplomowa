@@ -32,7 +32,7 @@
 
 
     $adminname = $_SESSION['admin'];
-    $sql = "SELECT email,register_date from adminlist";
+    $sql = "SELECT email,register_date from adminlist WHERE username='$adminname'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
@@ -109,7 +109,7 @@
                                 <div class="collapse" id="pokazEdycjeHasla">
                                     <div class="row mt-4">
                                         <input type="hidden" name="adminname" value="<?php echo $_SESSION['admin'] ?>">
-                                        <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newAdminPassword" required></div>
+                                        <div class="col mt-1"><input type="password" pattern="^[A-Za-z0-9]{4,40}" placeholder="Podaj nowe hasło" name="newAdminPassword" required></div>
                                         <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź hasło">
                                         </div>
                                     </div>

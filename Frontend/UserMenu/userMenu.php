@@ -30,12 +30,10 @@
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
-    $adminname = $_SESSION['user'];
-    $sql = "SELECT email,register_date from users";
+    $username = $_SESSION['user'];
+    $sql = "SELECT email,register_date from users WHERE username='$username'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-
-    $_SESSION['user']
 
     ?>
     <div class="container mt-5" id="mainContainer">
@@ -106,7 +104,7 @@
                             <div class="collapse" id="pokazEdycjeHasla">
                                 <div class="row mt-4">
                                     <input type="hidden" name="username" value="<?php echo $_SESSION['user'] ?>">
-                                    <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newUserPassword" required></div>
+                                    <div class="col mt-1"><input type="password" pattern="^[A-Za-z0-9]{4,40}" placeholder="Podaj nowe hasło" name="newUserPassword" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź hasło">
                                     </div>
                                 </div>
