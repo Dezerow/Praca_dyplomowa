@@ -13,7 +13,7 @@ if ($conn->connect_error) {
   if (isset($_POST['save_image'])) {
 
     if (isset($_SESSION['path'])) {
-      unlink($_SESSION['path']);
+      unlink(realpath($_SESSION['path']));
       unset($_SESSION['path']);
 
       $url = $_POST['image_url'];
@@ -41,12 +41,11 @@ if ($conn->connect_error) {
     $ProductDesc = $_POST['ProductDesc'];
     $ProductPrice = $_POST['ProductPrice'];
     $ProductKey = $_POST['ProductKey'];
+    $ProductType = $_POST['productType'];
     $image = $_SESSION['path'];
 
-
-
-    $sql = "INSERT INTO product_list(id, product_name, product_description, product_price, product_image, product_article)
-      VALUES ('', '$ProductName', '$ProductDesc', '$ProductPrice', '$image', '$ProductKey')";
+    $sql = "INSERT INTO product_list(id, product_name, product_description, product_price, product_image, product_article, product_type)
+      VALUES ('', '$ProductName', '$ProductDesc', '$ProductPrice', '$image', '$ProductKey', '$ProductType')";
     $result = mysqli_query($conn, $sql);
 
     $_SESSION['adminAddUser'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
@@ -57,7 +56,6 @@ if ($conn->connect_error) {
         </div>';
 
     unset($_SESSION['path']);
-
 
     header("Location: ../../Frontend/AdminMenu/adminMenu.php");
   }

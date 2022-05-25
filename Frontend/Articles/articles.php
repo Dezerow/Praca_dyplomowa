@@ -28,13 +28,12 @@
             require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
             $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
-            $results_per_page = 4;
-
             $sql = 'SELECT * FROM articles';
             $result = mysqli_query($conn, $sql);
-            $number_of_results = mysqli_num_rows($result);
+            $number_of_articles = mysqli_num_rows($result);
 
-            $number_of_pages = ceil($number_of_results / $results_per_page);
+            $max_results_per_page = 4;
+            $page_amount = ceil($number_of_articles / $max_results_per_page);
 
             if (!isset($_GET['page'])) {
                 $page = 1;
@@ -42,15 +41,15 @@
                 $page = $_GET['page'];
             }
 
-            $this_page_first_result = ($page - 1) * $results_per_page;
+            $this_page_first_result = ($page - 1) * $max_results_per_page;
 
-            $sql = 'SELECT * FROM articles LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
+            $sql = 'SELECT * FROM articles LIMIT ' . $this_page_first_result . ',' .  $max_results_per_page;
             $result = mysqli_query($conn, $sql);
-            while ($row = mysqli_fetch_array($result)) {
 
-
-
-                echo '
+            if (mysqli_num_rows($result) > 0) {
+                for ($a = 0; $a < mysqli_num_rows($result); $a++) {
+                    $row = $result->fetch_assoc();
+                    echo '
                     <div class="col-md-6 col-sm-12 mt-5">
                     <img src="' . $row['article_image'] . '" alt="" class="img-fluid mb-3 articlePhoto">
                     <h3>' . $row['article_name'] . '</h3>
@@ -59,7 +58,8 @@
                         <a href="../../../Praca_dyplomowa/Frontend/Articles/articleFull.php?data=' . $row['id'] . '" class="readSingleArticle">Czytaj dalej>>></a>
                     </div>
                     </div>';
-            };
+                }
+            }
 
             $firstPage = 1;
             ?>
@@ -68,7 +68,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination customFont">
                         <?php
-                        for ($page = 1; $page <= $number_of_pages; $page++) {
+                        for ($page = 1; $page <= $page_amount; $page++) {
                             echo '<li class="page-item"><a class="page-link" href="../../Frontend/Articles/articles.php?page=' . $page . '">' . $page . '</a> </li> ';
                         }
                         $page = 1;

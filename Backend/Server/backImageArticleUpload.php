@@ -5,7 +5,7 @@ session_start();
 if (isset($_POST['save_image'])) {
 
   if (isset($_SESSION['path'])) {
-    unlink($_SESSION['path']);
+    unlink(realpath($_SESSION['path']));
     unset($_SESSION['path']);
 
     $id = $_POST['id'];
@@ -40,6 +40,12 @@ if (isset($_POST['upload_image'])) {
 
   $id = $_POST['id'];
   $image = $_SESSION['path'];
+
+  $Sql = "SELECT article_image FROM articles WHERE id='$id'";
+  $resultImage = $conn->query($Sql);
+  $row = $resultImage->fetch_assoc();
+  $article_image = $row['article_image'];
+  unlink(realpath($article_image));
 
   $upload_image = "UPDATE articles SET article_image='$image' WHERE id='$id'";
   if (mysqli_query($conn, $upload_image)) {

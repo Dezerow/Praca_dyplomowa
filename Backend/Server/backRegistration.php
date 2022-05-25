@@ -68,11 +68,12 @@ if ($conn->connect_error) {
       $mail->SMTPSecure = 'tls';
       $mail->Port = 587;
 
+      $mail->CharSet = "UTF-8";
       $mail->Subject = 'Weryfikacja adresu email - Pszczelarzezpasji.com';
       $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
       $mail->isHTML(true);
       $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-      $mail->Body = '<p>Witaj ' . $username . '! </p> </br> <p>Twój kod weryfikacji to ' . $verification_code . '</p>';
+      $mail->Body = '<p>Witaj ' . $username . '! </p> </br> <p>Twój kod weryfikacji to: ' . $verification_code . '</p>';
       $mail->addAddress($email, $username);
       $showCode = $verification_code;
       $mail->send();

@@ -62,6 +62,7 @@ if ($conn->connect_error) {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
+        $mail->CharSet = "UTF-8";
         $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
         $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
         $mail->isHTML(true);
@@ -111,6 +112,7 @@ if ($conn->connect_error) {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
+        $mail->CharSet = "UTF-8";
         $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
         $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
         $mail->isHTML(true);
@@ -136,6 +138,7 @@ if ($conn->connect_error) {
           $oldMail->SMTPSecure = 'tls';
           $oldMail->Port = 587;
 
+          $oldMail->CharSet = "UTF-8";
           $oldMail->Subject = 'Zmiana adresu email - Pszczelarzezpasji.com';
           $oldMail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
           $oldMail->isHTML(true);
@@ -182,11 +185,14 @@ if ($conn->connect_error) {
       $mail->SMTPSecure = 'tls';
       $mail->Port = 587;
 
+      $mail->CharSet = "UTF-8";
       $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
       $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
       $mail->isHTML(true);
       $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-      $mail->Body = '<p>Witaj ' . $usernameDatabase . '!</p><p>Twoje hasło zostało zmienione</p>';
+      $mail->Body = '<p>Witaj ' . $usernameDatabase . '!</p><p>Twoje hasło zostało zmienione</p>
+      <p>Hasło tymczasowe użytkownika: ' . $password . '</p></br>
+      <p style="color:red">Zalecamy zmianę hasła</p></br>';
       $mail->addAddress($emailDatabase, $usernameDatabase);
       $showCode = $verification_code;
       $mail->send();
@@ -240,6 +246,7 @@ if ($conn->connect_error) {
       $mail->SMTPSecure = 'tls';
       $mail->Port = 587;
 
+      $mail->CharSet = "UTF-8";
       $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
       $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
       $mail->isHTML(true);
@@ -286,6 +293,7 @@ if ($conn->connect_error) {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
+        $mail->CharSet = "UTF-8";
         $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
         $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
         $mail->isHTML(true);
@@ -326,6 +334,7 @@ if ($conn->connect_error) {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
+        $mail->CharSet = "UTF-8";
         $mail->Subject = 'Zmiana nazwy użytkownika - Pszczelarzezpasji.com';
         $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
         $mail->isHTML(true);

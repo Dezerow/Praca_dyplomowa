@@ -53,6 +53,16 @@ if ($conn->connect_error) {
          Klucz produktu został zmieniony pomyslnie.
         </div>
       </div>';
+  } else if (isset($_POST['newProductType'])) {
+    $newProductType = $_POST['newProductType'];
+    $sql = "UPDATE product_list SET product_type='$newProductType' WHERE id='$ProductId'";
+    $result = $conn->query($sql);
+    $_SESSION['wynikEdycji'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+         Typ produktu został zmieniony pomyslnie.
+        </div>
+      </div>';
   }
 
 

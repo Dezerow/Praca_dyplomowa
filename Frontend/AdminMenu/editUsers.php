@@ -75,7 +75,7 @@
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>            
-            <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editAdmin.php'>                          
+            <form method='POST' action='../../Backend/Server/fixPathToEditAdmin.php'>                          
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td><input type='hidden' name='name' value=" . $row['username'] . ">" . $row['username'] . "</td>
             <td class='email'><input type='hidden' name='email' value=" . $row['email'] . ">" . $row['email'] . "</td>
@@ -122,7 +122,7 @@
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>  
-            <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editUser.php'>                                    
+            <form method='POST' action='../../Backend/Server/fixPathToEditUser.php'>                                    
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td><input type='hidden' name='name' value=" . $row['username'] . ">" . $row['username'] . "</td>
             <td class='email'><input type='hidden' name='email' value=" . $row['email'] . ">" . $row['email'] . "</td>

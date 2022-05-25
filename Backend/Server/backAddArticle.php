@@ -13,7 +13,7 @@ if ($conn->connect_error) {
   if (isset($_POST['save_image'])) {
 
     if (isset($_SESSION['path'])) {
-      unlink($_SESSION['path']);
+      unlink(realpath($_SESSION['path']));
       unset($_SESSION['path']);
 
       $url = $_POST['image_url'];

@@ -58,15 +58,12 @@
                 $search = $_GET["type"];
             }
 
-
-            $results_per_page = 6;
-
             $sql = "SELECT * FROM product_list WHERE product_type='$search'";
             $result = mysqli_query($conn, $sql);
-            $number_of_results = mysqli_num_rows($result);
+            $number_of_products = mysqli_num_rows($result);
 
-
-            $number_of_pages = ceil($number_of_results / $results_per_page);
+            $max_results_per_page = 6;
+            $page_amount = ceil($number_of_products / $max_results_per_page);
 
             if (!isset($_GET['page'])) {
                 $page = 1;
@@ -74,13 +71,13 @@
                 $page = $_GET['page'];
             }
 
-            $this_page_first_result = ($page - 1) * $results_per_page;
+            $this_page_first_result = ($page - 1) * $max_results_per_page;
 
             echo '  <div class="col-md-10 col-sm-12">
                 <h2 class="d-flex justify-content-center" style="margin-top:40px">Prozdrowotne produkty pszczele</h2>
                 <div class="row mt-5">';
 
-            $sql = "SELECT * from product_list WHERE product_type='$search' ORDER BY product_name ASC LIMIT $this_page_first_result,$results_per_page";
+            $sql = "SELECT * from product_list WHERE product_type='$search' ORDER BY product_name ASC LIMIT $this_page_first_result,$max_results_per_page";
             $result = $conn->query($sql);
 
             if (mysqli_num_rows($result) > 0) {
@@ -109,7 +106,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination customFont">
                         <?php
-                        for ($page = 1; $page <= $number_of_pages; $page++) {
+                        for ($page = 1; $page <= $page_amount; $page++) {
                             echo '<li class="page-item"><a class="page-link" href="../../Frontend/ProductList/productListWithCategory.php?page=' . $page . '&type=' . $search . '">' . $page . '</a> </li> ';
                         }
                         $page = 1;

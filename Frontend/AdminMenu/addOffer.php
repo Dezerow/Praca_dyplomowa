@@ -82,6 +82,19 @@
 
                         <div class="card-body">
                             <h5 class="d-flex justify-content-center mt-3">
+                                Podaj typ produktu
+                            </h5>
+                            <div class="d-flex justify-content-center mt-3">
+                                <select class="form-select text-center" style="max-width: 200px" name="productType" id="ProductType">
+                                    <option value="Miód">Miód</option>
+                                    <option value="Przetwory">Przetwory</option>
+                                    <option value="Słodycze">Słodycze</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="d-flex justify-content-center mt-3">
                                 Podaj klucz produktu(Służy do łączenia z artykułami)
                             </h5>
                             <div class="d-flex justify-content-center mt-3">

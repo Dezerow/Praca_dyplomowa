@@ -62,7 +62,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>            
-            <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editArticle.php'>                          
+            <form method='POST' action='../../Backend/Server/fixPathToEditArticle.php'>                          
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td class='PhotoDiv'><img src='" . $row['article_image'] . "' class='img-fluid' alt='...' id='articlePhoto'></td>
             <td>" . $row['article_name'] . "</td>

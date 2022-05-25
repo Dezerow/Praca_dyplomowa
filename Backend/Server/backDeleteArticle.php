@@ -9,9 +9,11 @@ $ArticleId = $_POST['id'];
 
 if (isset($_POST['DeleteProduct'])) {
 
-    $Sqlshowname = "Select article_name FROM articles WHERE id='$ArticleId'";
+    $Sqlshowname = "Select article_name,article_image FROM articles WHERE id='$ArticleId'";
     $resultName = $conn->query($Sqlshowname);
     $row = $resultName->fetch_assoc();
+    $article_image = $row['article_image'];
+    unlink(realpath($article_image));
     $articleName = $row['article_name'];
 
     $sql = "DELETE FROM articles WHERE id='$ArticleId'";
@@ -21,7 +23,7 @@ if (isset($_POST['DeleteProduct'])) {
         <use xlink:href="#exclamation-triangle-fill" />
     </svg>
     <div>
-        Produkt o nazwie "' . $articleName . '" został usunięty.
+        Artykuł o nazwie "' . $articleName . '" został usunięty.
     </div>
 </div>';
 }

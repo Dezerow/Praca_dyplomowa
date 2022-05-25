@@ -46,14 +46,12 @@
                     require __DIR__ . "../../../../Praca_dyplomowa/Backend/DB_Connection/dbConnect.php";
                     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
-                    $results_per_page = 6;
-
                     $sql = 'SELECT * FROM product_list';
                     $result = mysqli_query($conn, $sql);
-                    $number_of_results = mysqli_num_rows($result);
+                    $number_of_products = mysqli_num_rows($result);
 
-
-                    $number_of_pages = ceil($number_of_results / $results_per_page);
+                    $max_results_per_page = 6;
+                    $page_amount = ceil($number_of_products / $max_results_per_page);
 
                     if (!isset($_GET['page'])) {
                         $page = 1;
@@ -61,13 +59,15 @@
                         $page = $_GET['page'];
                     }
 
-                    $this_page_first_result = ($page - 1) * $results_per_page;
+                    $this_page_first_result = ($page - 1) * $max_results_per_page;
 
-                    $sql = 'SELECT * FROM product_list LIMIT ' . $this_page_first_result . ',' .  $results_per_page . '';
+                    $sql = 'SELECT * FROM product_list LIMIT ' . $this_page_first_result . ',' .  $max_results_per_page . '';
                     $result = mysqli_query($conn, $sql);
 
-                    while ($row = mysqli_fetch_array($result)) {
-                        echo '
+                    if (mysqli_num_rows($result) > 0) {
+                        for ($a = 0; $a < mysqli_num_rows($result); $a++) {
+                            $row = $result->fetch_assoc();
+                            echo '
                         <div class="col-4">
                         <div class="card border-0 bg-light text-center productsFromDatabase">
                             <a href="../../../Praca_dyplomowa/Frontend/ProductList/singleProduct.php?data=' . $row['id'] . '" class="Products">
@@ -79,6 +79,7 @@
                             </a>
                         </div>
                         </div>';
+                        }
                     }
 
                     $firstPage = 1;
@@ -88,7 +89,7 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination customFont">
                                 <?php
-                                for ($page = 1; $page <= $number_of_pages; $page++) {
+                                for ($page = 1; $page <= $page_amount; $page++) {
                                     echo '<li class="page-item"><a class="page-link" href="../../Frontend/ProductList/productList.php?page=' . $page . '">' . $page . '</a> </li> ';
                                 }
                                 $page = 1;

@@ -66,6 +66,7 @@ if ($conn->connect_error) {
       $mail->SMTPSecure = 'tls';
       $mail->Port = 587;
 
+      $mail->CharSet = "UTF-8";
       $mail->Subject = 'Weryfikacja adresu email - Pszczelarzezpasji.com';
       $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
       $mail->isHTML(true);

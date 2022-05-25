@@ -26,8 +26,8 @@
 
     <?php
     $productId;
-    if (isset($_POST['id'])) {
-        $productId = $_POST['id'];
+    if (isset($_GET['id'])) {
+        $productId = $_GET['id'];
     } else if (isset($_SESSION['zapisaneID'])) {
         $productId = $_SESSION['zapisaneID'];
     }
@@ -50,7 +50,13 @@
                 <h3 class="d-flex justify-content-center mt-3"><?php echo $row['product_name'] ?></h3>
                 <div class="d-flex justify-content-center mt-3 card">
                     <div class="card-body">
-                        <?php echo $row['product_description'] ?>
+                        Opis produktu: <?php echo $row['product_description'] ?>
+                    </div>
+                    <div class="card-body">
+                        Cena produktu: <?php echo $row['product_price']; ?> zł
+                    </div>
+                    <div class="card-body">
+                        Typ produktu: <?php echo $row['product_type']; ?>
                     </div>
                     <div class="card-body">
                         <?php
@@ -93,6 +99,29 @@
                         </div>
                         <div class="mt-4">
                             <input type="submit" class="btn btn-success" value="Zatwierdź zmianę treści">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form method="POST" action="../../../Praca_dyplomowa/Backend/Server/backEditProduct.php">
+                <div class="mt-5">
+                    <div class="mt-5">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pokazEdycjeTypu" aria-expanded="false" aria-controls="collapseExample">
+                            Zmień typ produktu
+                        </button>
+                    </div>
+                    <div class="collapse" id="pokazEdycjeTypu">
+                        <div class="mt-3 d-flex justify-content-center">
+                            <input type='hidden' name='id' value="<?php echo $productId ?>">
+                            <select class="form-select text-center" style="max-width: 200px" name="newProductType" id="ProductType">
+                                <option value="Miód">Miód</option>
+                                <option value="Przetwory">Przetwory</option>
+                                <option value="Słodycze">Słodycze</option>
+                            </select>
+                        </div>
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-success" value="Zatwierdź zmianę typu">
                         </div>
                     </div>
                 </div>
@@ -144,8 +173,8 @@
         <div class="collapse text-center mt-3" id="pokazEdycjeZdjecia">
             <form method="post" action="../../Backend/Server/backImageProductUpload.php">
                 <input type='hidden' name='id' value=<?php
-                                                        if (isset($_POST['id'])) {
-                                                            echo $_POST['id'];
+                                                        if (isset($_GET['id'])) {
+                                                            echo $_GET['id'];
                                                         } else if (isset($_SESSION['zapisaneID'])) {
                                                             echo $_SESSION['zapisaneID'];
                                                         }
@@ -157,6 +186,8 @@
                                                                                                     echo 'required';
                                                                                                 } ?> placeholder="Podaj link do zdjęcia">
                 <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
+            </form>
+            <form method="post" action="../../Backend/Server/backImageProductUpload.php">
                 </br>
                 <img style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
                                                                             echo $_SESSION['path'];

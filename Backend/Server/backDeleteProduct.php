@@ -9,9 +9,11 @@ $ProductId = $_POST['id'];
 
 if (isset($_POST['DeleteProduct'])) {
 
-    $Sqlshowname = "Select product_name FROM product_list WHERE id='$ProductId'";
+    $Sqlshowname = "Select product_name,product_image FROM product_list WHERE id='$ProductId'";
     $resultName = $conn->query($Sqlshowname);
     $row = $resultName->fetch_assoc();
+    $product_image = $row['product_image'];
+    unlink(realpath($product_image));
     $productName = $row['product_name'];
 
     $sql = "DELETE FROM product_list WHERE id='$ProductId'";

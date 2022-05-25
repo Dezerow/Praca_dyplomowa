@@ -24,9 +24,9 @@
     ?>
 
     <?php
-    $UserId = $_POST['id'];
-    $Username = $_POST['name'];
-    $email = $_POST['email'];
+    $UserId = $_GET['id'];
+    $Username = $_GET['name'];
+    $email = $_GET['email'];
     ?>
 
     <div class="container mt-5" style="margin-bottom: 50px">
@@ -84,7 +84,7 @@
                             <div class="collapse" id="pokazEdycjeHasla">
                                 <div class="row mt-4">
                                     <input type='hidden' name='id' value='<?php echo $UserId ?>'>
-                                    <div class="col mt-1"><input type="password" placeholder="Podaj nowe hasło" name="newUserPassword" required></div>
+                                    <div class="col mt-1"><input type="password" autocomplete="one-time-code" placeholder="Podaj nowe hasło" name="newUserPassword" required></div>
                                     <div class="col"> <input type="submit" class="btn btn-success" value="Zatwierdź hasło">
                                     </div>
                                 </div>

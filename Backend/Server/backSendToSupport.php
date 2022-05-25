@@ -28,12 +28,12 @@ try {
   $mail->SMTPSecure = 'tls';
   $mail->Port = 587;
 
+  $mail->CharSet = "UTF-8";
   $mail->Subject = 'Wyslano prosbe o pomoc administracji - Pszczelarzezpasji.com';
   $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
   $mail->isHTML(true);
-  $mail->Body = '<p>Witaj twoja prośba o pomoc została dostraczona administracji, w przeciągu kilku dni napiszemy email z odpowiedzią.</p></br></br>
-    Treść problemu: </br>
-    ' . $tresc . ' </p>';
+  $mail->Body = '<p>Witaj twoja prośba o pomoc została dostraczona administracji, w przeciągu kilku dni napiszemy email z odpowiedzią.</p>
+  <p>Treść problemu: ' . $tresc . ' </p>';
   $mail->addAddress($email);
   $mail->send();
 
@@ -49,7 +49,8 @@ try {
     $mail2->SMTPSecure = 'tls';
     $mail2->Port = 587;
 
-    $mail2->Subject = 'Wyslano prosbe o pomoc administracji - Pszczelarzezpasji.com';
+    $mail2->CharSet = "UTF-8";
+    $mail2->Subject = 'Wysłano prośbę o pomoc administracji - Pszczelarzezpasji.com';
     $mail2->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
     $mail2->isHTML(true);
     $mail2->Body = '<p>Adres mailowy użytkownika: ' . $email . ' </p> </br>

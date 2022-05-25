@@ -52,6 +52,7 @@ if ($conn->connect_error) {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
+        $mail->CharSet = "UTF-8";
         $mail->Subject = 'Zmiana adresu email - Pszczelarzezpasji.com';
         $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
         $mail->isHTML(true);
@@ -79,6 +80,7 @@ if ($conn->connect_error) {
           $oldMail->SMTPSecure = 'tls';
           $oldMail->Port = 587;
 
+          $oldMail->CharSet = "UTF-8";
           $oldMail->Subject = 'Zmiana adresu email - Pszczelarzezpasji.com';
           $oldMail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
           $oldMail->isHTML(true);
@@ -105,37 +107,53 @@ if ($conn->connect_error) {
     }
   } else if (isset($_POST['newAdminPassword']) && $_POST['newAdminPassword'] !== "") {
     $password = $_POST['newAdminPassword'];
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $zapytanieSql = "SELECT * FROM adminlist WHERE username='$username'";
-    $wynik = $conn->query($zapytanieSql);
-    $wiersz = $wynik->fetch_assoc();
-    $email = $wiersz['email'];
+    $sqlPass = "SELECT * FROM adminlist WHERE username='$username'";
+    $wynikPass = $conn->query($sqlPass);
+    $row = $wynikPass->fetch_assoc();
+    if (!password_verify($password, $row['password'])) {
 
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'pszczelarzezpasji4453@gmail.com';
-    $mail->Password = 'pszczola9901a24';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
 
-    $mail->Subject = 'Zmiana hasła konta - Pszczelarzezpasji.com';
-    $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
-    $mail->isHTML(true);
-    $mail->Body = '<p>Witaj ' . $username . '! </p> </br> <p>Twoje hasło zostało zmienione</p>';
-    $mail->addAddress($email, $username);
-    $mail->send();
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "UPDATE adminlist SET password='$hashedPassword' WHERE username='$username' ";
-    $result = $conn->query($sql);
-    $_SESSION['daneZmienione'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
+      $zapytanieSql = "SELECT * FROM adminlist WHERE username='$username'";
+      $wynik = $conn->query($zapytanieSql);
+      $wiersz = $wynik->fetch_assoc();
+      $email = $wiersz['email'];
+
+      $mail = new PHPMailer(true);
+      $mail->isSMTP();
+      $mail->Host = 'smtp.gmail.com';
+      $mail->SMTPAuth = true;
+      $mail->Username = 'pszczelarzezpasji4453@gmail.com';
+      $mail->Password = 'pszczola9901a24';
+      $mail->SMTPSecure = 'tls';
+      $mail->Port = 587;
+
+      $mail->CharSet = "UTF-8";
+      $mail->Subject = 'Zmiana hasła konta - Pszczelarzezpasji.com';
+      $mail->setFrom('pszczelarzezpasji4453@gmail.com', 'Pszczelarzezpasji.com');
+      $mail->isHTML(true);
+      $mail->Body = '<p>Witaj ' . $username . '! </p> </br> <p>Twoje hasło zostało zmienione</p>';
+      $mail->addAddress($email, $username);
+      $mail->send();
+
+      $sql = "UPDATE adminlist SET password='$hashedPassword' WHERE username='$username' ";
+      $result = $conn->query($sql);
+      $_SESSION['daneZmienione'] = '<div class="alert alert-success d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
         <div>
           Hasło zostało zmienione.
         </div>
       </div>';
+    } else {
+      $_SESSION['daneZmienione'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+          <div>
+            Podano stare hasło. Nie naniesiono zmian.
+          </div>
+        </div>';
+    }
   }
 
   header("Location: ../../Frontend/AdminMenu/adminMenu.php");

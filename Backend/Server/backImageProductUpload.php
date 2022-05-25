@@ -5,7 +5,7 @@ session_start();
 if (isset($_POST['save_image'])) {
 
     if (isset($_SESSION['path'])) {
-        unlink($_SESSION['path']);
+        unlink(realpath($_SESSION['path']));
         unset($_SESSION['path']);
 
         $id = $_POST['id'];
@@ -17,7 +17,7 @@ if (isset($_POST['save_image'])) {
         file_put_contents($pathToImage, $data);
         $_SESSION['zapisaneID'] = $id;
         $_SESSION['path'] = $pathToImage;
-        header('Location: ../../Frontend/AdminMenu/editProduct.php');
+        header('Location: ../../Frontend/AdminMenu/editProduct.php?id=' . $id . '');
     }
 
     $id = $_POST['id'];
@@ -29,7 +29,7 @@ if (isset($_POST['save_image'])) {
     file_put_contents($pathToImage, $data);
     $_SESSION['zapisaneID'] = $id;
     $_SESSION['path'] = $pathToImage;
-    header('Location: ../../Frontend/AdminMenu/editProduct.php');
+    header('Location: ../../Frontend/AdminMenu/editProduct.php?id=' . $id . '');
 }
 
 if (isset($_POST['upload_image'])) {
@@ -40,6 +40,13 @@ if (isset($_POST['upload_image'])) {
 
     $id = $_POST['id'];
     $image = $_SESSION['path'];
+
+    $Sql = "SELECT product_image FROM product_list WHERE id='$id'";
+    $resultImage = $conn->query($Sql);
+    $row = $resultImage->fetch_assoc();
+    $product_image = $row['product_image'];
+    unlink(realpath($product_image));
+
 
     $upload_image = "UPDATE product_list SET product_image='$image' WHERE id='$id'";
     if (mysqli_query($conn, $upload_image)) {

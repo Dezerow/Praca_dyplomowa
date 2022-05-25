@@ -63,7 +63,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>            
-            <form method='POST' action='../../../Praca_dyplomowa/Frontend/AdminMenu/editProduct.php'>                          
+            <form method='POST' action='../../Backend/Server/fixPathToEditProduct.php'>                          
             <td><input type='hidden' name='id' value=" . $row['id'] . ">" . $row['id'] . "</td>
             <td class='PhotoDiv'><img src='" . $row['product_image'] . "' class='img-fluid' alt='...' id='productPhoto'></td>
             <td>" . $row['product_name'] . "</td>

@@ -26,8 +26,8 @@
 
     <?php
     $articleId;
-    if (isset($_POST['id'])) {
-        $articleId = $_POST['id'];
+    if (isset($_GET['id'])) {
+        $articleId = $_GET['id'];
     } else if (isset($_SESSION['zapisaneID'])) {
         $articleId = $_SESSION['zapisaneID'];
     }
@@ -36,7 +36,7 @@
     $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
 
-    $sql = "SELECT id, article_name, article_content, article_image from articles WHERE id='$articleId'";
+    $sql = "SELECT * from articles WHERE id='$articleId'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
@@ -50,7 +50,14 @@
                 <h3 class="d-flex justify-content-center mt-3"><?php echo $row['article_name'] ?></h3>
                 <div class="d-flex justify-content-center mt-3 card">
                     <div class="card-body">
-                        <?php echo $row['article_content'] ?>
+                        <?php echo 'Treść artykułu: ' . $row['article_content'] ?>
+                    </div>
+                    <div class="card-body">
+                        <?php
+                        if (($row['product_article']) !== '') {
+                            echo 'Klucz produktu: ' . $row['product_article'];
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -119,8 +126,8 @@
         <div class="collapse text-center mt-3" id="pokazEdycjeZdjecia">
             <form method="post" action="../../Backend/Server/backImageArticleUpload.php">
                 <input type='hidden' name='id' value=<?php
-                                                        if (isset($_POST['id'])) {
-                                                            echo $_POST['id'];
+                                                        if (isset($_GET['id'])) {
+                                                            echo $_GET['id'];
                                                         } else if (isset($_SESSION['zapisaneID'])) {
                                                             echo $_SESSION['zapisaneID'];
                                                         }
@@ -132,6 +139,8 @@
                                                                                                     echo 'required';
                                                                                                 } ?> placeholder="Podaj link do zdjęcia">
                 <input type="submit" disabled name="save_image" id="save_image" value="Wyślij zdjęcie">
+            </form>
+            <form method="post" action="../../Backend/Server/backImageArticleUpload.php">
                 </br>
                 <img style="max-width: 350px; max-height: 350px" src="<?php if (isset($_SESSION['path'])) {
                                                                             echo $_SESSION['path'];
