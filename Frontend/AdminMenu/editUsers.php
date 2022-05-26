@@ -25,7 +25,7 @@
     }
     ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5" style="margin-bottom: 100px">
         <div class="text-center">
             <div class="row">
                 <div class="col-md-6">

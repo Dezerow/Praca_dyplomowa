@@ -7,6 +7,9 @@
   margin-bottom: 100px;
 }
 
+@media only screen and (min-width: 1060px) {
+
+
 #break_word {
   max-width: 600px;
   font-size: 20px;
@@ -14,3 +17,15 @@
   width: 60%;
   padding: 10px;
 }
+
+}
+
+
+@media only screen and (max-width: 750px) {
+
+  .articleFull{
+    font-size: 15px;
+  }
+  
+  }
+

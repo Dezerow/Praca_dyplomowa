@@ -23,7 +23,7 @@
   }
   ?>
 
-  <div class="container-fluid mt-5 mainContainer" id="whenLittleMove">
+  <div class="container-fluid mt-5 mainContainer" id="whenLittleMove" style="margin-bottom: 450px">
     <section class="row justify-content-center">
       <section class="col-12 col-sm-6 col-md-3">
         <form action="./../../Backend/Server/backLogin.php" method="POST" class="form-container">

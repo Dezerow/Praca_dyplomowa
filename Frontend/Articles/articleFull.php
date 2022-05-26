@@ -33,13 +33,13 @@
     ?>
 
 
-    <div class="container py-5">
+    <div class="container py-5" style="margin-bottom: 10px">
         <div class="d-flex justify-content-center mt-3">
             <img src="<?php echo $row['article_image'] ?>" id="mainPhoto" alt="" class="img-fluid mb-3 articlePhoto">
         </div>
         <h1 class="d-flex justify-content-center mt-3"><?php echo $row['article_name'] ?></h1>
         <div class="d-flex justify-content-center mt-3 card" id="break_word">
-            <div class="card-body">
+            <div class="card-body articleFull">
                 <?php echo $row['article_content'] ?>
             </div>
         </div>
