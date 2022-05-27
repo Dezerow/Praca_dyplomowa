@@ -15,21 +15,7 @@ foreach ($_SESSION['userShoppingCart'] as $singleProduct) {
         $_SESSION['CartTotalPrice'] -= $row['product_price'];
         $key = array_search($productId, $_SESSION['userShoppingCart']);
         unset($_SESSION['userShoppingCart'][$key]);
-        //Kod wyżej usuwa największy numer id z tablicy array
-        // Musze dostać miejsce w tablicy array a nie wartość
-        // Wystarczyło użyć array_search aby znaleźc miejsce w tablicy array
     }
 }
-
-
-// Nie działa to poniżej
-//$key = array_search($_GET[$productId], $_SESSION['userShoppingCart']);
-//if ($key !== false)
-//  unset($_SESSION['userShoppingCart'][$key]);
-//$_SESSION["userShoppingCart"] = array_values($_SESSION["userShoppingCart"]);
-
-
-
-
 
 header("Location: ../../Frontend/UserMenu/shoppingCart.php");

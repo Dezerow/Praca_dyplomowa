@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="PL">
 
 <head>
     <meta charset="UTF-8">
@@ -40,7 +40,12 @@
                     $search = $_GET["search"];
                 }
 
-                $sql = "SELECT * FROM product_list WHERE product_name LIKE '%$search%'";
+
+                if (preg_match("/{$search}/i", "Miód")) {
+                    $sql = "SELECT * FROM product_list WHERE product_type='Miód' || product_type='Przetwory' AND product_name LIKE '%$search%'";
+                } else {
+                    $sql = "SELECT * FROM product_list WHERE product_name LIKE '%$search%'";
+                }
                 $result = mysqli_query($conn, $sql);
                 $number_of_products = mysqli_num_rows($result);
 
@@ -55,7 +60,12 @@
 
                 $this_page_first_result = ($page - 1) * $max_results_per_page;
 
-                $sql = "SELECT * from product_list WHERE product_name LIKE '%$search%' ORDER BY product_name ASC LIMIT $this_page_first_result,$max_results_per_page";
+                if (preg_match("/{$search}/i", "Miód")) {
+                    $sql = "SELECT * FROM product_list WHERE product_type='Miód' || product_type='Przetwory' AND product_name LIKE '%$search%' ORDER BY product_name ASC LIMIT $this_page_first_result,$max_results_per_page ";
+                } else {
+                    $sql = "SELECT * from product_list WHERE product_name LIKE '%$search%' ORDER BY product_name ASC LIMIT $this_page_first_result,$max_results_per_page";
+                }
+
                 $result = $conn->query($sql);
 
                 if (mysqli_num_rows($result) > 0) {

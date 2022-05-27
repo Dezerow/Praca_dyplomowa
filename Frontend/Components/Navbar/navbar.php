@@ -18,7 +18,7 @@ session_start();
                 <option value="Products">Produkty</option>
                 <option value="Articles">Artykuły</option>
             </select>
-            <input class="form-control me-2" pattern="^[A-Za-z0-9śćźóżŚĆŹŻÓ]{0,25}" id="inputSzukaj" name="search" placeholder="Co chcesz znaleźć?">
+            <input class="form-control me-2" pattern="^[A-Za-z0-9śćźóżŚĆŹŻÓ ]{0,25}" id="inputSzukaj" name="search" placeholder="Co chcesz znaleźć?">
             <i id="Nagraj_glos" class="fa-solid fa-volume-high fa-2xl mt-3"></i>
             <button class="btn btn-outline-success ms-2" id="szukaj" type="submit">Szukaj</button>
         </form>

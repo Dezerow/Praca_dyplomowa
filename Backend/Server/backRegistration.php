@@ -26,7 +26,7 @@ if ($conn->connect_error) {
   $email = $_POST["email"];
   $password = $_POST["password"];
 
-  $username = htmlentities($username, ENT_QUOTES, "UTF-8");   // Przepuszczanie przez html entities aby funkcja wstawiła nam automatycznie encje htmla, dzięki temu nie odczyta tekstu jako kod JS, zabiezpieczając nas przed atakiem na naszą strone
+  $username = htmlentities($username, ENT_QUOTES, "UTF-8");
   $password = htmlentities($password, ENT_QUOTES, "UTF-8");
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 

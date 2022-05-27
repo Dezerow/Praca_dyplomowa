@@ -22,7 +22,7 @@ if ($conn->connect_error) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $username = htmlentities($username, ENT_QUOTES, "UTF-8");   // Przepuszczanie przez html entities aby funkcja wstawiła nam automatycznie encje htmla, dzięki temu nie odczyta tekstu jako kod JS, zabiezpieczając nas przed atakiem na naszą strone
+  $username = htmlentities($username, ENT_QUOTES, "UTF-8");
   $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
 
@@ -44,10 +44,10 @@ if ($conn->connect_error) {
         $_SESSION['userShoppingCart'] = $ar;
         $_SESSION['CartTotalPrice'] = 0;
 
-        unset($_SESSION['error']);  // TUTAJ MOJE ZWOLNIENIE SESJI
-        unset($_SESSION['registerSucc']);  // TUTAJ MOJE ZWOLNIENIE SESJI
+        unset($_SESSION['error']);
+        unset($_SESSION['registerSucc']);
 
-        $result->free_result(); // Jest to zwolnienie pamięci, można dać close(); lub free(); lub free-result(); Mega ważne, duży błąd
+        $result->free_result();
         header('Location: ../../Frontend/Main/index.php');
       }
     } else {

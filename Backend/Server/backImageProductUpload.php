@@ -50,7 +50,6 @@ if (isset($_POST['upload_image'])) {
 
     $upload_image = "UPDATE product_list SET product_image='$image' WHERE id='$id'";
     if (mysqli_query($conn, $upload_image)) {
-        //  echo "Records were updated successfully.";
         unset($_SESSION['path']);
         unset($_SESSION['zapisaneID']);
         $_SESSION['wynikEdycji'] = '<div class="alert alert-success text-center" role="alert">
