@@ -1,5 +1,12 @@
 <?php
 session_start();
+set_include_path(
+    '../Navbar/navbar.css' . PATH_SEPARATOR . '../Navbar/navbar.php' . PATH_SEPARATOR .
+        '../SpeechToText/SpeechToText_JS_WebKit.js' . PATH_SEPARATOR .  '../Images/Article_Images' . PATH_SEPARATOR . '../Images/Product_Images'
+        . PATH_SEPARATOR . '../Images/Static_Images' . PATH_SEPARATOR . '../Footer/footer.css' . PATH_SEPARATOR . '../Footer/footer.php'
+        . PATH_SEPARATOR . '../../UserMenu/' . '../../Articles' . '../../Components' . '../../Login' . '../../Main' . '../../ProductList'
+        . PATH_SEPARATOR . '../../Register' . '../../SearchResults' . '../../SupportContact' . '../../UserMenu'
+);
 
 ?>
 
