@@ -38,10 +38,11 @@
                 $conn = @new mysqli($hostname, $db_username, $db_password, $db_name);
                 if (isset($_GET["search"])) {
                     $search = $_GET["search"];
+                } else {
+                    $search = "";
                 }
 
-
-                if (preg_match("/{$search}/i", "Miód")) {
+                if (preg_match("/^Miód$/i", $search)) {
                     $sql = "SELECT * FROM product_list WHERE product_type='Miód' || product_type='Przetwory' AND product_name LIKE '%$search%'";
                 } else {
                     $sql = "SELECT * FROM product_list WHERE product_name LIKE '%$search%'";
@@ -60,7 +61,7 @@
 
                 $this_page_first_result = ($page - 1) * $max_results_per_page;
 
-                if (preg_match("/{$search}/i", "Miód")) {
+                if (preg_match("/^Miód$/i", $search)) {
                     $sql = "SELECT * FROM product_list WHERE product_type='Miód' || product_type='Przetwory' AND product_name LIKE '%$search%' ORDER BY product_name ASC LIMIT $this_page_first_result,$max_results_per_page ";
                 } else {
                     $sql = "SELECT * from product_list WHERE product_name LIKE '%$search%' ORDER BY product_name ASC LIMIT $this_page_first_result,$max_results_per_page";
