@@ -35,7 +35,7 @@ if (isset($_POST['productId'])) {
                 'product_data' => [
                     'name' => '' . $rowProdukt['product_name'] . '',
                     'description' => '' . $rowProdukt['product_description'] . '',
-                    'images' => ['https://lh3.googleusercontent.com/xuRgE_4ayjNcvMC68VtGv9dVp3jDrMx6t7ZwBva_xCRjiDf8lNZ8hmgpEd3NOs1PuUy1ctvxPW5uGciWS5US3IWMPFQsCGfgesGBrHYhDlY6U1JlmVlCmR3nZVg31VBdcrS3eqVWYeJgpXNwp6B0j8uF1_V_7U_28svirJdMJBN5gaV5VgxIXyusD9lZnlP04KQX5Cb3Hfx4AZdwjWWSpYa56Fl5fmD53zVRQomkcSNV99XXG7GqZulTikXbtLEOjqbUleZaMIjDNph-ErZJ_VlqmY8hbvQnP9fqnu0AdrqEAyKntK69x8SiBvmu3YY7nfWPoAzkT493uXeHC2PhLQvAHOJiQPMB74B63SNIUzacwpti6HLhoTjNrvo38GwDUxYfuQA_9Nl1m5pVU9-HJFRzGFi_hAa7CcvPbRnIH4U7XIIztKvRs9aNcJ3VSrgeESL9aXXRy-cGMw5dmxKtUf9qj9Py_aPu1VvnC9JhnLKp_V1E0YF-T6tHOopO36BMnBro4DrgdPnlHTn-nj-7xO8t4e-Pcc-s5A1zUw5zpfu_uo-UhcIP8IuxelRFsD3F6HuIia9XnrInOg5rDX7teQxMJjae_a5oXFzY3DRVC_m5QQ1HrnjrfFwlaFTku6ZubiQDp_r1AtdI8DFeEiY3mnn7mUUVjEcNR49An7-UYNaBK-piX9ZRjiRl_x-a2pipIezeIHYlYPf62-Jqr9tUBbG1qUm4bz5yi2QnKkqGKgtWJLTsptTsDxL6_fX39g=w294-h220-no?authuser=0'],
+                    'images' => ['http://drive.google.com/uc?export=view&id=1qfkv6ShkYvMq-o_ZKCY6iOEOYdPkqJM-'],
 
                 ],
                 'unit_amount' => ($rowProdukt['product_price'] * 100),
@@ -72,7 +72,7 @@ if (isset($_POST['productId'])) {
                     'currency' => 'PLN',
                     'product_data' => [
                         'name' => '' . $ListaProduktow . '',
-                        'images' => ['https://lh3.googleusercontent.com/xuRgE_4ayjNcvMC68VtGv9dVp3jDrMx6t7ZwBva_xCRjiDf8lNZ8hmgpEd3NOs1PuUy1ctvxPW5uGciWS5US3IWMPFQsCGfgesGBrHYhDlY6U1JlmVlCmR3nZVg31VBdcrS3eqVWYeJgpXNwp6B0j8uF1_V_7U_28svirJdMJBN5gaV5VgxIXyusD9lZnlP04KQX5Cb3Hfx4AZdwjWWSpYa56Fl5fmD53zVRQomkcSNV99XXG7GqZulTikXbtLEOjqbUleZaMIjDNph-ErZJ_VlqmY8hbvQnP9fqnu0AdrqEAyKntK69x8SiBvmu3YY7nfWPoAzkT493uXeHC2PhLQvAHOJiQPMB74B63SNIUzacwpti6HLhoTjNrvo38GwDUxYfuQA_9Nl1m5pVU9-HJFRzGFi_hAa7CcvPbRnIH4U7XIIztKvRs9aNcJ3VSrgeESL9aXXRy-cGMw5dmxKtUf9qj9Py_aPu1VvnC9JhnLKp_V1E0YF-T6tHOopO36BMnBro4DrgdPnlHTn-nj-7xO8t4e-Pcc-s5A1zUw5zpfu_uo-UhcIP8IuxelRFsD3F6HuIia9XnrInOg5rDX7teQxMJjae_a5oXFzY3DRVC_m5QQ1HrnjrfFwlaFTku6ZubiQDp_r1AtdI8DFeEiY3mnn7mUUVjEcNR49An7-UYNaBK-piX9ZRjiRl_x-a2pipIezeIHYlYPf62-Jqr9tUBbG1qUm4bz5yi2QnKkqGKgtWJLTsptTsDxL6_fX39g=w294-h220-no?authuser=0'],
+                        'images' => ['http://drive.google.com/uc?export=view&id=1qfkv6ShkYvMq-o_ZKCY6iOEOYdPkqJM-'],
 
                     ],
                     'unit_amount' => ($_SESSION['CartTotalPrice'] * 100),
