@@ -10,3 +10,11 @@ Plikiem służącym jako strona główna od którego można obsługiwać stronę
 
 Nie można również zmieniać nazwy folderu w którym znajduję się aplikacja ponieważ odwołuje się po nazwie Praca_dyplomowa.
 Posiadając niezmienioną nazwę folderu z aplikacją w odpowiednim miejscu, wszystko powinno działać jak należy. 
+
+
+Baza danych: 
+ZIP: 
+https://drive.google.com/file/d/1BajBBMoH0kgfpRYLj8rYp42RtYjWDWzq/view?usp=sharing
+
+RAR:
+https://drive.google.com/file/d/1A78Lt2PrR5zlJ7gUFAi5JpWDiP5HyySC/view?usp=sharing
