@@ -6,5 +6,7 @@ Projekt posiada problem ze ścieżkami którego nie byłem w stanie poprawić - 
 Ze względu na to że kilkukrotnie wychodziłem poza aplikacje i wchodziłem do niej z powrotem (jako odwoływanie się do ścieżek), projekt musi znajdować się w 
 htdocs/Praca_dyplomowa np. C:\xampp\htdocs\Praca_dyplomowa
 
+Plik służącym jako strona główna od którego wszystko się chodzi, czyli mój root jest: Frontend/Main/Index.html
+
 Nie można również zmieniać nazwy folderu w którym znajduję się aplikacja ponieważ odwołuje się po nazwie Praca_dyplomowa.
 Posiadając niezmienioną nazwę folderu z aplikacją w odpowiednim miejscu, wszystko powinno działać jak należy. 
